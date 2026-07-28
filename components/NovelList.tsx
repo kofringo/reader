@@ -1,194 +1,211 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useSearchParams, useRouter } from 'next/navigation'
 
 interface Novel {
   id: string
   title: string
   author: string
-  cover_url?: string
-  genre?: string
+  cover_url: string | null
+  genres?: string[] | string | null
+  genre?: string[] | string | null // fallback in case column name is singular
+  description: string | null
+}
+
+// Complete list matching FanMTL style
+const STATIC_GENRES = [
+  'Action', 'Adult', 'Adventure', 'Comedy', 'Drama', 'Eastern',
+  'Ecchi', 'Fantasy', 'Game', 'Gender Bender', 'Harem', 'Historical',
+  'Horror', 'Josei', 'Martial Arts', 'Mature', 'Mecha', 'Mystery',
+  'Psychological', 'Reincarnation', 'Romance', 'School Life', 'Sci-fi',
+  'Seinen', 'Shoujo', 'Shounen Ai', 'Shounen', 'Slice of Life',
+  'Supernatural', 'Xianxia', 'Xuanhuan'
+]
+
+const GENRE_COLORS: Record<string, string> = {
+  'Action': 'text-emerald-400 hover:text-emerald-300',
+  'Fantasy': 'text-purple-400 hover:text-purple-300',
+  'Game': 'text-amber-500 hover:text-amber-400',
+  'Martial Arts': 'text-blue-400 hover:text-blue-300',
+  'Romance': 'text-rose-400 hover:text-rose-300',
 }
 
 export default function NovelList({ initialNovels }: { initialNovels: Novel[] }) {
-  const searchParams = useSearchParams()
   const router = useRouter()
+  const searchParams = useSearchParams()
 
-  const [search, setSearch] = useState('')
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null)
+  const searchQuery = searchParams.get('search') || ''
+  const selectedGenre = searchParams.get('genre') || ''
 
-  // Sync selectedGenre state with URL query parameter (?genre=Name)
-  useEffect(() => {
-    const genreParam = searchParams.get('genre')
-    setSelectedGenre(genreParam)
-  }, [searchParams])
+  // Safe helper that handles arrays, comma strings, singular/plural props, & casing
+  const checkHasGenre = (novel: Novel, targetGenre: string): boolean => {
+    const rawData = novel.genres || novel.genre
+    if (!rawData) return false
 
-  // Extract all unique genres across all novels
-  const allGenres = Array.from(
-    new Set(
-      initialNovels
-        .flatMap((n) => (n.genre ? n.genre.split(',').map((g) => g.trim()) : []))
-        .filter(Boolean)
-    )
-  ).sort()
+    const target = targetGenre.trim().toLowerCase()
 
-  // Filter novels by search query and genre selection
+    if (Array.isArray(rawData)) {
+      return rawData.some((g) => String(g).trim().toLowerCase() === target)
+    }
+
+    if (typeof rawData === 'string') {
+      // Handles "Action, Fantasy" or "action"
+      return rawData
+        .toLowerCase()
+        .split(/[,|]/)
+        .some((g) => g.trim() === target)
+    }
+
+    return false
+  }
+
+  // Filter novels
   const filteredNovels = initialNovels.filter((novel) => {
-    const matchesSearch = novel.title.toLowerCase().includes(search.toLowerCase())
+    const matchesSearch = novel.title
+      .toLowerCase()
+      .includes(searchQuery.trim().toLowerCase())
+
     const matchesGenre = selectedGenre
-      ? novel.genre?.toLowerCase().includes(selectedGenre.toLowerCase())
+      ? checkHasGenre(novel, selectedGenre)
       : true
+
     return matchesSearch && matchesGenre
   })
 
-  const clearGenre = () => {
-    setSelectedGenre(null)
-    router.push('/')
+  const handleGenreClick = (genre: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (selectedGenre.toLowerCase() === genre.toLowerCase()) {
+      params.delete('genre')
+    } else {
+      params.set('genre', genre)
+    }
+    router.push(`/?${params.toString()}`)
   }
 
-  const handleGenreClick = (genre: string) => {
-    if (selectedGenre?.toLowerCase() === genre.toLowerCase()) {
-      clearGenre()
-    } else {
-      setSelectedGenre(genre)
-      router.push(`/?genre=${encodeURIComponent(genre)}`)
-    }
+  const clearGenre = () => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('genre')
+    router.push(`/?${params.toString()}`)
   }
 
   return (
-    <div>
-      {/* Top Search Bar */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center mb-8">
-        <input
-          type="text"
-          placeholder="🔍 Search novels by title..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full max-w-md p-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white placeholder-gray-500 text-sm"
-        />
+    <div className="flex flex-col lg:flex-row gap-8">
+      {/* Main Content */}
+      <div className="flex-1">
+        {selectedGenre || searchQuery ? (
+          <div className="flex items-center gap-2 mb-6 flex-wrap">
+            {searchQuery && (
+              <span className="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-md flex items-center gap-2">
+                Search: <strong>"{searchQuery}"</strong>
+              </span>
+            )}
+            {selectedGenre && (
+              <div className="flex items-center gap-2 bg-purple-950/80 border border-purple-800 text-purple-200 text-xs px-3 py-1.5 rounded-md">
+                <span>Filter: <strong>{selectedGenre}</strong></span>
+                <button 
+                  onClick={clearGenre} 
+                  className="text-purple-400 hover:text-white font-bold ml-1"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
+          </div>
+        ) : null}
 
-        {selectedGenre && (
-          <div className="flex items-center gap-2 bg-blue-950 border border-blue-800 text-blue-200 px-3 py-1.5 rounded-lg text-sm font-semibold">
-            <span>Filter: <strong>{selectedGenre}</strong></span>
-            <button
-              onClick={clearGenre}
-              className="text-gray-400 hover:text-white font-bold ml-1"
-              title="Clear Filter"
-            >
-              ✕
-            </button>
+        {filteredNovels.length === 0 ? (
+          <div className="text-center py-16 bg-slate-900 border border-slate-800 rounded-lg">
+            <p className="text-gray-400 text-sm">No novels found matching your filter.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {filteredNovels.map((novel) => (
+              <Link
+                key={novel.id}
+                href={`/novel/${novel.id}`}
+                className="group relative bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-slate-700 hover:shadow-xl transition-all duration-300 flex flex-col"
+              >
+                <div className="relative aspect-[3/4] w-full bg-slate-950 overflow-hidden">
+                  {novel.cover_url ? (
+                    <Image
+                      src={novel.cover_url}
+                      alt={novel.title}
+                      fill
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-slate-500 text-xs">
+                      No Cover
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-3 flex flex-col flex-1 justify-between bg-slate-900">
+                  <div>
+                    <h2 className="font-bold text-slate-100 text-xs line-clamp-2 group-hover:text-blue-400 transition-colors">
+                      {novel.title}
+                    </h2>
+                    <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">
+                      {novel.author || 'Unknown'}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         )}
       </div>
 
-      {/* Main Two-Column Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-        
-        {/* LEFT AREA: Novel Cards (Spans 3 columns on large screens) */}
-        <div className="lg:col-span-3">
-          {filteredNovels.length > 0 ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-              {filteredNovels.map((novel) => (
-                <Link
-                  key={novel.id}
-                  href={`/novel/${novel.id}`}
-                  className="group flex flex-col bg-gray-900 border border-gray-800 rounded-xl overflow-hidden hover:border-blue-500 hover:scale-[1.02] transition-all duration-200 shadow-lg"
-                >
-                  <div className="aspect-[2/3] bg-gray-800 relative overflow-hidden flex items-center justify-center">
-                    {novel.cover_url ? (
-                      <img
-                        src={novel.cover_url}
-                        alt={novel.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="p-4 text-center text-gray-500 text-xs font-bold uppercase tracking-wider">
-                        No Cover
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-3.5 flex flex-col flex-grow">
-                    <h3 className="font-bold text-white text-xs sm:text-sm line-clamp-2 group-hover:text-blue-400 transition">
-                      {novel.title}
-                    </h3>
-                    <p className="text-[11px] text-gray-400 mt-1.5">
-                      By {novel.author || 'Unknown'}
-                    </p>
-                  </div>
-                </Link>
-              ))}
+      {/* FanMTL Sidebar (Always visible) */}
+      <div className="w-full lg:w-80 shrink-0">
+        <div className="bg-slate-900 border border-slate-800 rounded-lg shadow-sm overflow-hidden sticky top-20">
+          <div className="border-b border-slate-800 px-4 py-3 bg-slate-800/40 flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <span className="text-amber-500 text-base">📑</span>
+              <h3 className="text-sm font-bold tracking-wide text-slate-200 uppercase">
+                GENRES
+              </h3>
             </div>
-          ) : (
-            <div className="text-center py-16 bg-gray-900/50 rounded-xl border border-gray-800">
-              <p className="text-gray-400 font-medium">No novels found matching your filter.</p>
+            {selectedGenre && (
               <button
                 onClick={clearGenre}
-                className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-500 transition"
+                className="text-[11px] text-purple-400 hover:text-purple-300 font-semibold underline"
               >
-                View All Novels
+                Clear
               </button>
-            </div>
-          )}
-        </div>
-
-        {/* RIGHT SIDEBAR: Genre Navigation Box */}
-        <aside className="lg:col-span-1">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 sticky top-6 shadow-xl">
-            <div className="flex items-center justify-between border-b border-gray-800 pb-3 mb-4">
-              <h2 className="text-sm font-bold uppercase tracking-wider text-gray-200 flex items-center gap-2">
-                🏷️ Genres
-              </h2>
-              {selectedGenre && (
-                <button
-                  onClick={clearGenre}
-                  className="text-xs text-blue-400 hover:underline font-semibold"
-                >
-                  Reset
-                </button>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-1">
-              <button
-                onClick={clearGenre}
-                className={`w-full text-left px-3 py-2 text-xs font-semibold rounded-lg transition flex items-center justify-between ${
-                  !selectedGenre
-                    ? 'bg-blue-600 text-white'
-                    : 'text-gray-400 hover:bg-gray-800 hover:text-white'
-                }`}
-              >
-                <span>All Genres</span>
-                <span className="text-[10px] opacity-75">{initialNovels.length}</span>
-              </button>
-
-              {allGenres.map((genre) => {
-                const count = initialNovels.filter((n) =>
-                  n.genre?.toLowerCase().includes(genre.toLowerCase())
-                ).length
-
-                const isSelected = selectedGenre?.toLowerCase() === genre.toLowerCase()
-
-                return (
-                  <button
-                    key={genre}
-                    onClick={() => handleGenreClick(genre)}
-                    className={`w-full text-left px-3 py-2 text-xs font-semibold rounded-lg transition flex items-center justify-between ${
-                      isSelected
-                        ? 'bg-blue-600 text-white'
-                        : 'text-gray-300 hover:bg-gray-800/80 hover:text-white'
-                    }`}
-                  >
-                    <span>{genre}</span>
-                    <span className="text-[10px] text-gray-500">{count}</span>
-                  </button>
-                )
-              })}
-            </div>
+            )}
           </div>
-        </aside>
 
+          <div className="grid grid-cols-2 divide-x divide-slate-800 border-b border-slate-800">
+            {STATIC_GENRES.map((genre, index) => {
+              const isActive = selectedGenre.toLowerCase() === genre.toLowerCase()
+              const colorClass = GENRE_COLORS[genre] || 'text-slate-400 hover:text-slate-200'
+
+              return (
+                <button
+                  key={genre}
+                  onClick={() => handleGenreClick(genre)}
+                  className={`flex items-center gap-2 px-3 py-2 text-xs font-semibold border-t border-dashed border-slate-800/80 text-left transition hover:bg-slate-800/60 ${
+                    index < 2 ? 'border-t-0' : ''
+                  } ${
+                    isActive 
+                      ? 'bg-purple-950/60 text-purple-300 font-bold' 
+                      : colorClass
+                  }`}
+                >
+                  <span className={`text-[13px] ${isActive ? 'text-purple-400' : 'text-slate-500'}`}>
+                    {isActive ? '✔' : '🔘'}
+                  </span>
+                  <span className="truncate">{genre}</span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </div>
   )
