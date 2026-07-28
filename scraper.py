@@ -176,20 +176,20 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/fey-evolution-merchant",
-            "chapter_pattern": "https://freewebnovel.com/novel/fey-evolution-merchant/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/become-the-guard-ai-of-the-lost-civilization-after-transmigration",
+            "chapter_pattern": "https://freewebnovel.com/novel/become-the-guard-ai-of-the-lost-civilization-after-transmigration/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/god-of-soul-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/god-of-soul-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/hxh-god-of-choice-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/hxh-god-of-choice-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/eternal-cultivation-of-alchemy",
+            "chapter_pattern": "https://freewebnovel.com/novel/eternal-cultivation-of-alchemy/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }

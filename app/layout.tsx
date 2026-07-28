@@ -27,10 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#121212] text-gray-100 min-h-screen flex flex-col`}>
-        
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-100 text-slate-900 dark:bg-[#121212] dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-200`}
+      >
         {/* Global Navigation Header with Center Search */}
-        <Suspense fallback={<div className="h-16 border-b border-gray-800 bg-gray-900" />}>
+        <Suspense fallback={<div className="h-16 border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900" />}>
           <Navbar />
         </Suspense>
 

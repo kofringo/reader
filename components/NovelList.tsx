@@ -11,11 +11,10 @@ interface Novel {
   author: string
   cover_url: string | null
   genres?: string[] | string | null
-  genre?: string[] | string | null // fallback in case column name is singular
+  genre?: string[] | string | null
   description: string | null
 }
 
-// Complete list matching FanMTL style
 const STATIC_GENRES = [
   'Action', 'Adult', 'Adventure', 'Comedy', 'Drama', 'Eastern',
   'Ecchi', 'Fantasy', 'Game', 'Gender Bender', 'Harem', 'Historical',
@@ -40,7 +39,6 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
   const searchQuery = searchParams.get('search') || ''
   const selectedGenre = searchParams.get('genre') || ''
 
-  // Safe helper that handles arrays, comma strings, singular/plural props, & casing
   const checkHasGenre = (novel: Novel, targetGenre: string): boolean => {
     const rawData = novel.genres || novel.genre
     if (!rawData) return false
@@ -52,7 +50,6 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
     }
 
     if (typeof rawData === 'string') {
-      // Handles "Action, Fantasy" or "action"
       return rawData
         .toLowerCase()
         .split(/[,|]/)
@@ -62,7 +59,6 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
     return false
   }
 
-  // Filter novels
   const filteredNovels = initialNovels.filter((novel) => {
     const matchesSearch = novel.title
       .toLowerCase()
@@ -92,18 +88,18 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
   }
 
   return (
-    <div className="flex flex-col lg:flex-row gap-8">
-      {/* Main Content */}
+    <div className="flex flex-col lg:flex-row gap-6">
+      {/* Main Content Area */}
       <div className="flex-1">
         {selectedGenre || searchQuery ? (
-          <div className="flex items-center gap-2 mb-6 flex-wrap">
+          <div className="flex items-center gap-2 mb-4 flex-wrap">
             {searchQuery && (
-              <span className="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-md flex items-center gap-2">
+              <span className="bg-slate-800 border border-slate-700 text-slate-300 text-xs px-2.5 py-1 rounded flex items-center gap-2">
                 Search: <strong>"{searchQuery}"</strong>
               </span>
             )}
             {selectedGenre && (
-              <div className="flex items-center gap-2 bg-purple-950/80 border border-purple-800 text-purple-200 text-xs px-3 py-1.5 rounded-md">
+              <div className="flex items-center gap-2 bg-purple-950/80 border border-purple-800 text-purple-200 text-xs px-2.5 py-1 rounded">
                 <span>Filter: <strong>{selectedGenre}</strong></span>
                 <button 
                   onClick={clearGenre} 
@@ -121,12 +117,12 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
             <p className="text-gray-400 text-sm">No novels found matching your filter.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {filteredNovels.map((novel) => (
               <Link
                 key={novel.id}
                 href={`/novel/${novel.id}`}
-                className="group relative bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-slate-700 hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group relative bg-slate-900 border border-slate-800 rounded-lg overflow-hidden hover:border-slate-700 hover:shadow-lg transition-all duration-300 flex flex-col"
               >
                 <div className="relative aspect-[3/4] w-full bg-slate-950 overflow-hidden">
                   {novel.cover_url ? (
@@ -144,12 +140,12 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
                   )}
                 </div>
 
-                <div className="p-3 flex flex-col flex-1 justify-between bg-slate-900">
+                <div className="p-2.5 flex flex-col flex-1 justify-between bg-slate-900">
                   <div>
-                    <h2 className="font-bold text-slate-100 text-xs line-clamp-2 group-hover:text-blue-400 transition-colors">
+                    <h2 className="font-bold text-slate-100 text-[12px] leading-snug line-clamp-2 group-hover:text-blue-400 transition-colors">
                       {novel.title}
                     </h2>
-                    <p className="text-[11px] text-slate-400 mt-1 line-clamp-1">
+                    <p className="text-[10px] text-slate-400 mt-1 line-clamp-1">
                       {novel.author || 'Unknown'}
                     </p>
                   </div>
@@ -160,28 +156,31 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
         )}
       </div>
 
-      {/* FanMTL Sidebar (Always visible) */}
-      <div className="w-full lg:w-80 shrink-0">
-        <div className="bg-slate-900 border border-slate-800 rounded-lg shadow-sm overflow-hidden sticky top-20">
-          <div className="border-b border-slate-800 px-4 py-3 bg-slate-800/40 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <span className="text-amber-500 text-base">📑</span>
-              <h3 className="text-sm font-bold tracking-wide text-slate-200 uppercase">
+      {/* FreeWebNovel Style Compact Sidebar */}
+      <div className="w-full lg:w-64 shrink-0">
+        <div className="bg-slate-900 border border-slate-800 rounded shadow-sm overflow-hidden sticky top-20">
+          
+          {/* Header */}
+          <div className="border-b border-slate-800 px-3 py-2 bg-slate-800/50 flex items-center justify-between">
+            <div className="flex items-center gap-1.5">
+              <span className="text-amber-500 text-xs">📑</span>
+              <h3 className="text-xs font-bold tracking-wider text-slate-200 uppercase">
                 GENRES
               </h3>
             </div>
             {selectedGenre && (
               <button
                 onClick={clearGenre}
-                className="text-[11px] text-purple-400 hover:text-purple-300 font-semibold underline"
+                className="text-[10px] text-purple-400 hover:text-purple-300 font-medium underline"
               >
                 Clear
               </button>
             )}
           </div>
 
-          <div className="grid grid-cols-2 divide-x divide-slate-800 border-b border-slate-800">
-            {STATIC_GENRES.map((genre, index) => {
+          {/* Ultra-Compact Grid */}
+          <div className="grid grid-cols-2 divide-x divide-slate-800/60">
+            {STATIC_GENRES.map((genre) => {
               const isActive = selectedGenre.toLowerCase() === genre.toLowerCase()
               const colorClass = GENRE_COLORS[genre] || 'text-slate-400 hover:text-slate-200'
 
@@ -189,15 +188,13 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
                 <button
                   key={genre}
                   onClick={() => handleGenreClick(genre)}
-                  className={`flex items-center gap-2 px-3 py-2 text-xs font-semibold border-t border-dashed border-slate-800/80 text-left transition hover:bg-slate-800/60 ${
-                    index < 2 ? 'border-t-0' : ''
-                  } ${
+                  className={`flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium border-b border-slate-800/50 text-left transition hover:bg-slate-800/40 ${
                     isActive 
-                      ? 'bg-purple-950/60 text-purple-300 font-bold' 
+                      ? 'bg-purple-950/60 text-purple-300 font-semibold' 
                       : colorClass
                   }`}
                 >
-                  <span className={`text-[13px] ${isActive ? 'text-purple-400' : 'text-slate-500'}`}>
+                  <span className={`text-[9px] ${isActive ? 'text-purple-400' : 'text-slate-500'}`}>
                     {isActive ? '✔' : '🔘'}
                   </span>
                   <span className="truncate">{genre}</span>
@@ -205,6 +202,7 @@ export default function NovelList({ initialNovels }: { initialNovels: Novel[] })
               )
             })}
           </div>
+
         </div>
       </div>
     </div>
