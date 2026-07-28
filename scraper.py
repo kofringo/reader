@@ -176,20 +176,20 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/bank-of-the-universe",
-            "chapter_pattern": "https://freewebnovel.com/novel/bank-of-the-universe/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/fey-evolution-merchant",
+            "chapter_pattern": "https://freewebnovel.com/novel/fey-evolution-merchant/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/god-of-soul-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/god-of-soul-system/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/dragon-ball-god-mu",
-            "chapter_pattern": "https://freewebnovel.com/novel/dragon-ball-god-mu/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/hxh-god-of-choice-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/hxh-god-of-choice-system/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
