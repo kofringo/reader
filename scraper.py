@@ -176,20 +176,20 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/one-piece-god-of-space",
-            "chapter_pattern": "https://freewebnovel.com/novel/one-piece-god-of-space/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/bank-of-the-universe",
+            "chapter_pattern": "https://freewebnovel.com/novel/bank-of-the-universe/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/global-lord-100-drop-rate",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-lord-100-drop-rate/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/nurturing-humanity",
-            "chapter_pattern": "https://freewebnovel.com/novel/nurturing-humanity/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/dragon-ball-god-mu",
+            "chapter_pattern": "https://freewebnovel.com/novel/dragon-ball-god-mu/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
