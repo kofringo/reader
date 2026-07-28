@@ -176,20 +176,20 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/become-the-guard-ai-of-the-lost-civilization-after-transmigration",
-            "chapter_pattern": "https://freewebnovel.com/novel/become-the-guard-ai-of-the-lost-civilization-after-transmigration/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/no-way-people-find-cultivation-difficult-right",
+            "chapter_pattern": "https://freewebnovel.com/novel/no-way-people-find-cultivation-difficult-right/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/one-planet-for-everyone-building-science-and-technology-civilization-at-the-beginning",
+            "chapter_pattern": "https://freewebnovel.com/novel/one-planet-for-everyone-building-science-and-technology-civilization-at-the-beginning/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/eternal-cultivation-of-alchemy",
-            "chapter_pattern": "https://freewebnovel.com/novel/eternal-cultivation-of-alchemy/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/part-time-employee-in-konoha",
+            "chapter_pattern": "https://freewebnovel.com/novel/part-time-employee-in-konoha/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
