@@ -176,22 +176,22 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/a-professor-of-magic-at-hogwarts.html",
-            "chapter_pattern": "https://freewebnovel.com/novel/a-professor-of-magic-at-hogwarts/chapter-{}.html",
+            "main_url": "https://freewebnovel.com/novel/one-piece-god-of-space",
+            "chapter_pattern": "https://freewebnovel.com/novel/one-piece-god-of-space/chapter-{}",
             "start_chap": 1,
-            "end_chap": 10
+            "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/global-lord-100-drop-rate.html",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-lord-100-drop-rate/chapter-{}.html",
+            "main_url": "https://freewebnovel.com/novel/global-lord-100-drop-rate",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-lord-100-drop-rate/chapter-{}",
             "start_chap": 1,
-            "end_chap": 5
+            "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-legendary-mechanic.html",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-legendary-mechanic/chapter-{}.html",
+            "main_url": "https://freewebnovel.com/novel/nurturing-humanity",
+            "chapter_pattern": "https://freewebnovel.com/novel/nurturing-humanity/chapter-{}",
             "start_chap": 1,
-            "end_chap": 5
+            "end_chap": 100
         }
     ]
 
