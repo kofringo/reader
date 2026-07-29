@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/kaijin-fighter-so-i-have-to-make-monsters-so-what",
-            "chapter_pattern": "https://freewebnovel.com/novel/kaijin-fighter-so-i-have-to-make-monsters-so-what/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/a-sorcerers-journey",
+            "chapter_pattern": "https://freewebnovel.com/novel/a-sorcerers-journey/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/evolution-from-little-devil-to-devil-empress",
-            "chapter_pattern": "https://freewebnovel.com/novel/evolution-from-little-devil-to-devil-empress/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-collect-skill-fragments-in-the-demon-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-collect-skill-fragments-in-the-demon-world/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/three-divine-wishes-yes-im-op",
-             "chapter_pattern": "https://freewebnovel.com/novel/three-divine-wishes-yes-im-op/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/god-level-special-forces-soldier",
+             "chapter_pattern": "https://freewebnovel.com/novel/god-level-special-forces-soldier/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mrnobody-i-am-inside-a-webcomic",
-            "chapter_pattern": "https://freewebnovel.com/novel/mrnobody-i-am-inside-a-webcomic/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead",
+            "chapter_pattern": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
