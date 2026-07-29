@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/tyrant-of-the-ruined-sun",
-            "chapter_pattern": "https://freewebnovel.com/novel/tyrant-of-the-ruined-sun/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/global-survival-i-have-endless-skeletons",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-survival-i-have-endless-skeletons/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-prince-in-question-is-not-stable",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-prince-in-question-is-not-stable/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/global-awakening-infinite-gift-pack-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-awakening-infinite-gift-pack-system/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/apocalypse-rebirth-crazy-from-day-one",
-             "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-rebirth-crazy-from-day-one/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch",
+             "chapter_pattern": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-imperial-martial-pill-venerable",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-imperial-martial-pill-venerable/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/naruto-copy-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/naruto-copy-system/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
