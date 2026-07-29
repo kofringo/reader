@@ -21,9 +21,11 @@ html.light-mode header {
 html.light-mode input {
   background-color: #ffffff !important;
   color: #0f172a !important;
-  border-color: #0e74f1 !important;
+  border-color: #cbd5e1 !important;
 }
 
+/* Added .bg-gray-900 override here */
+html.light-mode .bg-gray-900,
 html.light-mode .bg-slate-900,
 html.light-mode .bg-slate-900\/80,
 html.light-mode .bg-slate-900\/90 {

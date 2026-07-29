@@ -66,7 +66,7 @@ export default async function NovelDetailPage({ params }: PageProps) {
           </h1>
 
           <p className="text-gray-400 font-medium mb-4">
-            Author: <span className="text-gray-200">{novel.author || 'Unknown'}</span>
+            Author: <span className="text-gray-100">{novel.author || 'Unknown'}</span>
           </p>
 
           {/* Genre Badges (Clickable Links) */}
@@ -76,7 +76,7 @@ export default async function NovelDetailPage({ params }: PageProps) {
                 <Link
                   key={idx}
                   href={`/?genre=${encodeURIComponent(g)}`}
-                  className="px-3 py-1 bg-blue-950/80 hover:bg-blue-900 text-blue-300 border border-blue-800/50 hover:border-blue-500 text-xs font-semibold rounded-full transition"
+                  className="px-3 py-1 bg-blue-950/80 hover:bg-blue-900 text-gray-100 border border-blue-800/50 hover:border-blue-500 text-xs font-semibold rounded-full"
                 >
                   🏷️ {g}
                 </Link>
@@ -87,10 +87,10 @@ export default async function NovelDetailPage({ params }: PageProps) {
           {/* Summary Box */}
           {novel.summary && (
             <div className="mb-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-2">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-100 mb-2">
                 Summary
               </h3>
-              <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line bg-gray-950/50 p-4 rounded-lg border border-gray-800">
+              <p className="text-gray-100 text-sm leading-relaxed whitespace-pre-line bg-gray-900 p-4 rounded-lg border border-gray-800">
                 {novel.summary}
               </p>
             </div>
@@ -104,32 +104,32 @@ export default async function NovelDetailPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Chapter List Section styled like Freewebnovel portal layout */}
-      <div className="bg-gray-50 dark:bg-[#222222] border border-gray-200 dark:border-gray-700 rounded-lg p-6 shadow-sm">
-        <h2 className="text-sm font-bold text-amber-600 dark:text-amber-600 uppercase tracking-wider border-b border-gray-200 dark:border-gray-700 pb-3 mb-4 flex items-center gap-2">
+      {/* Chapter List Section */}
+      <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm">
+        <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
           <span>📑</span> CHAPTER LIST
         </h2>
 
         {chapters && chapters.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-            {chapters.map((chap, index) => (
+            {chapters.map((chap) => (
               <Link
                 key={chap.id}
                 href={`/novel/${id}/${chap.chapter_number}`}
-                className="py-2.5 px-3 bg-transparent hover:bg-gray-100 dark:hover:bg-[#2a2a2a] border-b border-dashed border-gray-300 dark:border-gray-700 text-xs md:text-sm text-gray-800 dark:text-gray-300 font-normal flex items-center justify-between group transition"
+                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center justify-between group transition"
               >
                 <span className="truncate pr-2">
-                  <span className="text-gray-400 dark:text-gray-500 mr-2">■</span>
+                  <span className="text-gray-100 mr-2">■</span>
                   {chap.title}
                 </span>
-                <span className="text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition text-xs shrink-0">
+                <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition text-xs shrink-0">
                   Read →
                 </span>
               </Link>
             ))}
           </div>
         ) : (
-          <p className="text-gray-500 dark:text-gray-400 italic text-sm">No chapters available yet.</p>
+          <p className="text-gray-100 italic text-sm">No chapters available yet.</p>
         )}
       </div>
     </main>

@@ -176,20 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/no-way-people-find-cultivation-difficult-right",
-            "chapter_pattern": "https://freewebnovel.com/novel/no-way-people-find-cultivation-difficult-right/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/tyrant-of-the-ruined-sun",
+            "chapter_pattern": "https://freewebnovel.com/novel/tyrant-of-the-ruined-sun/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/one-planet-for-everyone-building-science-and-technology-civilization-at-the-beginning",
-            "chapter_pattern": "https://freewebnovel.com/novel/one-planet-for-everyone-building-science-and-technology-civilization-at-the-beginning/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-prince-in-question-is-not-stable",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-prince-in-question-is-not-stable/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/part-time-employee-in-konoha",
-            "chapter_pattern": "https://freewebnovel.com/novel/part-time-employee-in-konoha/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/apocalypse-rebirth-crazy-from-day-one",
+             "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-rebirth-crazy-from-day-one/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 100
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/the-imperial-martial-pill-venerable",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-imperial-martial-pill-venerable/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }

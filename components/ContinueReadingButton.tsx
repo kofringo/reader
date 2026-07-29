@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 
 interface Props {
   novelId: string
@@ -10,6 +10,7 @@ interface Props {
 
 export default function ContinueReadingButton({ novelId, firstChapterNum }: Props) {
   const [savedChapter, setSavedChapter] = useState<number | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -23,16 +24,14 @@ export default function ContinueReadingButton({ novelId, firstChapterNum }: Prop
   const targetChapter = savedChapter || firstChapterNum
 
   return (
-    <div className="mt-4">
-      <Link
-        href={`/novel/${novelId}/${targetChapter}`}
-        className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow-md transition text-sm"
-      >
-        <span>📖</span>
-        <span>
-          {savedChapter ? `Continue Reading (Chapter ${savedChapter})` : 'Start Reading (Chapter 1)'}
-        </span>
-      </Link>
-    </div>
+    <button
+      onClick={() => router.push(`/novel/${novelId}/${targetChapter}`)}
+      className="px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 bg-red-800 hover:bg-gray-700 text-gray-200 shadow-md"
+    >
+      <span>📖</span>
+      <span>
+        {savedChapter ? `Continue Reading (Chapter ${savedChapter})` : `Start Reading (Chapter ${firstChapterNum})`}
+      </span>
+    </button>
   )
 }

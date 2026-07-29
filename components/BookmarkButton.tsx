@@ -59,10 +59,10 @@ export default function BookmarkButton({ novelId }: { novelId: string }) {
     <button
       onClick={toggleBookmark}
       disabled={loading}
-      className={`px-4 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 ${
+      className={`px-5 py-2.5 rounded-lg text-sm font-bold transition flex items-center gap-2 ${
         isBookmarked
           ? 'bg-amber-600 hover:bg-amber-500 text-white'
-          : 'bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700'
+          : 'bg-blue-600 hover:bg-gray-700 text-gray-200 border border-gray-700'
       }`}
     >
       <span>{isBookmarked ? '★ Bookmarked' : '☆ Add to Library'}</span>
