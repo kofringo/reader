@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/global-survival-i-have-endless-skeletons",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-survival-i-have-endless-skeletons/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/kaijin-fighter-so-i-have-to-make-monsters-so-what",
+            "chapter_pattern": "https://freewebnovel.com/novel/kaijin-fighter-so-i-have-to-make-monsters-so-what/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/global-awakening-infinite-gift-pack-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-awakening-infinite-gift-pack-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/evolution-from-little-devil-to-devil-empress",
+            "chapter_pattern": "https://freewebnovel.com/novel/evolution-from-little-devil-to-devil-empress/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch",
-             "chapter_pattern": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/three-divine-wishes-yes-im-op",
+             "chapter_pattern": "https://freewebnovel.com/novel/three-divine-wishes-yes-im-op/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/naruto-copy-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/naruto-copy-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mrnobody-i-am-inside-a-webcomic",
+            "chapter_pattern": "https://freewebnovel.com/novel/mrnobody-i-am-inside-a-webcomic/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }

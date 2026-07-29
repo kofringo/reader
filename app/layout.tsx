@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
-import { ThemeProvider } from "@/components/ThemeProvider"; // Make sure to import your provider
+import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-black text-gray-900 dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-200`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-[#121212] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-between transition-colors duration-200`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* Global Navigation Header with Center Search */}
           <Suspense fallback={<div className="h-16 border-b border-gray-800 bg-gray-900" />}>
@@ -39,6 +40,9 @@ export default function RootLayout({
           <div className="flex-1">
             {children}
           </div>
+
+          {/* Global Footer */}
+          <Footer />
 
           <Analytics />
         </ThemeProvider>
