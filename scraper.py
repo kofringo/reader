@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/i-became-the-devil-queens-heart-demon",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-became-the-devil-queens-heart-demon/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/sweet-rebirth-the-little-healer",
+            "chapter_pattern": "https://freewebnovel.com/novel/sweet-rebirth-the-little-healer/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/super-gene-hunting-ground",
-            "chapter_pattern": "https://freewebnovel.com/novel/super-gene-hunting-ground/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/longevity-begins-with-internal-organs",
+            "chapter_pattern": "https://freewebnovel.com/novel/longevity-begins-with-internal-organs/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/super-island-tycoon",
-             "chapter_pattern": "https://freewebnovel.com/novel/super-island-tycoon/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-birth-of-sword-god",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-birth-of-sword-god/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/comprehension-ability-creating-the-five-thunders-technique-in-reality",
-            "chapter_pattern": "https://freewebnovel.com/novel/comprehension-ability-creating-the-five-thunders-technique-in-reality/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/out-of-fear-of-death-invest-everything-into-health",
+            "chapter_pattern": "https://freewebnovel.com/novel/out-of-fear-of-death-invest-everything-into-health/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }
