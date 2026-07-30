@@ -75,7 +75,7 @@ export default async function NovelDetailPage({ params }: PageProps) {
               {genreList.map((g: string, idx: number) => (
                 <Link
                   key={idx}
-                  href={`/?genre=${encodeURIComponent(g)}`}
+                  href={`/genre/${encodeURIComponent(g)}`}
                   className="px-3 py-1 bg-blue-950/80 hover:bg-blue-900 text-gray-100 border border-blue-800/50 hover:border-blue-500 text-xs font-semibold rounded-full"
                 >
                   🏷️ {g}

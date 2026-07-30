@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 export default function Navbar() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const currentSearch = searchParams.get('search') || ''
+  const currentSearch = searchParams.get('q') || ''
   const [searchQuery, setSearchQuery] = useState(currentSearch)
   const [isDark, setIsDark] = useState(true)
 
@@ -15,28 +15,27 @@ export default function Navbar() {
     setSearchQuery(currentSearch)
   }, [currentSearch])
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setSearchQuery(value)
-
-    const params = new URLSearchParams(searchParams.toString())
-    if (value.trim()) {
-      params.set('search', value)
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
     } else {
-      params.delete('search')
+      router.push(`/search`)
     }
-    
-    router.push(`/?${params.toString()}`)
+  }
+
+  const handleClear = () => {
+    setSearchQuery('')
+    router.push('/new')
   }
 
   const toggleTheme = () => {
     setIsDark(!isDark)
-    // Optional: add root class toggling if you support light theme styles
     if (isDark) {
-    document.documentElement.classList.add('light-mode')
-  } else {
-    document.documentElement.classList.remove('light-mode')
-  }
+      document.documentElement.classList.add('light-mode')
+    } else {
+      document.documentElement.classList.remove('light-mode')
+    }
   }
 
   return (
@@ -56,18 +55,46 @@ export default function Navbar() {
         </Link>
 
         {/* Center: Search Bar */}
-        <div className="flex-1 max-w-md mx-auto">
-          <div className="relative">
+        <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md mx-auto">
+          <div className="relative flex items-center bg-white rounded-full border border-slate-300 px-4 h-10 shadow-sm focus-within:border-blue-500 transition">
+            
+            {/* SVG Search Icon */}
+            <svg
+              className="w-4 h-4 text-gray-400 mr-2.5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M21 21l-4.35-4.35m1.85-5.15a7 7 0 11-14 0 7 7 0 0114 0z"
+              ></path>
+            </svg>
+            
+            {/* Input Box */}
             <input
               type="text"
               value={searchQuery}
-              onChange={handleSearch}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search novels by title..."
-              className="w-full bg-slate-900/90 text-sm text-gray-200 placeholder-gray-500 rounded-xl px-4 py-2 pl-10 border border-slate-800 focus:outline-none focus:border-blue-500 transition"
+              className="w-full h-full bg-transparent text-sm text-gray-900 placeholder-gray-400 focus:outline-none"
             />
-            <span className="absolute left-3 top-2.5 text-gray-400 text-xs">🔍</span>
+
+            {/* Clear (X) Button */}
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="ml-2 w-5 h-5 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white rounded-full text-xs font-bold transition shadow-sm shrink-0"
+              >
+                ✕
+              </button>
+            )}
           </div>
-        </div>
+        </form>
 
         {/* Right: Theme Toggle & Sign In */}
         <div className="flex items-center gap-3 shrink-0">

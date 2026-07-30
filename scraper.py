@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/a-sorcerers-journey",
-            "chapter_pattern": "https://freewebnovel.com/novel/a-sorcerers-journey/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-became-the-devil-queens-heart-demon",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-became-the-devil-queens-heart-demon/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-collect-skill-fragments-in-the-demon-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-collect-skill-fragments-in-the-demon-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/super-gene-hunting-ground",
+            "chapter_pattern": "https://freewebnovel.com/novel/super-gene-hunting-ground/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/god-level-special-forces-soldier",
-             "chapter_pattern": "https://freewebnovel.com/novel/god-level-special-forces-soldier/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/super-island-tycoon",
+             "chapter_pattern": "https://freewebnovel.com/novel/super-island-tycoon/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead",
-            "chapter_pattern": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/comprehension-ability-creating-the-five-thunders-technique-in-reality",
+            "chapter_pattern": "https://freewebnovel.com/novel/comprehension-ability-creating-the-five-thunders-technique-in-reality/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }

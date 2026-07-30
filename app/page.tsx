@@ -125,7 +125,7 @@ export default async function HomePage() {
             </div>
           </div>
           <Link
-            href="/?sort=latest"
+            href="/new"
             className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
           >
             View More
