@@ -70,8 +70,8 @@ export default async function NewNovelsPage({
       <div className="flex items-center gap-3 mb-6">
         <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
         <div>
-          <h1 className="text-2xl font-extrabold text-white">New to Web Novels</h1>
-          <p className="text-sm text-gray-400">Latest recently added light novels sorted from newest</p>
+          <h1 className="text-2xl font-extrabold text-white">New Novels</h1>
+          
         </div>
       </div>
 

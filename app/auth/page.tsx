@@ -25,8 +25,12 @@ export default function AuthPage() {
         email,
         password,
       })
-      if (error) setErrorMsg(error.message)
-      else alert('Success! Please check your email for verification if required, or sign in.')
+      if (error) {
+        setErrorMsg(error.message)
+      } else {
+        router.push('/')
+        router.refresh()
+      }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
         email,

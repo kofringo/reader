@@ -176,26 +176,26 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/sweet-rebirth-the-little-healer",
-            "chapter_pattern": "https://freewebnovel.com/novel/sweet-rebirth-the-little-healer/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/resurrection-empire",
+            "chapter_pattern": "https://freewebnovel.com/novel/resurrection-empire/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/longevity-begins-with-internal-organs",
-            "chapter_pattern": "https://freewebnovel.com/novel/longevity-begins-with-internal-organs/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/too-bad-i-take-things-seriously",
+            "chapter_pattern": "https://freewebnovel.com/novel/protect-our-clan-leader/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-birth-of-sword-god",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-birth-of-sword-god/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/reborn-with-consumption-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/reborn-with-consumption-system/chapter-{}",
              "start_chap": 1,
              "end_chap": 100
         },
         {
-            "main_url": "https://freewebnovel.com/novel/out-of-fear-of-death-invest-everything-into-health",
-            "chapter_pattern": "https://freewebnovel.com/novel/out-of-fear-of-death-invest-everything-into-health/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-demon-lords",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-demon-lords/chapter-{}",
             "start_chap": 1,
             "end_chap": 100
         }

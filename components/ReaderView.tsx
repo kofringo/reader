@@ -47,8 +47,37 @@ export default function ReaderView({
             href={`/novel/${novelId}`}
             className="text-blue-500 hover:underline text-sm font-semibold"
           >
-            ← Table of Contents
+             Table of Contents
           </Link>
+
+          {/* Top Prev / Next Navigation with separate rectangles and space */}
+          <div className="flex items-center gap-9 text-xs font-semibold">
+            {prevChapterNum ? (
+              <Link
+                href={`/novel/${novelId}/${prevChapterNum}`}
+                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
+              >
+                &lt; Prev Chapter
+              </Link>
+            ) : (
+              <button disabled className="px-3 py-1.5 bg-gray-800/40 text-gray-500 border border-gray-700/50 rounded cursor-not-allowed">
+                &lt; Prev
+              </button>
+            )}
+
+            {nextChapterNum ? (
+              <Link
+                href={`/novel/${novelId}/${nextChapterNum}`}
+                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
+              >
+                Next Chapter &gt;
+              </Link>
+            ) : (
+              <button disabled className="px-3 py-1.5 bg-gray-800/40 text-gray-500 border border-gray-700/50 rounded cursor-not-allowed">
+                Next &gt;
+              </button>
+            )}
+          </div>
 
           {/* Customization Controls */}
           <div className="flex items-center gap-4 text-xs font-semibold">
@@ -98,7 +127,7 @@ export default function ReaderView({
           </div>
         </div>
 
-        <h1 className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</h1>
+        <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
 
         {/* Dynamic Text Content */}
         <article className={`space-y-6 ${fontSize} leading-8 whitespace-pre-line font-serif`}>
@@ -110,9 +139,9 @@ export default function ReaderView({
           {prevChapterNum ? (
             <Link
               href={`/novel/${novelId}/${prevChapterNum}`}
-              className="px-4 py-2 bg-gray-800 text-white hover:bg-gray-700 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition text-sm font-semibold"
             >
-              ← Previous Chapter
+               Previous Chapter
             </Link>
           ) : (
             <div />
@@ -121,9 +150,9 @@ export default function ReaderView({
           {nextChapterNum ? (
             <Link
               href={`/novel/${novelId}/${nextChapterNum}`}
-              className="px-4 py-2 bg-blue-600 text-white hover:bg-blue-500 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded transition text-sm font-semibold"
             >
-              Next Chapter →
+              Next Chapter 
             </Link>
           ) : (
             <div />

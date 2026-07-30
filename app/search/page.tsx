@@ -104,7 +104,7 @@ export default async function SearchPage({
                     <h2 className="text-base font-bold text-white truncate group-hover:text-blue-400 transition mb-1.5">
                       {novel.title}
                     </h2>
-                    <div className="space-y-1 text-sm text-gray-300 mb-2">
+                    <div className="space-y-1 text-sm text-white-300 mb-2">
                       <div className="flex items-center gap-2">
                         <span>📖</span>
                         <span>{chapterCount} Chapters</span>

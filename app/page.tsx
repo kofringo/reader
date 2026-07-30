@@ -41,7 +41,7 @@ export default async function HomePage() {
     .limit(6)
     .order('created_at', { ascending: false })
 
-  // Fetch recently added chapters (3 columns x 11 rows = 33 chapters) joining with novels
+  // Fetch recently added chapters joining with novels (including genre)
   const { data: recentChapters } = await supabase
     .from('chapters')
     .select(`
@@ -52,7 +52,8 @@ export default async function HomePage() {
       novels (
         id,
         title,
-        cover_url
+        cover_url,
+        genre
       )
     `)
     .limit(33)
@@ -67,7 +68,6 @@ export default async function HomePage() {
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
               <h2 className="text-2xl font-extrabold text-white">Most Popular</h2>
-              <p className="text-sm text-gray-400">Popular Novels Selected by Users</p>
             </div>
           </div>
           <Link
@@ -97,9 +97,7 @@ export default async function HomePage() {
                     No Cover
                   </div>
                 )}
-                <span className="absolute top-2 right-2 px-1.5 py-0.5 bg-red-600 text-white text-[10px] font-bold uppercase rounded shadow">
-                  Ongoing
-                </span>
+                
               </div>
               <div className="p-3 flex flex-col flex-1 justify-between">
                 <h3 className="text-xs font-bold text-white group-hover:text-blue-400 transition line-clamp-2 mb-1">
@@ -120,8 +118,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-extrabold text-white">New to Web Novels</h2>
-              <p className="text-sm text-gray-400">Latest recently added light novels</p>
+              <h2 className="text-2xl font-extrabold text-white">New Novels</h2>
             </div>
           </div>
           <Link
@@ -151,9 +148,7 @@ export default async function HomePage() {
                     No Cover
                   </div>
                 )}
-                <span className="absolute top-2 right-2 px-1.5 py-0.5 bg-red-600 text-white text-[10px] font-bold uppercase rounded shadow">
-                  Ongoing
-                </span>
+                
               </div>
               <div className="p-3 flex flex-col flex-1 justify-between">
                 <h3 className="text-xs font-bold text-white group-hover:text-blue-400 transition line-clamp-2 mb-1">
@@ -168,13 +163,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Recently Added Chapters Section (3 Columns Layout with Time Ago) */}
+      {/* Recently Added Chapters Section */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
           <div>
             <h2 className="text-2xl font-extrabold text-white">Recently Added Chapters</h2>
-            <p className="text-sm text-gray-400">Latest Translated Chapters</p>
           </div>
         </div>
 
@@ -196,10 +190,16 @@ export default async function HomePage() {
                   )}
                 </div>
                 <div className="flex flex-col justify-between flex-1 min-w-0">
-                  <h3 className="text-sm font-bold text-white truncate group-hover:text-blue-400 transition">
-                    {novel.title}
-                  </h3>
-                  <div className="space-y-1 text-xs text-gray-400">
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-white truncate group-hover:text-blue-400 transition">
+                      {novel.title}
+                    </h3>
+                    <div className="flex items-center gap-1.5 text-xs text-white truncate mt-0.5">
+                      <span>📚</span>
+                      <span className="truncate">{novel.genre || 'General'}</span>
+                    </div>
+                  </div>
+                  <div className="space-y-1 text-xs text-white">
                     <div className="flex items-center gap-1.5">
                       <span>📅</span>
                       <span>Update {timeAgo(item.created_at)}</span>

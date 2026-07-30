@@ -68,7 +68,7 @@ export default async function PopularNovelsPage({
         <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
         <div>
           <h1 className="text-2xl font-extrabold text-white">Most Popular Novels</h1>
-          <p className="text-sm text-gray-400">List of Most Popular Novels Ranked by Views</p>
+          
         </div>
       </div>
 

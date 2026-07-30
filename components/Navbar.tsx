@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
+import { createClient } from '@/lib/supabase/client'
 
 export default function Navbar() {
   const router = useRouter()
@@ -10,10 +11,40 @@ export default function Navbar() {
   const currentSearch = searchParams.get('q') || ''
   const [searchQuery, setSearchQuery] = useState(currentSearch)
   const [isDark, setIsDark] = useState(true)
+  const [user, setUser] = useState<any>(null)
 
   useEffect(() => {
     setSearchQuery(currentSearch)
   }, [currentSearch])
+
+  useEffect(() => {
+    const supabase = createClient()
+
+    // Get current user session
+    const checkUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      setUser(session?.user || null)
+    }
+
+    checkUser()
+
+    // Listen for auth changes (login / logout)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user || null)
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
+  }, [])
+
+  const handleSignOut = async () => {
+    const supabase = createClient()
+    await supabase.auth.signOut()
+    setUser(null)
+    router.push('/')
+    router.refresh()
+  }
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -96,23 +127,40 @@ export default function Navbar() {
           </div>
         </form>
 
-        {/* Right: Theme Toggle & Sign In */}
+        {/* Right: Genres, Theme Toggle & Auth State */}
         <div className="flex items-center gap-3 shrink-0">
+          <Link
+            href="/genres"
+            className="px-4 py-2 bg-gray-800/80 hover:bg-gray-800 border border-gray-700/60 hover:border-blue-500/50 text-white hover:text-blue-400 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm hidden md:flex"
+          >
+            <span>📚</span>
+            <span>Genres</span>
+          </Link>
+
           {/* Moon / Sun Theme Button */}
           <button
             onClick={toggleTheme}
             title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-            className="w-9 h-9 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-gray-200 transition"
+            className="px-4 py-2 flex items-center justify-center rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-gray-200 text-xs transition"
           >
             {isDark ? '🌙' : '☀️'}
           </button>
 
-          <Link
-            href="/auth"
-            className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/20"
-          >
-            Sign In
-          </Link>
+          {user ? (
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-red-600/20"
+            >
+              Sign Out
+            </button>
+          ) : (
+            <Link
+              href="/auth"
+              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/20"
+            >
+              Sign In
+            </Link>
+          )}
         </div>
 
       </div>
