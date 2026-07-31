@@ -34,17 +34,17 @@ export default async function NewNovelsPage({
   const supabase = await createClient()
   const page = Number(resolvedSearchParams?.page) || 1
   
-  // 11 rows * 2 columns = 22 novels per page
+  // 11 rows * 2 columns = 22 novels per page[cite: 6]
   const pageSize = 22 
   const from = (page - 1) * pageSize
   const to = from + pageSize - 1
 
-  // Fetch total count of novels for pagination
+  // Fetch total count of novels for pagination[cite: 6]
   const { count } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
 
-  // Fetch paginated novels sorted by creation date (newest to oldest)
+  // Fetch paginated novels sorted by creation date (newest to oldest)[cite: 6]
   const { data: novels, error } = await supabase
     .from('novels')
     .select(`
@@ -64,6 +64,43 @@ export default async function NewNovelsPage({
 
   const totalPages = Math.ceil((count || 0) / pageSize)
 
+  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = []
+    if (totalPages <= 10) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i)
+      return pages
+    }
+
+    // Always include 1
+    pages.push(1)
+
+    // << jump backward 5 pages
+    pages.push('<<')
+
+    // Sliding window of numbers around current page
+    let start = Math.max(2, page - 2)
+    let end = Math.min(totalPages - 1, page + 2)
+
+    if (page <= 4) {
+      end = Math.min(totalPages - 1, 6)
+    } else if (page >= totalPages - 3) {
+      start = Math.max(2, totalPages - 5)
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+
+    // >> jump forward 5 pages
+    pages.push('>>')
+
+    // Always include last page
+    pages.push(totalPages)
+
+    return pages
+  }
+
   return (
     <main className="p-8 max-w-7xl mx-auto w-full">
       {/* Breadcrumb / Header */}
@@ -71,7 +108,6 @@ export default async function NewNovelsPage({
         <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
         <div>
           <h1 className="text-2xl font-extrabold text-white">New Novels</h1>
-          
         </div>
       </div>
 
@@ -141,28 +177,51 @@ export default async function NewNovelsPage({
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex items-center gap-1 mb-16">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-            <Link
-              key={p}
-              href={`/new?page=${p}`}
-              className={`px-3.5 py-1.5 text-xs font-bold rounded border transition ${
-                p === page
-                  ? 'bg-blue-600 border-blue-600 text-white'
-                  : 'bg-gray-900 border-gray-800 text-gray-400 hover:bg-gray-800 hover:text-white'
-              }`}
-            >
-              {p}
-            </Link>
-          ))}
-          {page < totalPages && (
-            <Link
-              href={`/new?page=${page + 1}`}
-              className="px-3 py-1.5 text-xs font-bold rounded border bg-gray-900 border-gray-800 text-gray-400 hover:bg-gray-800 hover:text-white"
-            >
-              &gt;
-            </Link>
-          )}
+        <div className="flex flex-wrap items-center gap-1.5 mb-16">
+          {getPageNumbers().map((item, index) => {
+            if (item === '<<') {
+              const targetPage = Math.max(1, page - 5)
+              return (
+                <Link
+                  key={`jump-prev-${index}`}
+                  href={`/new?page=${targetPage}`}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-300 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
+                >
+                  &lt;&lt;
+                </Link>
+              )
+            }
+
+            if (item === '>>') {
+              const targetPage = Math.min(totalPages, page + 5)
+              return (
+                <Link
+                  key={`jump-next-${index}`}
+                  href={`/new?page=${targetPage}`}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-300 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
+                >
+                  &gt;&gt;
+                </Link>
+              )
+            }
+
+            const pageNum = Number(item)
+            const isCurrent = pageNum === page
+
+            return (
+              <Link
+                key={pageNum}
+                href={`/new?page=${pageNum}`}
+                className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
+                  isCurrent
+                    ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
+                    : 'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
+                }`}
+              >
+                {pageNum}
+              </Link>
+            )
+          })}
         </div>
       )}
     </main>

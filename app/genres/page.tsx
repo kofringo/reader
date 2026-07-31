@@ -11,11 +11,11 @@ export default async function GenresPage({
   const selectedGenre = resolvedSearchParams.genre || 'All'
   const currentPage = Number(resolvedSearchParams.page) || 1
 
-  // 11 rows * 5 columns = 55 novels per page
+  // 11 rows * 5 columns = 55 novels per page[cite: 7]
   const ITEMS_PER_PAGE = 55
   const offset = (currentPage - 1) * ITEMS_PER_PAGE
 
-  // Fetch all novels to dynamically build the genre list tags
+  // Fetch all novels to dynamically build the genre list tags[cite: 7]
   const { data: allNovels } = await supabase
     .from('novels')
     .select('genre')
@@ -34,7 +34,7 @@ export default async function GenresPage({
 
   const genresList = Array.from(genreSet)
 
-  // Build the database query with pagination & filtering
+  // Build the database query with pagination & filtering[cite: 7]
   let query = supabase
     .from('novels')
     .select('id, title, cover_url, author, genre, views, created_at', { count: 'exact' })
@@ -43,24 +43,67 @@ export default async function GenresPage({
     query = query.ilike('genre', `%${selectedGenre}%`)
   }
 
-  // Apply pagination range
+  // Apply pagination range[cite: 7]
   const { data: filteredNovels, count } = await query
     .range(offset, offset + ITEMS_PER_PAGE - 1)
     .order('created_at', { ascending: false })
 
   const totalPages = count ? Math.ceil(count / ITEMS_PER_PAGE) : 1
 
+  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = []
+    if (totalPages <= 10) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i)
+      return pages
+    }
+
+    // Always include 1
+    pages.push(1)
+
+    // << jump backward 5 pages
+    pages.push('<<')
+
+    // Sliding window of numbers around current page
+    let start = Math.max(2, currentPage - 2)
+    let end = Math.min(totalPages - 1, currentPage + 2)
+
+    if (currentPage <= 4) {
+      end = Math.min(totalPages - 1, 6)
+    } else if (currentPage >= totalPages - 3) {
+      start = Math.max(2, totalPages - 5)
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+
+    // >> jump forward 5 pages
+    pages.push('>>')
+
+    // Always include last page
+    pages.push(totalPages)
+
+    return pages
+  }
+
+  const getPageHref = (pageNum: number) => {
+    return selectedGenre === 'All'
+      ? `/genres?page=${pageNum}`
+      : `/genres?genre=${encodeURIComponent(selectedGenre)}&page=${pageNum}`
+  }
+
   return (
     <main className="p-8 max-w-7xl mx-auto min-h-screen flex flex-col justify-between">
       <div>
-        {/* Header / Title */}
+        {/* Header / Title[cite: 7] */}
         <div className="mb-8 border-b border-gray-800 pb-4">
           <h1 className="text-2xl font-black text-white flex items-center gap-2">
             <span>📚</span> Genre / Category
           </h1>
         </div>
 
-        {/* Genre Pills Cloud */}
+        {/* Genre Pills Cloud[cite: 7] */}
         <div className="flex flex-wrap gap-2 mb-12">
           {genresList.map((g) => {
             const isSelected = selectedGenre === g
@@ -82,7 +125,7 @@ export default async function GenresPage({
           })}
         </div>
 
-        {/* Novels Display Section (Strictly 5 Columns) */}
+        {/* Novels Display Section (Strictly 5 Columns)[cite: 7] */}
         <div>
           <h2 className="text-lg font-bold text-white mb-6">
             Showing novels for: <span className="text-blue-400">{selectedGenre}</span>
@@ -128,24 +171,47 @@ export default async function GenresPage({
         </div>
       </div>
 
-      {/* Numbered Pagination (1, 2, 3...) */}
+      {/* Sliding Window Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-12 pt-6 border-t border-gray-800">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => {
+        <div className="flex flex-wrap justify-center items-center gap-1.5 mt-12 pt-6 border-t border-gray-800">
+          {getPageNumbers().map((item, index) => {
+            if (item === '<<') {
+              const targetPage = Math.max(1, currentPage - 5)
+              return (
+                <Link
+                  key={`jump-prev-${index}`}
+                  href={getPageHref(targetPage)}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                >
+                  &lt;&lt;
+                </Link>
+              )
+            }
+
+            if (item === '>>') {
+              const targetPage = Math.min(totalPages, currentPage + 5)
+              return (
+                <Link
+                  key={`jump-next-${index}`}
+                  href={getPageHref(targetPage)}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                >
+                  &gt;&gt;
+                </Link>
+              )
+            }
+
+            const pageNum = Number(item)
             const isCurrent = pageNum === currentPage
-            const pageQueryHref =
-              selectedGenre === 'All'
-                ? `/genres?page=${pageNum}`
-                : `/genres?genre=${encodeURIComponent(selectedGenre)}&page=${pageNum}`
 
             return (
               <Link
                 key={pageNum}
-                href={pageQueryHref}
-                className={`w-9 h-9 flex items-center justify-center rounded-lg text-xs font-bold transition border ${
+                href={getPageHref(pageNum)}
+                className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
-                    ? 'bg-blue-600 text-white border-blue-500 shadow-md shadow-blue-600/30'
-                    : 'bg-gray-900 text-gray-300 border-gray-800 hover:bg-gray-800 hover:text-white'
+                    ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
+                    : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
                 }`}
               >
                 {pageNum}

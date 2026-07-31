@@ -36,13 +36,13 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
   const genreName = decodeURIComponent(resolvedParams.name || '')
   
   const currentPage = Number(resolvedSearchParams.page) || 1
-  const pageSize = 22 // 11 rows * 2 columns = 22 items per page
+  const pageSize = 22 // 11 rows * 2 columns = 22 items per page[cite: 7]
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = startIndex + pageSize - 1
 
   const supabase = await createClient()
 
-  // Fetch total count for pagination
+  // Fetch total count for pagination[cite: 7]
   const { count: totalCount } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
@@ -50,7 +50,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
   const totalPages = totalCount ? Math.ceil(totalCount / pageSize) : 1
 
-  // Fetch paginated novels matching the genre tag
+  // Fetch paginated novels matching the genre tag[cite: 7]
   const { data: novels, error } = await supabase
     .from('novels')
     .select(`
@@ -60,6 +60,43 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
     .ilike('genre', `%${genreName}%`)
     .order('views', { ascending: false })
     .range(startIndex, endIndex)
+
+  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = []
+    if (totalPages <= 10) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i)
+      return pages
+    }
+
+    // Always include 1
+    pages.push(1)
+
+    // << jump backward 5 pages
+    pages.push('<<')
+
+    // Sliding window of numbers around current page
+    let start = Math.max(2, currentPage - 2)
+    let end = Math.min(totalPages - 1, currentPage + 2)
+
+    if (currentPage <= 4) {
+      end = Math.min(totalPages - 1, 6)
+    } else if (currentPage >= totalPages - 3) {
+      start = Math.max(2, totalPages - 5)
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+
+    // >> jump forward 5 pages
+    pages.push('>>')
+
+    // Always include last page
+    pages.push(totalPages)
+
+    return pages
+  }
 
   return (
     <main className="p-8 max-w-7xl mx-auto w-full min-h-screen flex flex-col justify-between">
@@ -155,20 +192,48 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-2 mt-8 mb-4">
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-            const isCurrent = page === currentPage
+        <div className="flex flex-wrap justify-center items-center gap-1.5 mt-8 mb-4">
+          {getPageNumbers().map((item, index) => {
+            if (item === '<<') {
+              const targetPage = Math.max(1, currentPage - 5)
+              return (
+                <Link
+                  key={`jump-prev-${index}`}
+                  href={`/genre/${encodeURIComponent(genreName)}?page=${targetPage}`}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                >
+                  &lt;&lt;
+                </Link>
+              )
+            }
+
+            if (item === '>>') {
+              const targetPage = Math.min(totalPages, currentPage + 5)
+              return (
+                <Link
+                  key={`jump-next-${index}`}
+                  href={`/genre/${encodeURIComponent(genreName)}?page=${targetPage}`}
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                >
+                  &gt;&gt;
+                </Link>
+              )
+            }
+
+            const pageNum = Number(item)
+            const isCurrent = pageNum === currentPage
+
             return (
               <Link
-                key={page}
-                href={`/genre/${encodeURIComponent(genreName)}?page=${page}`}
-                className={`w-10 h-10 flex items-center justify-center rounded-lg font-bold text-sm transition ${
+                key={pageNum}
+                href={`/genre/${encodeURIComponent(genreName)}?page=${pageNum}`}
+                className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-900 border border-gray-800 text-gray-300 hover:bg-gray-800 hover:text-white'
+                    ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
+                    : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
                 }`}
               >
-                {page}
+                {pageNum}
               </Link>
             )
           })}

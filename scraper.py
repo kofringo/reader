@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/resurrection-empire",
-            "chapter_pattern": "https://freewebnovel.com/novel/resurrection-empire/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 100
+            "main_url": "https://freewebnovel.com/novel/global-lord-100-drop-rate",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-lord-100-drop-rate/chapter-{}",
+            "start_chap": 201,
+            "end_chap": 1979
         },
         {
-            "main_url": "https://freewebnovel.com/novel/too-bad-i-take-things-seriously",
-            "chapter_pattern": "https://freewebnovel.com/novel/protect-our-clan-leader/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 100
+            "main_url": "https://freewebnovel.com/novel/the-legendary-mechanic",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-legendary-mechanic/chapter-{}",
+            "start_chap": 201,
+            "end_chap": 1463
         },
         {
-             "main_url": "https://freewebnovel.com/novel/reborn-with-consumption-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/reborn-with-consumption-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique",
+             "chapter_pattern": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique/chapter-{}",
              "start_chap": 1,
-             "end_chap": 100
+             "end_chap": 3198
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-demon-lords",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-demon-lords/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 100
+            "main_url": "https://freewebnovel.com/novel/godzilla-in-konoha",
+            "chapter_pattern": "https://freewebnovel.com/novel/godzilla-in-konoha/chapter-{}",
+            "start_chap": 201,
+            "end_chap": 542
         }
     ]
 

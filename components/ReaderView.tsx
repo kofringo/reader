@@ -45,7 +45,7 @@ export default function ReaderView({
         <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">
           <Link
             href={`/novel/${novelId}`}
-            className="text-blue-500 hover:underline text-sm font-semibold"
+            className="text-blue-500 hover:underline text-sm font-bold"
           >
              Table of Contents
           </Link>
@@ -85,19 +85,19 @@ export default function ReaderView({
             <div className="flex border border-gray-700 rounded overflow-hidden">
               <button
                 onClick={() => setFontSize('text-base')}
-                className={`px-2 py-1 ${fontSize === 'text-base' ? 'bg-blue-600 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${fontSize === 'text-base' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A-
               </button>
               <button
                 onClick={() => setFontSize('text-lg')}
-                className={`px-2 py-1 ${fontSize === 'text-lg' ? 'bg-blue-600 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${fontSize === 'text-lg' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A
               </button>
               <button
                 onClick={() => setFontSize('text-xl')}
-                className={`px-2 py-1 ${fontSize === 'text-xl' ? 'bg-blue-600 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${fontSize === 'text-xl' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A+
               </button>
@@ -107,19 +107,19 @@ export default function ReaderView({
             <div className="flex border border-gray-700 rounded overflow-hidden">
               <button
                 onClick={() => setTheme('dark')}
-                className={`px-2 py-1 ${theme === 'dark' ? 'bg-blue-600 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${theme === 'dark' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Dark
               </button>
               <button
                 onClick={() => setTheme('sepia')}
-                className={`px-2 py-1 ${theme === 'sepia' ? 'bg-amber-700 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${theme === 'sepia' ? 'bg-amber-700 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Sepia
               </button>
               <button
                 onClick={() => setTheme('light')}
-                className={`px-2 py-1 ${theme === 'light' ? 'bg-blue-600 text-white' : 'bg-gray-800'}`}
+                className={`px-2 py-1 ${theme === 'light' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Light
               </button>

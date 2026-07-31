@@ -6,10 +6,18 @@ import BookmarkButton from '@/components/BookmarkButton'
 
 interface PageProps {
   params: Promise<{ id: string }>
+  searchParams: Promise<{ page?: string }>
 }
 
-export default async function NovelDetailPage({ params }: PageProps) {
+export default async function NovelDetailPage({ params, searchParams }: PageProps) {
   const { id } = await params
+  const resolvedSearchParams = await searchParams
+  const currentPage = Number(resolvedSearchParams.page) || 1
+
+  // 50 chapters per page configuration
+  const CHAPTERS_PER_PAGE = 50
+  const offset = (currentPage - 1) * CHAPTERS_PER_PAGE
+
   const supabase = await createClient()
 
   // Fetch novel details including genre, author, cover, and summary
@@ -23,29 +31,69 @@ export default async function NovelDetailPage({ params }: PageProps) {
     notFound()
   }
 
-  // Fetch all chapters for this novel
-  const { data: chapters } = await supabase
+  // Fetch paginated chapters for this novel with total count
+  const { data: chapters, count } = await supabase
     .from('chapters')
-    .select('id, chapter_number, title')
+    .select('id, chapter_number, title', { count: 'exact' })
     .eq('novel_id', id)
     .order('chapter_number', { ascending: true })
+    .range(offset, offset + CHAPTERS_PER_PAGE - 1)
+
+  const totalPages = count ? Math.ceil(count / CHAPTERS_PER_PAGE) : 1
 
   // Parse genre string into an array
   const genreList = novel.genre
     ? novel.genre.split(',').map((g: string) => g.trim())
     : []
 
-  const firstChapterNum = chapters && chapters.length > 0 ? chapters[0].chapter_number : 1
+  // Fetch all chapters or first chapter to find fallback for ContinueReadingButton
+  const { data: allChapters } = await supabase
+    .from('chapters')
+    .select('chapter_number')
+    .eq('novel_id', id)
+    .order('chapter_number', { ascending: true })
+
+  const firstChapterNum = allChapters && allChapters.length > 0 ? allChapters[0].chapter_number : 1
+
+  // Helper logic to build the page window matching your reference image style [1, <<, middle window, >>, totalPages]
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = []
+    if (totalPages <= 10) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i)
+      return pages
+    }
+
+    // Always include 1
+    pages.push(1)
+
+    // << jump backward 5 pages
+    pages.push('<<')
+
+    // Sliding window of numbers around current page
+    let start = Math.max(2, currentPage - 2)
+    let end = Math.min(totalPages - 1, currentPage + 2)
+
+    if (currentPage <= 4) {
+      end = Math.min(totalPages - 1, 6)
+    } else if (currentPage >= totalPages - 3) {
+      start = Math.max(2, totalPages - 5)
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i)
+    }
+
+    // >> jump forward 5 pages
+    pages.push('>>')
+
+    // Always include last page
+    pages.push(totalPages)
+
+    return pages
+  }
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      <Link
-        href="/"
-        className="text-blue-400 hover:underline text-sm mb-6 inline-block font-semibold"
-      >
-        ← Back to All Novels
-      </Link>
-
       {/* Novel Header Details Card */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
         {/* Cover Image */}
@@ -107,7 +155,7 @@ export default async function NovelDetailPage({ params }: PageProps) {
       {/* Chapter List Section */}
       <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm">
         <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
-          <span>📑</span> CHAPTER LIST
+          <span>📑</span> CHAPTER LIST ({count || 0})
         </h2>
 
         {chapters && chapters.length > 0 ? (
@@ -130,6 +178,56 @@ export default async function NovelDetailPage({ params }: PageProps) {
           </div>
         ) : (
           <p className="text-gray-100 italic text-sm">No chapters available yet.</p>
+        )}
+
+        {/* Numbered Pagination Buttons at the bottom of the Chapter List */}
+        {totalPages > 1 && (
+          <div className="flex flex-wrap justify-center items-center gap-1.5 mt-8 pt-6 border-t border-gray-800">
+            {getPageNumbers().map((item, index) => {
+              if (item === '<<') {
+                const targetPage = Math.max(1, currentPage - 5)
+                return (
+                  <Link
+                    key={`jump-prev-${index}`}
+                    href={`/novel/${id}?page=${targetPage}`}
+                    className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  >
+                    &lt;&lt;
+                  </Link>
+                )
+              }
+
+              if (item === '>>') {
+                const targetPage = Math.min(totalPages, currentPage + 5)
+                return (
+                  <Link
+                    key={`jump-next-${index}`}
+                    href={`/novel/${id}?page=${targetPage}`}
+                    className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  >
+                    &gt;&gt;
+                  </Link>
+                )
+              }
+
+              const pageNum = Number(item)
+              const isCurrent = pageNum === currentPage
+
+              return (
+                <Link
+                  key={pageNum}
+                  href={`/novel/${id}?page=${pageNum}`}
+                  className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
+                    isCurrent
+                      ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
+                      : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
+                  }`}
+                >
+                  {pageNum}
+                </Link>
+              )
+            })}
+          </div>
         )}
       </div>
     </main>
