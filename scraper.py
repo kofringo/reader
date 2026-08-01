@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/global-lord-100-drop-rate",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-lord-100-drop-rate/chapter-{}",
-            "start_chap": 201,
-            "end_chap": 1979
+            "main_url": "https://freewebnovel.com/novel/hxh-god-of-choice-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/hxh-god-of-choice-system/chapter-{}",
+            "start_chap": 101,
+            "end_chap": 403
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-legendary-mechanic",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-legendary-mechanic/chapter-{}",
-            "start_chap": 201,
-            "end_chap": 1463
+            "main_url": "https://freewebnovel.com/novel/mixed-blessing-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/mixed-blessing-system/chapter-{}",
+            "start_chap": 101,
+            "end_chap": 890
         },
         {
-             "main_url": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique",
-             "chapter_pattern": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 3198
+             "main_url": "https://freewebnovel.com/novel/dragon-ball-god-mu",
+             "chapter_pattern": "https://freewebnovel.com/novel/dragon-ball-god-mu/chapter-{}",
+             "start_chap": 101,
+             "end_chap": 703
         },
         {
-            "main_url": "https://freewebnovel.com/novel/godzilla-in-konoha",
-            "chapter_pattern": "https://freewebnovel.com/novel/godzilla-in-konoha/chapter-{}",
-            "start_chap": 201,
-            "end_chap": 542
+            "main_url": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world/chapter-{}",
+            "start_chap": 101,
+            "end_chap": 813
         }
     ]
 

@@ -24,6 +24,9 @@ export default async function ChapterReaderPage({ params }: PageProps) {
     notFound()
   }
 
+  // Automatically increment view count for this novel
+  await supabase.rpc('increment_novel_views', { row_id: id })
+
   // Check Prev / Next chapters
   const { data: prevChapter } = await supabase
     .from('chapters')

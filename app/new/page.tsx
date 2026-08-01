@@ -34,23 +34,18 @@ export default async function NewNovelsPage({
   const supabase = await createClient()
   const page = Number(resolvedSearchParams?.page) || 1
   
-  // 11 rows * 2 columns = 22 novels per page[cite: 6]
   const pageSize = 22 
   const from = (page - 1) * pageSize
   const to = from + pageSize - 1
 
-  // Fetch total count of novels for pagination[cite: 6]
   const { count } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
 
-  // Fetch paginated novels sorted by creation date (newest to oldest)[cite: 6]
+  // Optimized query using the pre-calculated chapter_count column
   const { data: novels, error } = await supabase
     .from('novels')
-    .select(`
-      *,
-      chapters (count)
-    `)
+    .select('*')
     .order('created_at', { ascending: false })
     .range(from, to)
 
@@ -64,7 +59,6 @@ export default async function NewNovelsPage({
 
   const totalPages = Math.ceil((count || 0) / pageSize)
 
-  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
     if (totalPages <= 10) {
@@ -72,13 +66,9 @@ export default async function NewNovelsPage({
       return pages
     }
 
-    // Always include 1
     pages.push(1)
-
-    // << jump backward 5 pages
     pages.push('<<')
 
-    // Sliding window of numbers around current page
     let start = Math.max(2, page - 2)
     let end = Math.min(totalPages - 1, page + 2)
 
@@ -92,10 +82,7 @@ export default async function NewNovelsPage({
       pages.push(i)
     }
 
-    // >> jump forward 5 pages
     pages.push('>>')
-
-    // Always include last page
     pages.push(totalPages)
 
     return pages
@@ -114,9 +101,7 @@ export default async function NewNovelsPage({
       {/* Horizontal List Grid Layout (2 Columns) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {novels?.map((novel) => {
-          const chapterCount = Array.isArray(novel.chapters) 
-            ? novel.chapters[0]?.count || 0 
-            : novel.chapters || 0
+          const chapterCount = novel.chapter_count || 0
 
           return (
             <Link

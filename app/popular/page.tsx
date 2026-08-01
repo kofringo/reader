@@ -42,12 +42,10 @@ export default async function PopularNovelsPage({
     .from('novels')
     .select('*', { count: 'exact', head: true })
 
+  // Optimized query using the pre-calculated chapter_count column
   const { data: novels, error } = await supabase
     .from('novels')
-    .select(`
-      *,
-      chapters (count)
-    `)
+    .select('*')
     .order('views', { ascending: false })
     .range(from, to)
 
@@ -61,7 +59,6 @@ export default async function PopularNovelsPage({
 
   const totalPages = Math.ceil((count || 0) / pageSize)
 
-  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
     if (totalPages <= 10) {
@@ -69,13 +66,9 @@ export default async function PopularNovelsPage({
       return pages
     }
 
-    // Always include 1
     pages.push(1)
-
-    // << jump backward 5 pages
     pages.push('<<')
 
-    // Sliding window of numbers around current page
     let start = Math.max(2, page - 2)
     let end = Math.min(totalPages - 1, page + 2)
 
@@ -89,10 +82,7 @@ export default async function PopularNovelsPage({
       pages.push(i)
     }
 
-    // >> jump forward 5 pages
     pages.push('>>')
-
-    // Always include last page
     pages.push(totalPages)
 
     return pages
@@ -111,9 +101,7 @@ export default async function PopularNovelsPage({
       {/* Horizontal List Grid Layout (2 Columns) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {novels?.map((novel) => {
-          const chapterCount = Array.isArray(novel.chapters) 
-            ? novel.chapters[0]?.count || 0 
-            : novel.chapters || 0
+          const chapterCount = novel.chapter_count || 0
 
           return (
             <Link
@@ -180,7 +168,7 @@ export default async function PopularNovelsPage({
                 <Link
                   key={`jump-prev-${index}`}
                   href={`/popular?page=${targetPage}`}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-300 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &lt;&lt;
                 </Link>
@@ -193,7 +181,7 @@ export default async function PopularNovelsPage({
                 <Link
                   key={`jump-next-${index}`}
                   href={`/popular?page=${targetPage}`}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-300 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &gt;&gt;
                 </Link>
@@ -210,7 +198,7 @@ export default async function PopularNovelsPage({
                 className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
                     ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
-                    : 'bg-gray-900 text-gray-300 border-gray-800 hover:bg-gray-800 hover:text-white'
+                    : 'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 {pageNum}

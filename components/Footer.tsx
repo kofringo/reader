@@ -10,14 +10,14 @@ export default function Footer() {
         </div>
         <div className="space-y-2">
           <Link href="/popular" className="block hover:text-white transition">&gt; Most Popular</Link>
-          <Link href="/genre" className="block hover:text-white transition">&gt; Genres</Link>
+          <Link href="/genres" className="block hover:text-white transition">&gt; Genres</Link>
           <Link href="/new" className="block hover:text-white transition">&gt; Recent Novels</Link>
         </div>
         
         <div className="space-y-2">
-          <Link href="#" className="block hover:text-white transition">&gt; Privacy Policy</Link>
-          <Link href="#" className="block hover:text-white transition">&gt; Terms of Service</Link>
-          <Link href="#" className="block hover:text-white transition">&gt; Contact Us</Link>
+          <Link href="privacy" className="block hover:text-white transition">&gt; Privacy Policy</Link>
+         {/* <Link href="#" className="block hover:text-white transition">&gt; Terms of Service</Link>*/}
+          <Link href="/contact" className="block hover:text-white transition">&gt; Contact Us</Link>
         </div>
       </div>
     </footer>
