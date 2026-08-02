@@ -1,6 +1,10 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+  title: "Most Popular Novels",
+};
 function timeAgo(dateString: string) {
   if (!dateString) return 'Unknown'
   const date = new Date(dateString)

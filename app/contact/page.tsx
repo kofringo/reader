@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+};
+
 export default function ContactPage() {
   return (
     <main className="p-8 max-w-4xl mx-auto min-h-[70vh] flex flex-col justify-center">

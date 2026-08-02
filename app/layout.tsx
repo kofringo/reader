@@ -18,12 +18,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Read Novels Online For Free - Web Novel Reader",
-  description: "Read the best light novels, web novels, and translated novels online for free.",
-  icons: {
-    icon: "/icon.png",
-    apple: "/icon.png",
+  title: {
+    template: "%s | Web Novel Reader",
+    default: "Read Novels Online For Free - Web Novel Reader",
   },
+  description: "Read the best light novels, web novels, and translated novels online for free.",
 };
 
 export default function RootLayout({

@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/hxh-god-of-choice-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/hxh-god-of-choice-system/chapter-{}",
-            "start_chap": 101,
-            "end_chap": 403
+            "main_url": "https://freewebnovel.com/novel/above-the-sky",
+            "chapter_pattern": "https://freewebnovel.com/novel/above-the-sky/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 2207
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mixed-blessing-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/mixed-blessing-system/chapter-{}",
-            "start_chap": 101,
-            "end_chap": 890
+            "main_url": "https://freewebnovel.com/novel/ten-thousand-soul-banner-deceased-do-you-have-any-unfulfilled-wishes",
+            "chapter_pattern": "https://freewebnovel.com/novel/ten-thousand-soul-banner-deceased-do-you-have-any-unfulfilled-wishes/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1258
         },
         {
-             "main_url": "https://freewebnovel.com/novel/dragon-ball-god-mu",
-             "chapter_pattern": "https://freewebnovel.com/novel/dragon-ball-god-mu/chapter-{}",
-             "start_chap": 101,
-             "end_chap": 703
+             "main_url": "https://freewebnovel.com/novel/demon-dragon-mad-god",
+             "chapter_pattern": "https://freewebnovel.com/novel/demon-dragon-mad-god/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 1525
         },
         {
-            "main_url": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/behind-the-scenes-in-naruto-world/chapter-{}",
-            "start_chap": 101,
-            "end_chap": 813
+            "main_url": "https://freewebnovel.com/novel/i-ascend-to-the-divine-throne-through-arcane-means",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-ascend-to-the-divine-throne-through-arcane-means/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1812
         }
     ]
 
