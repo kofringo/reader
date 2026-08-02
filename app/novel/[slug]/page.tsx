@@ -48,7 +48,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
   }
 
   // Use novel.id for fetching chapters since chapters table references novel uuid
-  const novelId = novel.slug
+  const novelId = novel.id
 
   // 2. Fetch paginated chapters for this novel using novel.id
   const { data: chapters, count } = await supabase
@@ -140,7 +140,6 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
           )}
 
           <div className="flex flex-wrap items-center gap-4">
-            {/* Pass novelId or slug to components depending on what they expect */}
             <ContinueReadingButton novelId={novelId} firstChapterNum={firstChapterNum} />
             <BookmarkButton novelId={novelId} />
           </div>
