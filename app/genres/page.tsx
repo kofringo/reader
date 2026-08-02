@@ -185,7 +185,7 @@ export default async function GenresPage({
                 <Link
                   key={`jump-prev-${index}`}
                   href={getPageHref(targetPage)}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &lt;&lt;
                 </Link>
@@ -198,7 +198,7 @@ export default async function GenresPage({
                 <Link
                   key={`jump-next-${index}`}
                   href={getPageHref(targetPage)}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &gt;&gt;
                 </Link>
@@ -214,8 +214,8 @@ export default async function GenresPage({
                 href={getPageHref(pageNum)}
                 className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
-                    ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
-                    : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
+                    ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
+                    : 'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 {pageNum}

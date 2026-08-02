@@ -36,13 +36,13 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
   const genreName = decodeURIComponent(resolvedParams.name || '')
   
   const currentPage = Number(resolvedSearchParams.page) || 1
-  const pageSize = 22 // 11 rows * 2 columns = 22 items per page[cite: 7]
+  const pageSize = 22 // 11 rows * 2 columns = 22 items per page[cite: 5]
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = startIndex + pageSize - 1
 
   const supabase = await createClient()
 
-  // Fetch total count for pagination[cite: 7]
+  // Fetch total count for pagination[cite: 5]
   const { count: totalCount } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
@@ -50,18 +50,15 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
   const totalPages = totalCount ? Math.ceil(totalCount / pageSize) : 1
 
-  // Fetch paginated novels matching the genre tag[cite: 7]
+  // Fetch paginated novels matching the genre tag using optimized column
   const { data: novels, error } = await supabase
     .from('novels')
-    .select(`
-      *,
-      chapters (count)
-    `)
+    .select('*')
     .ilike('genre', `%${genreName}%`)
     .order('views', { ascending: false })
     .range(startIndex, endIndex)
 
-  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages]
+  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages][cite: 5]
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
     if (totalPages <= 10) {
@@ -132,9 +129,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
             {novels?.map((novel) => {
-              const chapterCount = Array.isArray(novel.chapters) 
-                ? novel.chapters[0]?.count || 0 
-                : novel.chapters || 0
+              const chapterCount = novel.chapter_count || 0
 
               return (
                 <Link
@@ -200,7 +195,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
                 <Link
                   key={`jump-prev-${index}`}
                   href={`/genre/${encodeURIComponent(genreName)}?page=${targetPage}`}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &lt;&lt;
                 </Link>
@@ -213,7 +208,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
                 <Link
                   key={`jump-next-${index}`}
                   href={`/genre/${encodeURIComponent(genreName)}?page=${targetPage}`}
-                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
+                  className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &gt;&gt;
                 </Link>
@@ -229,8 +224,8 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
                 href={`/genre/${encodeURIComponent(genreName)}?page=${pageNum}`}
                 className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
-                    ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
-                    : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
+                    ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
+                    : 'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
                 }`}
               >
                 {pageNum}

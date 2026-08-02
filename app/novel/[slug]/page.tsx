@@ -179,7 +179,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               if (item === '<<') {
                 const targetPage = Math.max(1, currentPage - 5)
                 return (
-                  <Link key={`jump-prev-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm">
+                  <Link key={`jump-prev-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm">
                     &lt;&lt;
                   </Link>
                 )
@@ -188,7 +188,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               if (item === '>>') {
                 const targetPage = Math.min(totalPages, currentPage + 5)
                 return (
-                  <Link key={`jump-next-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm">
+                  <Link key={`jump-next-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm">
                     &gt;&gt;
                   </Link>
                 )
@@ -202,7 +202,9 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
                   key={pageNum}
                   href={`/novel/${slug}?page=${pageNum}`}
                   className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
-                    isCurrent ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold' : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
+                    isCurrent 
+                    ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
+                    :  'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
                   }`}
                 >
                   {pageNum}
