@@ -15,11 +15,11 @@ export default async function GenresPage({
   const selectedGenre = resolvedSearchParams.genre || 'All'
   const currentPage = Number(resolvedSearchParams.page) || 1
 
-  // 11 rows * 5 columns = 55 novels per page[cite: 7]
+  // 11 rows * 5 columns = 55 novels per page
   const ITEMS_PER_PAGE = 55
   const offset = (currentPage - 1) * ITEMS_PER_PAGE
 
-  // Fetch all novels to dynamically build the genre list tags[cite: 7]
+  // Fetch all novels to dynamically build the genre list tags
   const { data: allNovels } = await supabase
     .from('novels')
     .select('genre')
@@ -38,16 +38,16 @@ export default async function GenresPage({
 
   const genresList = Array.from(genreSet)
 
-  // Build the database query with pagination & filtering[cite: 7]
+  // Build the database query with pagination & filtering (including slug)
   let query = supabase
     .from('novels')
-    .select('id, title, cover_url, author, genre, views, created_at', { count: 'exact' })
+    .select('id, title, slug, cover_url, author, genre, views, created_at', { count: 'exact' })
 
   if (selectedGenre !== 'All') {
     query = query.ilike('genre', `%${selectedGenre}%`)
   }
 
-  // Apply pagination range[cite: 7]
+  // Apply pagination range
   const { data: filteredNovels, count } = await query
     .range(offset, offset + ITEMS_PER_PAGE - 1)
     .order('created_at', { ascending: false })
@@ -100,14 +100,14 @@ export default async function GenresPage({
   return (
     <main className="p-8 max-w-7xl mx-auto min-h-screen flex flex-col justify-between">
       <div>
-        {/* Header / Title[cite: 7] */}
+        {/* Header / Title */}
         <div className="mb-8 border-b border-gray-800 pb-4">
           <h1 className="text-2xl font-black text-white flex items-center gap-2">
             <span>📚</span> Genre / Category
           </h1>
         </div>
 
-        {/* Genre Pills Cloud[cite: 7] */}
+        {/* Genre Pills Cloud */}
         <div className="flex flex-wrap gap-2 mb-12">
           {genresList.map((g) => {
             const isSelected = selectedGenre === g
@@ -129,7 +129,7 @@ export default async function GenresPage({
           })}
         </div>
 
-        {/* Novels Display Section (Strictly 5 Columns)[cite: 7] */}
+        {/* Novels Display Section (Strictly 5 Columns) */}
         <div>
           <h2 className="text-lg font-bold text-white mb-6">
             Showing novels for: <span className="text-blue-400">{selectedGenre}</span>
