@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Force mobile engines and webkit to respect color schemes */
+:root {
+  color-scheme: dark light;
+}
+
+html.light-mode {
+  color-scheme: light;
+}
+
+html:not(.light-mode) {
+  color-scheme: dark;
+}
+
 /* Base Body Styling */
 body {
   background-color: #121212;
