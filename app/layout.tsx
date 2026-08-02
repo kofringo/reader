@@ -32,6 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta name="color-scheme" content="dark" />
+        <meta name="theme-color" content="#121212" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-[#121212] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-between transition-colors duration-200`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {/* Global Navigation Header with Center Search */}

@@ -70,7 +70,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur sticky top-0 z-50">
+    <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         
         {/* Left: Logo */}

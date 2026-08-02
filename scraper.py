@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/above-the-sky",
-            "chapter_pattern": "https://freewebnovel.com/novel/above-the-sky/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/renegade-immortal",
+            "chapter_pattern": "https://freewebnovel.com/novel/renegade-immortal/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2207
+            "end_chap": 2088
         },
         {
-            "main_url": "https://freewebnovel.com/novel/ten-thousand-soul-banner-deceased-do-you-have-any-unfulfilled-wishes",
-            "chapter_pattern": "https://freewebnovel.com/novel/ten-thousand-soul-banner-deceased-do-you-have-any-unfulfilled-wishes/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage",
+            "chapter_pattern": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1258
+            "end_chap": 791
         },
         {
-             "main_url": "https://freewebnovel.com/novel/demon-dragon-mad-god",
-             "chapter_pattern": "https://freewebnovel.com/novel/demon-dragon-mad-god/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 1525
+             "main_url": "https://freewebnovel.com/novel/my-professions-have-too-much-personality",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-professions-have-too-much-personality/chapter-{}",
+             "start_chap": 101,
+             "end_chap": 436
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-ascend-to-the-divine-throne-through-arcane-means",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-ascend-to-the-divine-throne-through-arcane-means/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 1812
+            "main_url": "https://freewebnovel.com/novel/the-demon-lords",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-demon-lords/chapter-{}",
+            "start_chap": 101,
+            "end_chap": 1149
         }
     ]
 
