@@ -10,14 +10,14 @@ interface Chapter {
 }
 
 interface ReaderViewProps {
-  novelId: string
+  novelSlug: string
   chapter: Chapter
   prevChapterNum?: number
   nextChapterNum?: number
 }
 
 export default function ReaderView({
-  novelId,
+  novelSlug,
   chapter,
   prevChapterNum,
   nextChapterNum,
@@ -27,10 +27,10 @@ export default function ReaderView({
 
   // Save progress in LocalStorage when reading a chapter
   useEffect(() => {
-    if (typeof window !== 'undefined' && novelId && chapter.chapter_number) {
-      localStorage.setItem(`novel_progress_${novelId}`, chapter.chapter_number.toString())
+    if (typeof window !== 'undefined' && novelSlug && chapter.chapter_number) {
+      localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString())
     }
-  }, [novelId, chapter.chapter_number])
+  }, [novelSlug, chapter.chapter_number])
 
   const themeClasses = {
     dark: 'bg-black text-gray-200',
@@ -44,17 +44,17 @@ export default function ReaderView({
         {/* Top Header & Settings Bar */}
         <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">
           <Link
-            href={`/novel/${novelId}`}
+            href={`/novel/${novelSlug}`}
             className="text-blue-500 hover:underline text-sm font-bold"
           >
-             Table of Contents
+            ← Table of Contents
           </Link>
 
-          {/* Top Prev / Next Navigation with separate rectangles and space */}
+          {/* Top Prev / Next Navigation */}
           <div className="flex items-center gap-9 text-xs font-semibold">
             {prevChapterNum ? (
               <Link
-                href={`/novel/${novelId}/${prevChapterNum}`}
+                href={`/novel/${novelSlug}/${prevChapterNum}`}
                 className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
               >
                 &lt; Prev Chapter
@@ -67,7 +67,7 @@ export default function ReaderView({
 
             {nextChapterNum ? (
               <Link
-                href={`/novel/${novelId}/${nextChapterNum}`}
+                href={`/novel/${novelSlug}/${nextChapterNum}`}
                 className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
               >
                 Next Chapter &gt;
@@ -138,10 +138,10 @@ export default function ReaderView({
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">
           {prevChapterNum ? (
             <Link
-              href={`/novel/${novelId}/${prevChapterNum}`}
+              href={`/novel/${novelSlug}/${prevChapterNum}`}
               className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition text-sm font-semibold"
             >
-               Previous Chapter
+              Previous Chapter
             </Link>
           ) : (
             <div />
@@ -149,10 +149,10 @@ export default function ReaderView({
 
           {nextChapterNum ? (
             <Link
-              href={`/novel/${novelId}/${nextChapterNum}`}
+              href={`/novel/${novelSlug}/${nextChapterNum}`}
               className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded transition text-sm font-semibold"
             >
-              Next Chapter 
+              Next Chapter
             </Link>
           ) : (
             <div />

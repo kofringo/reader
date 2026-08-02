@@ -1,61 +1,77 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
 import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ slug: string }>
   searchParams: Promise<{ page?: string }>
 }
 
+// Generate metadata using the slug parameter
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const supabase = await createClient()
+
+  const { data: novel } = await supabase
+    .from('novels')
+    .select('title')
+    .eq('slug', slug)
+    .single()
+
+  return {
+    title: novel?.title || 'Novel Details',
+  }
+}
+
 export default async function NovelDetailPage({ params, searchParams }: PageProps) {
-  const { id } = await params
+  const { slug } = await params
   const resolvedSearchParams = await searchParams
   const currentPage = Number(resolvedSearchParams.page) || 1
 
-  // 50 chapters per page configuration
   const CHAPTERS_PER_PAGE = 50
   const offset = (currentPage - 1) * CHAPTERS_PER_PAGE
 
   const supabase = await createClient()
 
-  // Fetch novel details including genre, author, cover, and summary
+  // 1. Fetch novel details by slug instead of ID
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('*')
-    .eq('id', id)
+    .eq('slug', slug)
     .single()
 
   if (novelError || !novel) {
     notFound()
   }
 
-  // Fetch paginated chapters for this novel with total count
+  // Use novel.id for fetching chapters since chapters table references novel uuid
+  const novelId = novel.id
+
+  // 2. Fetch paginated chapters for this novel using novel.id
   const { data: chapters, count } = await supabase
     .from('chapters')
     .select('id, chapter_number, title', { count: 'exact' })
-    .eq('novel_id', id)
+    .eq('novel_id', novelId)
     .order('chapter_number', { ascending: true })
     .range(offset, offset + CHAPTERS_PER_PAGE - 1)
 
   const totalPages = count ? Math.ceil(count / CHAPTERS_PER_PAGE) : 1
 
-  // Parse genre string into an array
   const genreList = novel.genre
     ? novel.genre.split(',').map((g: string) => g.trim())
     : []
 
-  // Fetch all chapters or first chapter to find fallback for ContinueReadingButton
   const { data: allChapters } = await supabase
     .from('chapters')
     .select('chapter_number')
-    .eq('novel_id', id)
+    .eq('novel_id', novelId)
     .order('chapter_number', { ascending: true })
 
   const firstChapterNum = allChapters && allChapters.length > 0 ? allChapters[0].chapter_number : 1
 
-  // Helper logic to build the page window matching your reference image style [1, <<, middle window, >>, totalPages]
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
     if (totalPages <= 10) {
@@ -63,13 +79,9 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
       return pages
     }
 
-    // Always include 1
     pages.push(1)
-
-    // << jump backward 5 pages
     pages.push('<<')
 
-    // Sliding window of numbers around current page
     let start = Math.max(2, currentPage - 2)
     let end = Math.min(totalPages - 1, currentPage + 2)
 
@@ -83,10 +95,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
       pages.push(i)
     }
 
-    // >> jump forward 5 pages
     pages.push('>>')
-
-    // Always include last page
     pages.push(totalPages)
 
     return pages
@@ -94,30 +103,19 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      {/* Novel Header Details Card */}
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
-        {/* Cover Image */}
         {novel.cover_url && (
           <div className="w-48 h-72 flex-shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden border border-gray-700 shadow-md">
-            <img
-              src={novel.cover_url}
-              alt={novel.title}
-              className="w-full h-full object-cover"
-            />
+            <img src={novel.cover_url} alt={novel.title} className="w-full h-full object-cover" />
           </div>
         )}
 
-        {/* Novel Metadata */}
         <div className="flex-1 flex flex-col justify-center">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">
-            {novel.title}
-          </h1>
-
+          <h1 className="text-3xl md:text-4xl font-extrabold text-white mb-2">{novel.title}</h1>
           <p className="text-gray-400 font-medium mb-4">
             Author: <span className="text-gray-100">{novel.author || 'Unknown'}</span>
           </p>
 
-          {/* Genre Badges (Clickable Links) */}
           {genreList.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-6">
               {genreList.map((g: string, idx: number) => (
@@ -132,27 +130,23 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
             </div>
           )}
 
-          {/* Summary Box */}
           {novel.summary && (
             <div className="mb-6">
-              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-100 mb-2">
-                Summary
-              </h3>
+              <h3 className="text-sm font-bold uppercase tracking-wider text-gray-100 mb-2">Summary</h3>
               <p className="text-gray-100 text-sm leading-relaxed whitespace-pre-line bg-gray-900 p-4 rounded-lg border border-gray-800">
                 {novel.summary}
               </p>
             </div>
           )}
 
-          {/* Reading & Bookmark Action Buttons */}
           <div className="flex flex-wrap items-center gap-4">
-            <ContinueReadingButton novelId={id} firstChapterNum={firstChapterNum} />
-            <BookmarkButton novelId={id} />
+            {/* Pass novelId or slug to components depending on what they expect */}
+            <ContinueReadingButton novelId={novelId} firstChapterNum={firstChapterNum} />
+            <BookmarkButton novelId={novelId} />
           </div>
         </div>
       </div>
 
-      {/* Chapter List Section */}
       <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm">
         <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
           <span>📑</span> CHAPTER LIST ({count || 0})
@@ -163,7 +157,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
             {chapters.map((chap) => (
               <Link
                 key={chap.id}
-                href={`/novel/${id}/${chap.chapter_number}`}
+                href={`/novel/${slug}/${chap.chapter_number}`}
                 className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center justify-between group transition"
               >
                 <span className="truncate pr-2">
@@ -180,18 +174,13 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
           <p className="text-gray-100 italic text-sm">No chapters available yet.</p>
         )}
 
-        {/* Numbered Pagination Buttons at the bottom of the Chapter List */}
         {totalPages > 1 && (
           <div className="flex flex-wrap justify-center items-center gap-1.5 mt-8 pt-6 border-t border-gray-800">
             {getPageNumbers().map((item, index) => {
               if (item === '<<') {
                 const targetPage = Math.max(1, currentPage - 5)
                 return (
-                  <Link
-                    key={`jump-prev-${index}`}
-                    href={`/novel/${id}?page=${targetPage}`}
-                    className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
-                  >
+                  <Link key={`jump-prev-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm">
                     &lt;&lt;
                   </Link>
                 )
@@ -200,11 +189,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               if (item === '>>') {
                 const targetPage = Math.min(totalPages, currentPage + 5)
                 return (
-                  <Link
-                    key={`jump-next-${index}`}
-                    href={`/novel/${id}?page=${targetPage}`}
-                    className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm"
-                  >
+                  <Link key={`jump-next-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-white text-gray-100 border border-gray-300 hover:bg-gray-100 transition shadow-sm">
                     &gt;&gt;
                   </Link>
                 )
@@ -216,11 +201,9 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               return (
                 <Link
                   key={pageNum}
-                  href={`/novel/${id}?page=${pageNum}`}
+                  href={`/novel/${slug}?page=${pageNum}`}
                   className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
-                    isCurrent
-                      ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold'
-                      : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
+                    isCurrent ? 'bg-gray-300 text-gray-100 border-gray-400 font-extrabold' : 'bg-white text-gray-100 border-gray-300 hover:bg-gray-100'
                   }`}
                 >
                   {pageNum}

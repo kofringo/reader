@@ -109,8 +109,8 @@ export default async function PopularNovelsPage({
 
           return (
             <Link
-              key={novel.id}
-              href={`/novel/${novel.id}`}
+              key={novel.slug}
+              href={`/novel/${novel.slug}`}
               className="flex bg-gray-900 border border-gray-800 rounded-lg p-4 gap-4 hover:border-gray-700 transition group"
             >
               {/* Cover Image */}

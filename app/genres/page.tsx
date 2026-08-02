@@ -139,8 +139,8 @@ export default async function GenresPage({
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
               {filteredNovels.map((novel) => (
                 <Link
-                  key={novel.id}
-                  href={`/novel/${novel.id}`}
+                  key={novel.slug}
+                  href={`/novel/${novel.slug}`}
                   className="group flex flex-col bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-gray-700 transition"
                 >
                   <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-800">

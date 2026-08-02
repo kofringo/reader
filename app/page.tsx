@@ -41,7 +41,7 @@ export default async function HomePage() {
     .limit(6)
     .order('created_at', { ascending: false })
 
-  // Fetch recently added chapters joining with novels (including genre)
+  // Fetch recently added chapters joining with novels (including slug and genre)
   const { data: recentChapters } = await supabase
     .from('chapters')
     .select(`
@@ -52,6 +52,7 @@ export default async function HomePage() {
       novels (
         id,
         title,
+        slug,
         cover_url,
         genre
       )
@@ -81,8 +82,8 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {popularNovels?.map((novel) => (
             <Link
-              key={novel.id}
-              href={`/novel/${novel.id}`}
+              key={novel.slug}
+              href={`/novel/${novel.slug}`}
               className="group flex flex-col bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-gray-700 transition"
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-800">
@@ -132,8 +133,8 @@ export default async function HomePage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
           {newNovels?.map((novel) => (
             <Link
-              key={novel.id}
-              href={`/novel/${novel.id}`}
+              key={novel.slug}
+              href={`/novel/${novel.slug}`}
               className="group flex flex-col bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-gray-700 transition"
             >
               <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-800">
@@ -175,11 +176,11 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {recentChapters?.map((item: any) => {
             const novel = item.novels
-            if (!novel) return null
+            if (!novel || !novel.slug) return null
             return (
               <Link
                 key={item.id}
-                href={`/novel/${novel.id}/${item.chapter_number}`}
+                href={`/novel/${novel.slug}/${item.chapter_number}`}
                 className="flex bg-gray-900 border border-gray-800 rounded-lg p-3 gap-3 hover:border-gray-700 transition group"
               >
                 <div className="w-16 h-20 flex-shrink-0 bg-gray-800 rounded overflow-hidden">

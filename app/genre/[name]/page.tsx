@@ -138,8 +138,8 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
               return (
                 <Link
-                  key={novel.id}
-                  href={`/novel/${novel.id}`}
+                  key={novel.slug}
+                  href={`/novel/${novel.slug}`}
                   className="flex bg-gray-900 border border-gray-800 rounded-lg p-4 gap-4 hover:border-gray-700 transition group"
                 >
                   <div className="w-24 h-32 flex-shrink-0 bg-gray-800 rounded overflow-hidden shadow">
