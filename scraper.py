@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/love-strategy-ceo-he-is-really-scheming",
-            "chapter_pattern": "https://freewebnovel.com/novel/love-strategy-ceo-he-is-really-scheming/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/richest-man-divine-grade-reconstruct-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/richest-man-divine-grade-reconstruct-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1281
+            "end_chap": 1201
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-forest-feeds-no-idle-goblins",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-forest-feeds-no-idle-goblins/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/essence-devouring-art",
+            "chapter_pattern": "https://freewebnovel.com/novel/essence-devouring-art/chapter-{}",
             "start_chap": 1,
-            "end_chap": 161
+            "end_chap": 306
         },
         {
-             "main_url": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book",
-             "chapter_pattern": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department",
+             "chapter_pattern": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1288
+             "end_chap": 725
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-can-transfer-the-side-effects-of-evil-skills",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-can-transfer-the-side-effects-of-evil-skills/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/warhammer-divine-throne",
+            "chapter_pattern": "https://freewebnovel.com/novel/warhammer-divine-throne/chapter-{}",
             "start_chap": 1,
-            "end_chap": 624
+            "end_chap": 1165
         }
     ]
 
