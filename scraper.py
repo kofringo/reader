@@ -176,28 +176,28 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/renegade-immortal",
-            "chapter_pattern": "https://freewebnovel.com/novel/renegade-immortal/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/love-strategy-ceo-he-is-really-scheming",
+            "chapter_pattern": "https://freewebnovel.com/novel/love-strategy-ceo-he-is-really-scheming/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2088
+            "end_chap": 1281
         },
         {
-            "main_url": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage",
-            "chapter_pattern": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-forest-feeds-no-idle-goblins",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-forest-feeds-no-idle-goblins/chapter-{}",
             "start_chap": 1,
-            "end_chap": 791
+            "end_chap": 161
         },
         {
-             "main_url": "https://freewebnovel.com/novel/my-professions-have-too-much-personality",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-professions-have-too-much-personality/chapter-{}",
-             "start_chap": 101,
-             "end_chap": 436
+             "main_url": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book",
+             "chapter_pattern": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 1288
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-demon-lords",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-demon-lords/chapter-{}",
-            "start_chap": 101,
-            "end_chap": 1149
+            "main_url": "https://freewebnovel.com/novel/i-can-transfer-the-side-effects-of-evil-skills",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-can-transfer-the-side-effects-of-evil-skills/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 624
         }
     ]
 

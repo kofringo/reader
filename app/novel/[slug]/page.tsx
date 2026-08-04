@@ -36,7 +36,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
   const supabase = await createClient()
 
-  // 1. Fetch novel details by slug instead of ID
+  // 1. Fetch novel details by slug
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('*')
@@ -46,6 +46,12 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
   if (novelError || !novel) {
     notFound()
   }
+
+  // Automatically increment view count in Supabase whenever the page is loaded
+  await supabase
+    .from('novels')
+    .update({ views: (novel.views || 0) + 1 })
+    .eq('slug', slug)
 
   // Use novel.id for fetching chapters since chapters table references novel uuid
   const novelId = novel.id
@@ -157,7 +163,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               <Link
                 key={chap.id}
                 href={`/novel/${slug}/${chap.chapter_number}`}
-                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center justify-between group transition"
+                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center group transition"
               >
                 <span className="truncate pr-2">
                   <span className="text-gray-100 mr-2">■</span>
