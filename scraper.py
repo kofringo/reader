@@ -176,28 +176,34 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/richest-man-divine-grade-reconstruct-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/richest-man-divine-grade-reconstruct-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/rewind-with-a-superstar-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/rewind-with-a-superstar-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1201
+            "end_chap": 239
         },
         {
-            "main_url": "https://freewebnovel.com/novel/essence-devouring-art",
-            "chapter_pattern": "https://freewebnovel.com/novel/essence-devouring-art/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/wizard-building-a-golem-legion-from-zero",
+            "chapter_pattern": "https://freewebnovel.com/novel/wizard-building-a-golem-legion-from-zero/chapter-{}",
             "start_chap": 1,
-            "end_chap": 306
+            "end_chap": 358
         },
         {
-             "main_url": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department",
-             "chapter_pattern": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mechanical-alchemist",
+            "chapter_pattern": "https://freewebnovel.com/novel/mechanical-alchemist/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 671
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/the-villains-story",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-villains-story/chapter-{}",
              "start_chap": 1,
-             "end_chap": 725
+             "end_chap": 942
         },
         {
-            "main_url": "https://freewebnovel.com/novel/warhammer-divine-throne",
-            "chapter_pattern": "https://freewebnovel.com/novel/warhammer-divine-throne/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/apocalypse-everyone-levels-up-i-return-to-the-time-before-the-server-opened",
+            "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-everyone-levels-up-i-return-to-the-time-before-the-server-opened/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1165
+            "end_chap": 96
         }
     ]
 
