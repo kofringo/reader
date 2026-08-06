@@ -146,7 +146,7 @@ export default function ReaderView({
           {prevChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${prevChapterNum}`}
-              className="px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-blue-600 hover:bg-gray-700 rounded transition text-sm font-semibold"
             >
               Previous Chapter
             </Link>
