@@ -82,7 +82,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   return (
     <div className="flex flex-col items-center">
       {/* Optional Ad Banner at the Top of the Chapter */}
-      <AdBanner format="300x250" />
+      <AdBanner/>
 
       <ReaderView
         novelSlug={slug}
@@ -92,7 +92,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
       />
 
       {/* Optional Ad Banner at the Bottom of the Chapter */}
-      <AdBanner format="300x250" />
+      <AdBanner/>
     </div>
   )
 }
