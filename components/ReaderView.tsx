@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import AdBanner from '@/components/AdBanner'
 
 interface Chapter {
   chapter_number: number
@@ -127,12 +128,18 @@ export default function ReaderView({
           </div>
         </div>
 
+        {/* Top Ad Banner placed right below navigation controls */}
+        <AdBanner />
+
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
 
         {/* Dynamic Text Content */}
         <article className={`space-y-6 ${fontSize} leading-8 whitespace-pre-line font-serif`}>
           {chapter.content}
         </article>
+
+        {/* Bottom Ad Banner placed right before bottom navigation */}
+        <AdBanner />
 
         {/* Bottom Chapter Navigation */}
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">

@@ -2,7 +2,6 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ReaderView from '@/components/ReaderView'
-import AdBanner from '@/components/AdBanner' // 1. Import the ad component
 
 interface PageProps {
   params: Promise<{ slug: string; chapter_number: string }>
@@ -81,18 +80,12 @@ export default async function ChapterReaderPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Optional Ad Banner at the Top of the Chapter */}
-      <AdBanner/>
-
       <ReaderView
         novelSlug={slug}
         chapter={chapter}
         prevChapterNum={prevChapter?.chapter_number}
         nextChapterNum={nextChapter?.chapter_number}
       />
-
-      {/* Optional Ad Banner at the Bottom of the Chapter */}
-      <AdBanner/>
     </div>
   )
 }
