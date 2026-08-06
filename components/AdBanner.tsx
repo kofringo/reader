@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 export default function AdBanner() {
-  const bannerRef = useRef(null);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!bannerRef.current) return;
