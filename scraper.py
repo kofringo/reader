@@ -176,34 +176,34 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/rewind-with-a-superstar-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/rewind-with-a-superstar-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-am-your-natural-enemy",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-am-your-natural-enemy/chapter-{}",
             "start_chap": 1,
-            "end_chap": 239
+            "end_chap": 1129
         },
         {
-            "main_url": "https://freewebnovel.com/novel/wizard-building-a-golem-legion-from-zero",
-            "chapter_pattern": "https://freewebnovel.com/novel/wizard-building-a-golem-legion-from-zero/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/big-data-cultivation",
+            "chapter_pattern": "https://freewebnovel.com/novel/big-data-cultivation/chapter-{}",
             "start_chap": 1,
-            "end_chap": 358
+            "end_chap": 2464
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mechanical-alchemist",
-            "chapter_pattern": "https://freewebnovel.com/novel/mechanical-alchemist/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/realm-walker",
+            "chapter_pattern": "https://freewebnovel.com/novel/realm-walker/chapter-{}",
             "start_chap": 1,
-            "end_chap": 671
+            "end_chap": 117
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-villains-story",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-villains-story/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/immortality-simulator",
+             "chapter_pattern": "https://freewebnovel.com/novel/immortality-simulator/chapter-{}",
              "start_chap": 1,
-             "end_chap": 942
+             "end_chap": 540
         },
         {
-            "main_url": "https://freewebnovel.com/novel/apocalypse-everyone-levels-up-i-return-to-the-time-before-the-server-opened",
-            "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-everyone-levels-up-i-return-to-the-time-before-the-server-opened/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-speedrun-manual-of-miss-witch",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-speedrun-manual-of-miss-witch/chapter-{}",
             "start_chap": 1,
-            "end_chap": 96
+            "end_chap": 307
         }
     ]
 
