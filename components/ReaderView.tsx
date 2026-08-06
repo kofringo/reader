@@ -133,7 +133,7 @@ export default function ReaderView({
         
 
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
-        <AdBanner />
+       
         {/* Dynamic Text Content */}
         <article className={`space-y-6 ${fontSize} leading-8 whitespace-pre-line font-serif`}>
           {chapter.content}
