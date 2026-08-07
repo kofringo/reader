@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
+import AdBanner from '@/components/AdBanner'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -36,7 +37,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
   const supabase = await createClient()
 
-  // 1. Fetch novel details by slug
+  // 1. Fetch novel details by slug instead of ID
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('*')
@@ -46,12 +47,6 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
   if (novelError || !novel) {
     notFound()
   }
-
-  // Automatically increment view count in Supabase whenever the page is loaded
-  await supabase
-    .from('novels')
-    .update({ views: (novel.views || 0) + 1 })
-    .eq('slug', slug)
 
   // Use novel.id for fetching chapters since chapters table references novel uuid
   const novelId = novel.id
@@ -152,7 +147,10 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
         </div>
       </div>
 
-      <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm">
+      {/* Ad Banner placed directly above the chapter list section */}
+      <AdBanner />
+
+      <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm mt-6">
         <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
           <span>📑</span> CHAPTER LIST ({count || 0})
         </h2>
@@ -163,7 +161,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
               <Link
                 key={chap.id}
                 href={`/novel/${slug}/${chap.chapter_number}`}
-                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center group transition"
+                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center justify-between group transition"
               >
                 <span className="truncate pr-2">
                   <span className="text-gray-100 mr-2">■</span>
