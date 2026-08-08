@@ -176,34 +176,34 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/i-am-your-natural-enemy",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-am-your-natural-enemy/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/family-cultivation-i-can-store-my-ability-to-understand",
+            "chapter_pattern": "https://freewebnovel.com/novel/family-cultivation-i-can-store-my-ability-to-understand/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1129
+            "end_chap": 683
         },
         {
-            "main_url": "https://freewebnovel.com/novel/big-data-cultivation",
-            "chapter_pattern": "https://freewebnovel.com/novel/big-data-cultivation/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2464
+            "end_chap": 396
         },
         {
-            "main_url": "https://freewebnovel.com/novel/realm-walker",
-            "chapter_pattern": "https://freewebnovel.com/novel/realm-walker/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/player-reload",
+            "chapter_pattern": "https://freewebnovel.com/novel/player-reload/chapter-{}",
             "start_chap": 1,
-            "end_chap": 117
+            "end_chap": 826
         },
         {
-             "main_url": "https://freewebnovel.com/novel/immortality-simulator",
-             "chapter_pattern": "https://freewebnovel.com/novel/immortality-simulator/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/global-evolution-i-have-an-attribute-board",
+             "chapter_pattern": "https://freewebnovel.com/novel/global-evolution-i-have-an-attribute-board/chapter-{}",
              "start_chap": 1,
-             "end_chap": 540
+             "end_chap": 1124
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-speedrun-manual-of-miss-witch",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-speedrun-manual-of-miss-witch/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-have-a-god-simulator",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-have-a-god-simulator/chapter-{}",
             "start_chap": 1,
-            "end_chap": 307
+            "end_chap": 114
         }
     ]
 

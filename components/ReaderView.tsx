@@ -34,7 +34,7 @@ export default function ReaderView({
   }, [novelSlug, chapter.chapter_number])
 
   const themeClasses = {
-    dark: 'bg-black text-gray-300',
+    dark: 'bg-black text-gray-400',
     sepia: 'bg-[#fbf0d9] text-[#5f4b32]',
     light: 'bg-white text-gray-900',
   }

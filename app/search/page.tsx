@@ -34,13 +34,10 @@ export default async function SearchPage({
   const query = resolvedSearchParams?.q || ''
   const supabase = await createClient()
 
-  // Fetch novels matching the search title query
+  // Fetch novels matching the search title query (selecting all columns including chapter_count)
   const { data: novels, error } = await supabase
     .from('novels')
-    .select(`
-      *,
-      chapters (count)
-    `)
+    .select('*')
     .ilike('title', `%${query}%`)
     .order('views', { ascending: false })
 
@@ -75,9 +72,7 @@ export default async function SearchPage({
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           {novels?.map((novel) => {
-            const chapterCount = Array.isArray(novel.chapters) 
-              ? novel.chapters[0]?.count || 0 
-              : novel.chapters || 0
+            const chapterCount = novel.chapter_count || 0
 
             return (
               <Link
@@ -104,7 +99,7 @@ export default async function SearchPage({
                     <h2 className="text-base font-bold text-white truncate group-hover:text-blue-400 transition mb-1.5">
                       {novel.title}
                     </h2>
-                    <div className="space-y-1 text-sm text-white-300 mb-2">
+                    <div className="space-y-1 text-sm text-white mb-2">
                       <div className="flex items-center gap-2">
                         <span>📖</span>
                         <span>{chapterCount} Chapters</span>
