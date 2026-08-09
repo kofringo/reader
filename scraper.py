@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/shadow-slave",
-            "chapter_pattern": "https://freewebnovel.com/novel/shadow-slave/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/devouring-evolution-i-reborn-as-an-arctic-wolf",
+            "chapter_pattern": "https://freewebnovel.com/novel/devouring-evolution-i-reborn-as-an-arctic-wolf/chapter-{}",
             "start_chap": 1,
-            "end_chap": 3148
+            "end_chap": 2271
         },
         {
-            "main_url": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch",
-            "chapter_pattern": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/milf-paradise-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/milf-paradise-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 316
+            "end_chap": 549
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-guardian-gods",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-guardian-gods/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-programmer-cultivator",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-programmer-cultivator/chapter-{}",
             "start_chap": 1,
-            "end_chap": 925
+            "end_chap": 502
         },
         {
-             "main_url": "https://freewebnovel.com/novel/villains-arent-stepping-stones",
-             "chapter_pattern": "https://freewebnovel.com/novel/villains-arent-stepping-stones/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-space-connects-to-the-apocalyptic-world",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-space-connects-to-the-apocalyptic-world/chapter-{}",
              "start_chap": 1,
-             "end_chap": 406
+             "end_chap": 157
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-retired-young-mercenary-is-secretly-a-billionaire",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-retired-young-mercenary-is-secretly-a-billionaire/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/marvel-omnitrix-in-the-multiverse",
+             "chapter_pattern": "https://freewebnovel.com/novel/marvel-omnitrix-in-the-multiversee/chapter-{}",
              "start_chap": 1,
-             "end_chap": 378
+             "end_chap": 136
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-golem-mage",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-golem-mage/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/grinding-exp-from-a-demon-hunting-ship",
+            "chapter_pattern": "https://freewebnovel.com/novel/grinding-exp-from-a-demon-hunting-ship/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1186
+            "end_chap": 431
         }
     ]
 
