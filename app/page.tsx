@@ -63,7 +63,7 @@ export default async function HomePage() {
 
   return (
     <main className="p-8 max-w-7xl mx-auto">
-      <AdBanner728 />
+      
       {/* Most Popular Section */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
@@ -218,6 +218,7 @@ export default async function HomePage() {
           })}
         </div>
       </section>
+      <AdBanner728 />
     </main>
   )
 }

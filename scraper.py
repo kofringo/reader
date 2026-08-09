@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/biochemical-martial-arts-supreme-heavenly-venerate",
-            "chapter_pattern": "https://freewebnovel.com/novel/biochemical-martial-arts-supreme-heavenly-venerate/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/shadow-slave",
+            "chapter_pattern": "https://freewebnovel.com/novel/shadow-slave/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1120
+            "end_chap": 3148
         },
         {
-            "main_url": "https://freewebnovel.com/novel/interstellar-number-one-farmer-i-only-want-to-farm",
-            "chapter_pattern": "https://freewebnovel.com/novel/interstellar-number-one-farmer-i-only-want-to-farm/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch",
+            "chapter_pattern": "https://freewebnovel.com/novel/ascension-gates-rise-of-the-beast-monarch/chapter-{}",
             "start_chap": 1,
-            "end_chap": 714
+            "end_chap": 316
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-military-branches-can-evolve-infinitely",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-military-branches-can-evolve-infinitely/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-guardian-gods",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-guardian-gods/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1618
+            "end_chap": 925
         },
         {
-             "main_url": "https://freewebnovel.com/novel/millennium-witch",
-             "chapter_pattern": "https://freewebnovel.com/novel/millennium-witch/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/villains-arent-stepping-stones",
+             "chapter_pattern": "https://freewebnovel.com/novel/villains-arent-stepping-stones/chapter-{}",
              "start_chap": 1,
-             "end_chap": 302
+             "end_chap": 406
         },
         {
-             "main_url": "https://freewebnovel.com/novel/shadows-of-the-deep-space",
-             "chapter_pattern": "https://freewebnovel.com/novel/shadows-of-the-deep-space/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-retired-young-mercenary-is-secretly-a-billionaire",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-retired-young-mercenary-is-secretly-a-billionaire/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1960
+             "end_chap": 378
         },
         {
-            "main_url": "https://freewebnovel.com/novel/gourmet-of-another-world-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/gourmet-of-another-world-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-golem-mage",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-golem-mage/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1851
+            "end_chap": 1186
         }
     ]
 
