@@ -35,6 +35,7 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="dark" />
         <meta name="theme-color" content="#121212" />
+        <script src="https://5gvci.com/act/files/tag.min.js?z=11539941" data-cfasync="false" async></script>
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-[#121212] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-between transition-colors duration-200`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
