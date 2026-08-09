@@ -37,7 +37,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#121212" />
         <script
           dangerouslySetInnerHTML={{
-            __html: "(function(s){s.dataset.zone='11539571',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))",
+            __html: "(function(s){s.dataset.zone='11539685',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))",
           }}
         />
       </head>
