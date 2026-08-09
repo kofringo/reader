@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-
+import AdBanner728 from '@/components/AdBanner728'
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
@@ -63,7 +63,7 @@ export default async function HomePage() {
 
   return (
     <main className="p-8 max-w-7xl mx-auto">
-     
+      <AdBanner728 />
       {/* Most Popular Section */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
