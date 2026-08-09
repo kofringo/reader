@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/apocalypse-descends-i-win-effortlessly-by-turning-trash-into-treasure",
-            "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-descends-i-win-effortlessly-by-turning-trash-into-treasure/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/biochemical-martial-arts-supreme-heavenly-venerate",
+            "chapter_pattern": "https://freewebnovel.com/novel/biochemical-martial-arts-supreme-heavenly-venerate/chapter-{}",
             "start_chap": 1,
-            "end_chap": 117
+            "end_chap": 1120
         },
         {
-            "main_url": "https://freewebnovel.com/novel/soul-landi-mass-produce-poison-cores",
-            "chapter_pattern": "https://freewebnovel.com/novel/soul-landi-mass-produce-poison-cores/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/interstellar-number-one-farmer-i-only-want-to-farm",
+            "chapter_pattern": "https://freewebnovel.com/novel/interstellar-number-one-farmer-i-only-want-to-farm/chapter-{}",
             "start_chap": 1,
-            "end_chap": 421
+            "end_chap": 714
         },
         {
-            "main_url": "https://freewebnovel.com/novel/magus-rise-of-the-darkness-empress",
-            "chapter_pattern": "https://freewebnovel.com/novel/magus-rise-of-the-darkness-empress/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-military-branches-can-evolve-infinitely",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-military-branches-can-evolve-infinitely/chapter-{}",
             "start_chap": 1,
-            "end_chap": 270
+            "end_chap": 1618
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-ancient-gods-whisper",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-ancient-gods-whisper/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/millennium-witch",
+             "chapter_pattern": "https://freewebnovel.com/novel/millennium-witch/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1196
+             "end_chap": 302
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-boys-viltrumite-bloodline-panel",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-boys-viltrumite-bloodline-panel/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/shadows-of-the-deep-space",
+             "chapter_pattern": "https://freewebnovel.com/novel/shadows-of-the-deep-space/chapter-{}",
              "start_chap": 1,
-             "end_chap": 103
+             "end_chap": 1960
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-computer-leads-to-an-instance-dungeon",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-computer-leads-to-an-instance-dungeon/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/gourmet-of-another-world-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/gourmet-of-another-world-novel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 538
+            "end_chap": 1851
         }
     ]
 
