@@ -35,7 +35,11 @@ export default function RootLayout({
       <head>
         <meta name="color-scheme" content="dark" />
         <meta name="theme-color" content="#121212" />
-        <script>(function(s){s.dataset.zone='11539571',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))</script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "(function(s){s.dataset.zone='11539571',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))",
+          }}
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-[#121212] text-gray-900 dark:text-gray-100 min-h-screen flex flex-col justify-between transition-colors duration-200`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
