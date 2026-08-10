@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/devouring-evolution-i-reborn-as-an-arctic-wolf",
-            "chapter_pattern": "https://freewebnovel.com/novel/devouring-evolution-i-reborn-as-an-arctic-wolf/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/how-i-tame-my-valkyrie-harem",
+            "chapter_pattern": "https://freewebnovel.com/novel/how-i-tame-my-valkyrie-harem/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2271
+            "end_chap": 248
         },
         {
-            "main_url": "https://freewebnovel.com/novel/milf-paradise-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/milf-paradise-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/starting-as-the-baron-of-the-lonely-island",
+            "chapter_pattern": "https://freewebnovel.com/novel/starting-as-the-baron-of-the-lonely-island/chapter-{}",
             "start_chap": 1,
-            "end_chap": 549
+            "end_chap": 143
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-programmer-cultivator",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-programmer-cultivator/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/marvel-the-ultimate-superman",
+            "chapter_pattern": "https://freewebnovel.com/novel/marvel-the-ultimate-superman/chapter-{}",
             "start_chap": 1,
-            "end_chap": 502
+            "end_chap": 237
         },
         {
-             "main_url": "https://freewebnovel.com/novel/my-space-connects-to-the-apocalyptic-world",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-space-connects-to-the-apocalyptic-world/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/witch-monastery",
+             "chapter_pattern": "https://freewebnovel.com/novel/witch-monastery/chapter-{}",
              "start_chap": 1,
-             "end_chap": 157
+             "end_chap": 448
         },
         {
-             "main_url": "https://freewebnovel.com/novel/marvel-omnitrix-in-the-multiverse",
-             "chapter_pattern": "https://freewebnovel.com/novel/marvel-omnitrix-in-the-multiversee/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/legendary-armament-canon",
+             "chapter_pattern": "https://freewebnovel.com/novel/legendary-armament-canon/chapter-{}",
              "start_chap": 1,
-             "end_chap": 136
+             "end_chap": 1506
         },
         {
-            "main_url": "https://freewebnovel.com/novel/grinding-exp-from-a-demon-hunting-ship",
-            "chapter_pattern": "https://freewebnovel.com/novel/grinding-exp-from-a-demon-hunting-ship/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-bloodline-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-bloodline-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 431
+            "end_chap": 1688
         }
     ]
 
