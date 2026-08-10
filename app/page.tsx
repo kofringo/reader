@@ -75,7 +75,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/popular"
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
           >
             View More
           </Link>
@@ -126,7 +126,7 @@ export default async function HomePage() {
           </div>
           <Link
             href="/new"
-            className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
           >
             View More
           </Link>

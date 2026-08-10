@@ -131,7 +131,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3 shrink-0">
           <Link
             href="/genres"
-            className="px-4 py-2 bg-gray-800/80 hover:bg-gray-800 border border-gray-700/60 hover:border-blue-500/50 text-white hover:text-blue-400 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm hidden md:flex"
+            className="px-4 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-700/60 hover:border-blue-500/50 text-white hover:text-blue-400 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm hidden md:flex"
           >
             <span>📚</span>
             <span>Genres</span>
@@ -156,7 +156,7 @@ export default function Navbar() {
           ) : (
             <Link
               href="/auth"
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/20"
+              className="px-4 py-2 bg-gray-900 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/20"
             >
               Sign In
             </Link>

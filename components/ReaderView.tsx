@@ -57,7 +57,7 @@ export default function ReaderView({
             {prevChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${prevChapterNum}`}
-                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
+                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded transition"
               >
                 &lt; Prev Chapter
               </Link>
@@ -70,7 +70,7 @@ export default function ReaderView({
             {nextChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${nextChapterNum}`}
-                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded transition"
+                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded transition"
               >
                 Next Chapter &gt;
               </Link>
@@ -149,7 +149,7 @@ export default function ReaderView({
           {prevChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${prevChapterNum}`}
-              className="px-4 py-2 bg-blue-600 hover:bg-gray-700 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-900 hover:bg-gray-700 rounded transition text-sm font-semibold"
             >
               Previous Chapter
             </Link>
@@ -160,7 +160,7 @@ export default function ReaderView({
           {nextChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${nextChapterNum}`}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-900 hover:bg-blue-500 rounded transition text-sm font-semibold"
             >
               Next Chapter
             </Link>
