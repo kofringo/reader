@@ -21,7 +21,7 @@ export default function MonetagScript() {
     // 3. Limit ads to once every 15 minutes using localStorage[cite: 2]
     const lastAdTime = localStorage.getItem("last_monetag_time");
     const now = Date.now();
-    const fifteenMinutes = 15 * 60 * 1000;
+    const fifteenMinutes = 45 * 60 * 1000;
 
     if (lastAdTime && now - parseInt(lastAdTime) < fifteenMinutes) {
       return; 
