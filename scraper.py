@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/how-i-tame-my-valkyrie-harem",
-            "chapter_pattern": "https://freewebnovel.com/novel/how-i-tame-my-valkyrie-harem/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/wilderness-survival-with-druid-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/wilderness-survival-with-druid-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 248
+            "end_chap": 894
         },
         {
-            "main_url": "https://freewebnovel.com/novel/starting-as-the-baron-of-the-lonely-island",
-            "chapter_pattern": "https://freewebnovel.com/novel/starting-as-the-baron-of-the-lonely-island/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/everyones-class-one-effort-10000x-bonus-reward",
+            "chapter_pattern": "https://freewebnovel.com/novel/everyones-class-one-effort-10000x-bonus-reward/chapter-{}",
             "start_chap": 1,
-            "end_chap": 143
+            "end_chap": 521
         },
         {
-            "main_url": "https://freewebnovel.com/novel/marvel-the-ultimate-superman",
-            "chapter_pattern": "https://freewebnovel.com/novel/marvel-the-ultimate-superman/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/marvel-the-psychologist-who-stole-wanda-and-gwens-hearts",
+            "chapter_pattern": "https://freewebnovel.com/novel/marvel-the-psychologist-who-stole-wanda-and-gwens-hearts/chapter-{}",
             "start_chap": 1,
-            "end_chap": 237
+            "end_chap": 295
         },
         {
-             "main_url": "https://freewebnovel.com/novel/witch-monastery",
-             "chapter_pattern": "https://freewebnovel.com/novel/witch-monastery/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/starting-with-an-sss-rank-swordsmanship-talent",
+             "chapter_pattern": "https://freewebnovel.com/novel/starting-with-an-sss-rank-swordsmanship-talent/chapter-{}",
              "start_chap": 1,
-             "end_chap": 448
+             "end_chap": 684
         },
         {
-             "main_url": "https://freewebnovel.com/novel/legendary-armament-canon",
-             "chapter_pattern": "https://freewebnovel.com/novel/legendary-armament-canon/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/becoming-the-wasteland-overlord-with-my-harem-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/becoming-the-wasteland-overlord-with-my-harem-system/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1506
+             "end_chap": 329
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-bloodline-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-bloodline-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/eternal-night-building-an-empire-from-scratch",
+            "chapter_pattern": "https://freewebnovel.com/novel/eternal-night-building-an-empire-from-scratch/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1688
+            "end_chap": 118
         }
     ]
 

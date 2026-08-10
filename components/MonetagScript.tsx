@@ -1,16 +1,24 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function MonetagScript() {
+  const pathname = usePathname();
+
   useEffect(() => {
-    // 1. Completely exclude mobile devices (screen width less than 768px)
+    // 1. STRICT PATH CHECK: Only run on pages that are part of your novels/chapters
+    if (!pathname.startsWith("/novel/")) {
+      return; 
+    }
+
+    // 2. Completely exclude mobile devices (screen width less than 768px)
     const isMobile = window.innerWidth < 768;
     if (isMobile) {
       return; 
     }
 
-    // 2. Limit ads to once every 15 minutes using localStorage[cite: 2]
+    // 3. Limit ads to once every 15 minutes using localStorage[cite: 2]
     const lastAdTime = localStorage.getItem("last_monetag_time");
     const now = Date.now();
     const fifteenMinutes = 15 * 60 * 1000;
@@ -19,7 +27,7 @@ export default function MonetagScript() {
       return; 
     }
 
-    // 3. Inject the Monetag script if it passes the checks[cite: 2]
+    // 4. Inject the Monetag script if it passes all checks[cite: 2]
     const script = document.createElement("script");
     script.innerHTML = "(function(s){s.dataset.zone='11539685',s.src='https://nap5k.com/tag.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))";
     document.head.appendChild(script);
@@ -30,7 +38,7 @@ export default function MonetagScript() {
     return () => {
       script.remove();
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
