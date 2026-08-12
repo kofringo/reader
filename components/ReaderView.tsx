@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import AdBanner from '@/components/AdBanner'
-import SocialBar from "@/components/SocialBar";
+import AdBanner from '@/components/AdBanner';
 
 interface Chapter {
   chapter_number: number
@@ -131,7 +130,7 @@ export default function ReaderView({
 
         {/* Top Ad Banner placed right below navigation controls */}
         <AdBanner />
-        <SocialBar/>
+        
         
 
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
