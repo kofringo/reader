@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/wilderness-survival-with-druid-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/wilderness-survival-with-druid-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/a-dragon-against-the-whole-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/a-dragon-against-the-whole-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 894
+            "end_chap": 578
         },
         {
-            "main_url": "https://freewebnovel.com/novel/everyones-class-one-effort-10000x-bonus-reward",
-            "chapter_pattern": "https://freewebnovel.com/novel/everyones-class-one-effort-10000x-bonus-reward/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/reverend-insanity",
+            "chapter_pattern": "https://freewebnovel.com/novel/reverend-insanity/chapter-{}",
             "start_chap": 1,
-            "end_chap": 521
+            "end_chap": 2338
         },
         {
-            "main_url": "https://freewebnovel.com/novel/marvel-the-psychologist-who-stole-wanda-and-gwens-hearts",
-            "chapter_pattern": "https://freewebnovel.com/novel/marvel-the-psychologist-who-stole-wanda-and-gwens-hearts/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-have-a-martial-dao-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-have-a-martial-dao-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 295
+            "end_chap": 843
         },
         {
-             "main_url": "https://freewebnovel.com/novel/starting-with-an-sss-rank-swordsmanship-talent",
-             "chapter_pattern": "https://freewebnovel.com/novel/starting-with-an-sss-rank-swordsmanship-talent/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-cell-prison",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-cell-prison/chapter-{}",
              "start_chap": 1,
-             "end_chap": 684
+             "end_chap": 2170
         },
         {
-             "main_url": "https://freewebnovel.com/novel/becoming-the-wasteland-overlord-with-my-harem-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/becoming-the-wasteland-overlord-with-my-harem-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-descendant-begged-me-to-help-him-just-after-i-became-a-god",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-descendant-begged-me-to-help-him-just-after-i-became-a-god/chapter-{}",
              "start_chap": 1,
-             "end_chap": 329
+             "end_chap": 791
         },
         {
-            "main_url": "https://freewebnovel.com/novel/eternal-night-building-an-empire-from-scratch",
-            "chapter_pattern": "https://freewebnovel.com/novel/eternal-night-building-an-empire-from-scratch/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/warlock-apprentice",
+            "chapter_pattern": "https://freewebnovel.com/novel/warlock-apprentice/chapter-{}",
             "start_chap": 1,
-            "end_chap": 118
+            "end_chap": 3091
         }
     ]
 
