@@ -61,6 +61,9 @@ export default function Navbar() {
     }
   }
 
+  // Extract custom username, fall back to email prefix if not available
+  const displayName = user?.user_metadata?.username || user?.email?.split('@')[0] || 'U'
+
   return (
     <header className="border-b border-gray-800 bg-gray-900/80 backdrop-blur">
       <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
@@ -144,11 +147,9 @@ export default function Navbar() {
               href="/profile"
               className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl transition text-white text-xs font-medium"
             >
-              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white">
-                {user.email ? user.email[0].toUpperCase() : 'U'}
-              </div>
-              <span className="hidden sm:inline max-w-[100px] truncate">
-                {user.user_metadata?.full_name || user.email?.split('@')[0]}
+              
+              <span className="hidden sm:inline max-w-[120px] truncate">
+                {displayName}
               </span>
             </Link>
           ) : (

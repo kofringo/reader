@@ -32,6 +32,9 @@ export default function ProfilePage() {
 
   if (!user) return <div className="p-8 text-white">Loading profile...</div>
 
+  // Clean username or fallback
+  const displayName = user.user_metadata?.username || user.user_metadata?.full_name || user.email?.split('@')[0]
+
   return (
     <main className="max-w-4xl mx-auto px-4 py-8 text-white">
       <Link href="/" className="text-sm text-blue-400 hover:underline mb-6 inline-block font-semibold">
@@ -39,13 +42,13 @@ export default function ProfilePage() {
       </Link>
 
       {/* Profile Header Card */}
-      <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center justify-between mb-6 shadow-lg">
+      <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center justify-between mb-8 shadow-lg">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center text-2xl font-bold">
-            {user.email ? user.email[0].toUpperCase() : 'U'}
+          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-2xl font-bold uppercase text-white">
+            {displayName ? displayName[0] : 'U'}
           </div>
           <div>
-            <h1 className="text-xl font-bold">{user.user_metadata?.full_name || user.email?.split('@')[0]}</h1>
+            <h1 className="text-xl font-bold">{displayName}</h1>
             <p className="text-xs text-gray-400">Reader &bull; {user.email}</p>
           </div>
         </div>
@@ -57,13 +60,13 @@ export default function ProfilePage() {
         </button>
       </div>
 
-      {/* Navigation Tabs */}
-      <div className="flex space-x-6 border-b border-gray-800 text-sm mb-6">
-        {['Info', 'Library', 'History', 'Comments', 'Reviews', 'Inbox'].map((tab) => (
+      {/* Navigation Tabs with proper spacing */}
+      <div className="flex flex-wrap gap-6 border-b border-gray-800 text-sm mb-8 pb-1">
+        {['Info', 'Library', 'History', 'Comments', 'Inbox'].map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`pb-3 border-b-2 font-medium transition ${
+            className={`pb-3 border-b-2 font-medium transition px-1 ${
               activeTab === tab ? 'border-blue-500 text-blue-400' : 'border-transparent text-gray-400 hover:text-white'
             }`}
           >
