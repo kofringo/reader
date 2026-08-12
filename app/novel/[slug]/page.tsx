@@ -104,6 +104,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
   return (
     <main className="max-w-5xl mx-auto p-6">
+      <SocialBar />
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
         {novel.cover_url && (
           <div className="w-48 h-72 flex-shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden border border-gray-700 shadow-md">
@@ -149,7 +150,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
       {/* 728x90 Ad Banner placed directly above the chapter list section */}
       <AdBanner468 />
-      <SocialBar />
+      
 
       <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm mt-6">
         <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
