@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
 import AdBanner468 from '@/components/AdBanner468'
-import SocialBar from '@/components/SocialBar';
+import SocialBar from "@/components/SocialBar";
 interface PageProps {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ page?: string }>
