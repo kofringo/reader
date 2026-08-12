@@ -149,7 +149,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
       {/* 728x90 Ad Banner placed directly above the chapter list section */}
       <AdBanner468 />
-      <SocialBar/>
+      <SocialBar />
 
       <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm mt-6">
         <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
