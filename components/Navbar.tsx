@@ -38,14 +38,6 @@ export default function Navbar() {
     }
   }, [])
 
-  const handleSignOut = async () => {
-    const supabase = createClient()
-    await supabase.auth.signOut()
-    setUser(null)
-    router.push('/')
-    router.refresh()
-  }
-
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim()) {
@@ -147,13 +139,20 @@ export default function Navbar() {
           </button>
 
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="px-4 py-2 bg-red-600 hover:bg-red-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-red-600/20"
+            /* Profile Button (Redirects to /profile page) */
+            <Link
+              href="/profile"
+              className="flex items-center gap-2 px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl transition text-white text-xs font-medium"
             >
-              Sign Out
-            </button>
+              <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center text-[10px] font-bold text-white">
+                {user.email ? user.email[0].toUpperCase() : 'U'}
+              </div>
+              <span className="hidden sm:inline max-w-[100px] truncate">
+                {user.user_metadata?.full_name || user.email?.split('@')[0]}
+              </span>
+            </Link>
           ) : (
+            /* Sign In Button */
             <Link
               href="/auth"
               className="px-4 py-2 bg-gray-900 hover:bg-blue-500 text-white rounded-xl text-xs font-bold transition shadow-md shadow-blue-600/20"

@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/a-dragon-against-the-whole-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/a-dragon-against-the-whole-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/sss-rank-skill-copy-i-can-steal-every-class",
+            "chapter_pattern": "https://freewebnovel.com/novel/sss-rank-skill-copy-i-can-steal-every-class/chapter-{}",
             "start_chap": 1,
-            "end_chap": 578
+            "end_chap": 175
         },
         {
-            "main_url": "https://freewebnovel.com/novel/reverend-insanity",
-            "chapter_pattern": "https://freewebnovel.com/novel/reverend-insanity/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/pokemon-bounty-hunter-alex",
+            "chapter_pattern": "https://freewebnovel.com/novel/pokemon-bounty-hunter-alex/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2338
+            "end_chap": 519
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-have-a-martial-dao-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-have-a-martial-dao-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/bleach-teaching-makes-me-stronger",
+            "chapter_pattern": "https://freewebnovel.com/novel/bleach-teaching-makes-me-stronger/chapter-{}",
             "start_chap": 1,
-            "end_chap": 843
+            "end_chap": 392
         },
         {
-             "main_url": "https://freewebnovel.com/novel/my-cell-prison",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-cell-prison/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/wasteland-hideout-upgrading-from-the-sewers",
+             "chapter_pattern": "https://freewebnovel.com/novel/wasteland-hideout-upgrading-from-the-sewers/chapter-{}",
              "start_chap": 1,
-             "end_chap": 2170
+             "end_chap": 604
         },
         {
-             "main_url": "https://freewebnovel.com/novel/my-descendant-begged-me-to-help-him-just-after-i-became-a-god",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-descendant-begged-me-to-help-him-just-after-i-became-a-god/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/kingdombuilding-all-my-inventions-are-novelty",
+             "chapter_pattern": "https://freewebnovel.com/novel/kingdombuilding-all-my-inventions-are-novelty/chapter-{}",
              "start_chap": 1,
-             "end_chap": 791
+             "end_chap": 252
         },
         {
-            "main_url": "https://freewebnovel.com/novel/warlock-apprentice",
-            "chapter_pattern": "https://freewebnovel.com/novel/warlock-apprentice/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/cultivation-online-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/cultivation-online-novel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 3091
+            "end_chap": 2582
         }
     ]
 
