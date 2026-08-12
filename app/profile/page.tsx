@@ -49,12 +49,12 @@ export default function ProfilePage() {
           </div>
           <div>
             <h1 className="text-xl font-bold">{displayName}</h1>
-            <p className="text-xs text-gray-400">Reader &bull; {user.email}</p>
+            <p className="text-xs text-gray-900">Reader &bull; {user.email}</p>
           </div>
         </div>
         <button
           onClick={handleSignOut}
-          className="bg-red-600/20 border border-red-800 text-red-300 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
+          className="bg-red-600/20 border border-red-800 text-gray-900 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
         >
           Sign Out
         </button>
