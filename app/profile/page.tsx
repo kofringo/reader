@@ -49,12 +49,12 @@ export default function ProfilePage() {
           </div>
           <div>
             <h1 className="text-xl font-bold">{displayName}</h1>
-            <p className="text-xs text-gray-900">Reader &bull; {user.email}</p>
+            <p className="text-xs text-gray-100">Reader &bull; {user.email}</p>
           </div>
         </div>
         <button
           onClick={handleSignOut}
-          className="bg-red-600/20 border border-red-800 text-gray-900 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
+          className="bg-red-600/20 border border-red-800 text-gray-100 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
         >
           Sign Out
         </button>
@@ -78,7 +78,7 @@ export default function ProfilePage() {
       {/* Tab Content Area */}
       <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl">
         <h2 className="text-lg font-bold mb-1">Your {activeTab}</h2>
-        <p className="text-xs text-gray-400 mb-6">
+        <p className="text-xs text-gray-100 mb-6">
           Manage your account data and interact with community notifications.
         </p>
         <div className="p-8 text-center border border-dashed border-gray-800 rounded text-gray-500 text-sm">
