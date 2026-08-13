@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import AdBanner from '@/components/AdBanner'
+import AdBanner from '@/components/AdBanner';
 import AdBanner32050 from '@/components/AdBanner32050';
 
 interface Chapter {
