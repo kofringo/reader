@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
 import AdBanner468 from '@/components/AdBanner468'
-import SocialBar from '@/components/SocialBar'
+
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -105,7 +105,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      <SocialBar />
+      
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
         {novel.cover_url && (
           <div className="w-48 h-72 flex-shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden border border-gray-700 shadow-md">

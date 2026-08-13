@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/space-odyssey-spectre",
-            "chapter_pattern": "https://freewebnovel.com/novel/space-odyssey-spectre/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/lord-of-winter-beginning-with-daily-intelligence",
+            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-winter-beginning-with-daily-intelligence/chapter-{}",
             "start_chap": 1,
-            "end_chap": 668
+            "end_chap": 885
         },
         {
-            "main_url": "https://freewebnovel.com/novel/supreme-bloodline-evolution-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/supreme-bloodline-evolution-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/when-the-side-character-gets-a-system-and-travels-through-difference-worlds",
+            "chapter_pattern": "https://freewebnovel.com/novel/when-the-side-character-gets-a-system-and-travels-through-difference-worlds/chapter-{}",
             "start_chap": 1,
-            "end_chap": 225
+            "end_chap": 548
         },
         {
-            "main_url": "https://freewebnovel.com/novel/ascension-code-reborn-in-the-dc-universe",
-            "chapter_pattern": "https://freewebnovel.com/novel/ascension-code-reborn-in-the-dc-universe/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/transmigrated-into-a-women-dominated-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/transmigrated-into-a-women-dominated-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 124
+            "end_chap": 304
         },
         {
-             "main_url": "https://freewebnovel.com/novel/super-gene-optimization-fluid",
-             "chapter_pattern": "https://freewebnovel.com/novel/super-gene-optimization-fluid/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/swallowed-star",
+             "chapter_pattern": "https://freewebnovel.com/novel/swallowed-star/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1632
+             "end_chap": 1486
         },
         {
-             "main_url": "https://freewebnovel.com/novel/four-split-personalities",
-             "chapter_pattern": "https://freewebnovel.com/novel/four-split-personalities/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/im-a-daemon-so-what-tensuramulticross",
+             "chapter_pattern": "https://freewebnovel.com/novel/im-a-daemon-so-what-tensuramulticross/chapter-{}",
              "start_chap": 1,
-             "end_chap": 2696
+             "end_chap": 223
         },
         {
-            "main_url": "https://freewebnovel.com/novel/versatile-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/versatile-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mage-magic-engineer",
+            "chapter_pattern": "https://freewebnovel.com/novel/mage-magic-engineer/chapter-{}",
             "start_chap": 1,
-            "end_chap": 172
+            "end_chap": 539
         }
     ]
 
