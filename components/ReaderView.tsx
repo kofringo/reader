@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdBanner from '@/components/AdBanner';
 
-
 interface Chapter {
   chapter_number: number
   title: string
@@ -27,12 +26,31 @@ export default function ReaderView({
   const [fontSize, setFontSize] = useState<'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>('text-lg')
   const [theme, setTheme] = useState<'dark' | 'sepia' | 'light'>('dark')
 
-  // Save progress in LocalStorage when reading a chapter
+  // Load saved preferences and history progress on mount
   useEffect(() => {
-    if (typeof window !== 'undefined' && novelSlug && chapter.chapter_number) {
-      localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString())
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('reader_theme') as 'dark' | 'sepia' | 'light'
+      if (savedTheme) setTheme(savedTheme)
+
+      const savedFontSize = localStorage.getItem('reader_fontsize') as 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'
+      if (savedFontSize) setFontSize(savedFontSize)
+
+      if (novelSlug && chapter.chapter_number) {
+        localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString())
+      }
     }
   }, [novelSlug, chapter.chapter_number])
+
+  // Handlers that update state AND save to localStorage
+  const changeTheme = (newTheme: 'dark' | 'sepia' | 'light') => {
+    setTheme(newTheme)
+    localStorage.setItem('reader_theme', newTheme)
+  }
+
+  const changeFontSize = (newSize: 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl') => {
+    setFontSize(newSize)
+    localStorage.setItem('reader_fontsize', newSize)
+  }
 
   const themeClasses = {
     dark: 'bg-black text-gray-400',
@@ -57,7 +75,7 @@ export default function ReaderView({
             {prevChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${prevChapterNum}`}
-                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded transition"
+                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 text-gray-200 rounded transition"
               >
                 &lt; Prev Chapter
               </Link>
@@ -70,7 +88,7 @@ export default function ReaderView({
             {nextChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${nextChapterNum}`}
-                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded transition"
+                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 text-gray-200 rounded transition"
               >
                 Next Chapter &gt;
               </Link>
@@ -86,19 +104,19 @@ export default function ReaderView({
             {/* Font Size Controls */}
             <div className="flex border border-gray-700 rounded overflow-hidden">
               <button
-                onClick={() => setFontSize('text-base')}
+                onClick={() => changeFontSize('text-base')}
                 className={`px-2 py-1 ${fontSize === 'text-base' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A-
               </button>
               <button
-                onClick={() => setFontSize('text-lg')}
+                onClick={() => changeFontSize('text-lg')}
                 className={`px-2 py-1 ${fontSize === 'text-lg' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A
               </button>
               <button
-                onClick={() => setFontSize('text-xl')}
+                onClick={() => changeFontSize('text-xl')}
                 className={`px-2 py-1 ${fontSize === 'text-xl' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 A+
@@ -108,19 +126,19 @@ export default function ReaderView({
             {/* Theme Toggle */}
             <div className="flex border border-gray-700 rounded overflow-hidden">
               <button
-                onClick={() => setTheme('dark')}
+                onClick={() => changeTheme('dark')}
                 className={`px-2 py-1 ${theme === 'dark' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Dark
               </button>
               <button
-                onClick={() => setTheme('sepia')}
+                onClick={() => changeTheme('sepia')}
                 className={`px-2 py-1 ${theme === 'sepia' ? 'bg-amber-700 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Sepia
               </button>
               <button
-                onClick={() => setTheme('light')}
+                onClick={() => changeTheme('light')}
                 className={`px-2 py-1 ${theme === 'light' ? 'bg-blue-600 text-gray-50' : 'bg-gray-800 text-gray-50'}`}
               >
                 Light
@@ -132,8 +150,6 @@ export default function ReaderView({
         {/* Top Ad Banner placed right below navigation controls */}
         <AdBanner />
         
-        
-
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
        
         {/* Dynamic Text Content */}
@@ -141,15 +157,12 @@ export default function ReaderView({
           {chapter.content}
         </article>
 
-        {/* Bottom Ad Banner placed right before bottom navigation */}
-        
-
         {/* Bottom Chapter Navigation */}
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">
           {prevChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${prevChapterNum}`}
-              className="px-4 py-2 bg-gray-900 hover:bg-gray-700 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-900 hover:bg-gray-700 text-gray-200 rounded transition text-sm font-semibold"
             >
               Previous Chapter
             </Link>
@@ -160,7 +173,7 @@ export default function ReaderView({
           {nextChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${nextChapterNum}`}
-              className="px-4 py-2 bg-gray-900 hover:bg-blue-500 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-900 hover:bg-blue-500 text-gray-200 rounded transition text-sm font-semibold"
             >
               Next Chapter
             </Link>
