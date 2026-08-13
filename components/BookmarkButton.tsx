@@ -4,7 +4,11 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 
-export default function BookmarkButton({ novelId }: { novelId: string }) {
+interface BookmarkButtonProps {
+  novelId: string
+}
+
+export default function BookmarkButton({ novelId }: BookmarkButtonProps) {
   const [isBookmarked, setIsBookmarked] = useState(false)
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
@@ -28,7 +32,7 @@ export default function BookmarkButton({ novelId }: { novelId: string }) {
       setLoading(false)
     }
     checkStatus()
-  }, [novelId])
+  }, [novelId, supabase])
 
   const toggleBookmark = async () => {
     if (!userId) {

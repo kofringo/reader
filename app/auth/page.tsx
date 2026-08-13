@@ -63,7 +63,7 @@ export default function AuthPage() {
       <form onSubmit={handleAuth} className="space-y-4">
         {isSignUp && (
           <div>
-            <label className="block text-xs font-semibold text-gray-300 mb-1">Username</label>
+            <label className="block text-xs font-semibold text-gray-100 mb-1">Username</label>
             <input
               type="text"
               required={isSignUp}
@@ -76,7 +76,7 @@ export default function AuthPage() {
         )}
 
         <div>
-          <label className="block text-xs font-semibold text-gray-300 mb-1">Email</label>
+          <label className="block text-xs font-semibold text-gray-100 mb-1">Email</label>
           <input
             type="email"
             required
@@ -88,7 +88,7 @@ export default function AuthPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-semibold text-gray-300 mb-1">Password</label>
+          <label className="block text-xs font-semibold text-gray-100 mb-1">Password</label>
           <input
             type="password"
             required
