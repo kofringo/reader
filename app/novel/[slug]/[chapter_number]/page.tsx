@@ -62,6 +62,17 @@ export default async function ChapterReaderPage({ params }: PageProps) {
     notFound()
   }
 
+  // Record user reading history if authenticated
+  const { data: { user } } = await supabase.auth.getUser()
+  if (user) {
+    await supabase.from('user_history').upsert({
+      user_id: user.id,
+      novel_id: novelId,
+      chapter_id: chapter.id,
+      updated_at: new Date().toISOString(),
+    }, { onConflict: 'user_id,novel_id,chapter_id' })
+  }
+
   await supabase.rpc('increment_novel_views', { row_id: novelId })
 
   const { data: prevChapter } = await supabase

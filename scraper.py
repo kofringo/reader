@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/sss-rank-skill-copy-i-can-steal-every-class",
-            "chapter_pattern": "https://freewebnovel.com/novel/sss-rank-skill-copy-i-can-steal-every-class/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/space-odyssey-spectre",
+            "chapter_pattern": "https://freewebnovel.com/novel/space-odyssey-spectre/chapter-{}",
             "start_chap": 1,
-            "end_chap": 175
+            "end_chap": 668
         },
         {
-            "main_url": "https://freewebnovel.com/novel/pokemon-bounty-hunter-alex",
-            "chapter_pattern": "https://freewebnovel.com/novel/pokemon-bounty-hunter-alex/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/supreme-bloodline-evolution-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/supreme-bloodline-evolution-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 519
+            "end_chap": 225
         },
         {
-            "main_url": "https://freewebnovel.com/novel/bleach-teaching-makes-me-stronger",
-            "chapter_pattern": "https://freewebnovel.com/novel/bleach-teaching-makes-me-stronger/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ascension-code-reborn-in-the-dc-universe",
+            "chapter_pattern": "https://freewebnovel.com/novel/ascension-code-reborn-in-the-dc-universe/chapter-{}",
             "start_chap": 1,
-            "end_chap": 392
+            "end_chap": 124
         },
         {
-             "main_url": "https://freewebnovel.com/novel/wasteland-hideout-upgrading-from-the-sewers",
-             "chapter_pattern": "https://freewebnovel.com/novel/wasteland-hideout-upgrading-from-the-sewers/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/super-gene-optimization-fluid",
+             "chapter_pattern": "https://freewebnovel.com/novel/super-gene-optimization-fluid/chapter-{}",
              "start_chap": 1,
-             "end_chap": 604
+             "end_chap": 1632
         },
         {
-             "main_url": "https://freewebnovel.com/novel/kingdombuilding-all-my-inventions-are-novelty",
-             "chapter_pattern": "https://freewebnovel.com/novel/kingdombuilding-all-my-inventions-are-novelty/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/four-split-personalities",
+             "chapter_pattern": "https://freewebnovel.com/novel/four-split-personalities/chapter-{}",
              "start_chap": 1,
-             "end_chap": 252
+             "end_chap": 2696
         },
         {
-            "main_url": "https://freewebnovel.com/novel/cultivation-online-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/cultivation-online-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/versatile-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/versatile-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2582
+            "end_chap": 172
         }
     ]
 
