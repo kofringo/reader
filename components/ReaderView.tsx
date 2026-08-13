@@ -75,12 +75,12 @@ export default function ReaderView({
             {prevChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${prevChapterNum}`}
-                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 text-gray-200 rounded transition"
+                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-50 rounded transition"
               >
                 &lt; Prev Chapter
               </Link>
             ) : (
-              <button disabled className="px-3 py-1.5 bg-gray-800/40 text-gray-500 border border-gray-700/50 rounded cursor-not-allowed">
+              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed">
                 &lt; Prev
               </button>
             )}
@@ -88,12 +88,12 @@ export default function ReaderView({
             {nextChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${nextChapterNum}`}
-                className="px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 text-gray-200 rounded transition"
+                className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-50 rounded transition"
               >
                 Next Chapter &gt;
               </Link>
             ) : (
-              <button disabled className="px-3 py-1.5 bg-gray-800/40 text-gray-500 border border-gray-700/50 rounded cursor-not-allowed">
+              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed">
                 Next &gt;
               </button>
             )}
@@ -162,7 +162,7 @@ export default function ReaderView({
           {prevChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${prevChapterNum}`}
-              className="px-4 py-2 bg-gray-900 hover:bg-gray-700 text-gray-200 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-600 text-gray-50 rounded transition text-sm font-semibold"
             >
               Previous Chapter
             </Link>
@@ -173,7 +173,7 @@ export default function ReaderView({
           {nextChapterNum ? (
             <Link
               href={`/novel/${novelSlug}/${nextChapterNum}`}
-              className="px-4 py-2 bg-gray-900 hover:bg-blue-500 text-gray-200 rounded transition text-sm font-semibold"
+              className="px-4 py-2 bg-gray-800 hover:bg-gray-500 text-gray-50 rounded transition text-sm font-semibold"
             >
               Next Chapter
             </Link>
