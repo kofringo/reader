@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
 import AdBanner468 from '@/components/AdBanner468'
+import NovelComments from '@/components/NovelComments'
 
 
 interface PageProps {
@@ -149,7 +150,7 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
         </div>
       </div>
 
-      {/* 728x90 Ad Banner placed directly above the chapter list section */}
+      {/* Ad Banner placed directly above the chapter list section */}
       <AdBanner468 />
 
       <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm mt-6">
@@ -220,6 +221,9 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
           </div>
         )}
       </div>
+
+      {/* Novel Comments Section */}
+      <NovelComments novelId={novelId} />
     </main>
   )
 }
