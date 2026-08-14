@@ -29,7 +29,7 @@ export default function AdBanner728() {
     const invokeScript = document.createElement('script')
     invokeScript.type = 'text/javascript'
     invokeScript.async = true
-    invokeScript.src = 'https://www.highperformanceformat.com/4e5051b1ad7936538afe7261378b2831/invoke.js'
+    invokeScript.src = 'https://behavecurlescalator.com/4e5051b1ad7936538afe7261378b2831/invoke.js'
 
     // Append both scripts to the container div
     bannerDiv.appendChild(atOptionsScript)
