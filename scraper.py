@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/lord-of-winter-beginning-with-daily-intelligence",
-            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-winter-beginning-with-daily-intelligence/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-stepped-on-a-bug-and-the-system-says-i-slayed-a-dragon",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-stepped-on-a-bug-and-the-system-says-i-slayed-a-dragon/chapter-{}",
             "start_chap": 1,
-            "end_chap": 885
+            "end_chap": 388
         },
         {
-            "main_url": "https://freewebnovel.com/novel/when-the-side-character-gets-a-system-and-travels-through-difference-worlds",
-            "chapter_pattern": "https://freewebnovel.com/novel/when-the-side-character-gets-a-system-and-travels-through-difference-worlds/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/harem-system-in-a-fantasy-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/harem-system-in-a-fantasy-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 548
+            "end_chap": 533
         },
         {
-            "main_url": "https://freewebnovel.com/novel/transmigrated-into-a-women-dominated-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/transmigrated-into-a-women-dominated-world/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 304
+            "main_url": "https://freewebnovel.com/novel/immortality-simulator",
+            "chapter_pattern": "https://freewebnovel.com/novel/immortality-simulator/chapter-{}",
+            "start_chap": 501,
+            "end_chap": 556
         },
         {
-             "main_url": "https://freewebnovel.com/novel/swallowed-star",
-             "chapter_pattern": "https://freewebnovel.com/novel/swallowed-star/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/roadmap-to-the-boundless-sky",
+             "chapter_pattern": "https://freewebnovel.com/novel/roadmap-to-the-boundless-sky/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1486
+             "end_chap": 711
         },
         {
-             "main_url": "https://freewebnovel.com/novel/im-a-daemon-so-what-tensuramulticross",
-             "chapter_pattern": "https://freewebnovel.com/novel/im-a-daemon-so-what-tensuramulticross/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/re-awakened-i-ascend-as-an-sss-ranked-dragon-summoner",
+             "chapter_pattern": "https://freewebnovel.com/novel/re-awakened-i-ascend-as-an-sss-ranked-dragon-summoner/chapter-{}",
              "start_chap": 1,
-             "end_chap": 223
+             "end_chap": 788
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mage-magic-engineer",
-            "chapter_pattern": "https://freewebnovel.com/novel/mage-magic-engineer/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-mirror-legacy",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-mirror-legacy/chapter-{}",
             "start_chap": 1,
-            "end_chap": 539
+            "end_chap": 1674
         }
     ]
 

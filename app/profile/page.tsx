@@ -6,6 +6,25 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { User } from '@supabase/supabase-js'
 
+// Helper function to format relative timestamps
+function timeAgo(dateString: string) {
+  const date = new Date(dateString)
+  const now = new Date()
+  const seconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+
+  let interval = seconds / 31536000
+  if (interval > 1) return `${Math.floor(interval)} years ago`
+  interval = seconds / 2592000
+  if (interval > 1) return `${Math.floor(interval)} months ago`
+  interval = seconds / 86400
+  if (interval > 1) return `${Math.floor(interval)} days ago`
+  interval = seconds / 3600
+  if (interval > 1) return `${Math.floor(interval)} hours ago`
+  interval = seconds / 60
+  if (interval > 1) return `${Math.floor(interval)} minutes ago`
+  return 'Just now'
+}
+
 export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null)
   const [activeTab, setActiveTab] = useState('Info')
@@ -15,6 +34,9 @@ export default function ProfilePage() {
 
   const [historyItems, setHistoryItems] = useState<any[]>([])
   const [historyLoading, setHistoryLoading] = useState(false)
+
+  const [commentItems, setCommentItems] = useState<any[]>([])
+  const [commentLoading, setCommentLoading] = useState(false)
 
   // Profile Settings Modal State
   const [isEditOpen, setIsEditOpen] = useState(false)
@@ -101,6 +123,36 @@ export default function ProfilePage() {
         setHistoryLoading(false)
       }
       fetchHistory()
+    }
+  }, [activeTab, user, supabase])
+
+  // Fetch comments written by the user whenever the active tab changes to 'Comments'
+  useEffect(() => {
+    if (activeTab === 'Comments' && user) {
+      const fetchComments = async () => {
+        setCommentLoading(true)
+        const { data, error } = await supabase
+          .from('novel_comments')
+          .select(`
+            id,
+            content,
+            is_spoiler,
+            likes_count,
+            created_at,
+            novels (
+              title,
+              slug
+            )
+          `)
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false })
+
+        if (!error && data) {
+          setCommentItems(data)
+        }
+        setCommentLoading(false)
+      }
+      fetchComments()
     }
   }, [activeTab, user, supabase])
 
@@ -229,7 +281,6 @@ export default function ProfilePage() {
             </div>
 
             <div className="flex gap-4 mt-6 pt-4 border-t border-gray-800">
-           
               <button
                 onClick={() => setIsEditOpen(true)}
                 className="bg-blue-700 hover:bg-blue-600 text-gray-50 px-4 py-2 rounded text-xs font-semibold transition shadow"
@@ -305,7 +356,60 @@ export default function ProfilePage() {
           </div>
         )}
 
-        {activeTab !== 'Info' && activeTab !== 'Library' && activeTab !== 'History' && (
+        {activeTab === 'Comments' && (
+          <div>
+            <h2 className="text-base font-bold mb-4 text-gray-200 border-b border-gray-800 pb-2">My Comments</h2>
+            {commentLoading ? (
+              <div className="p-8 text-center text-gray-400 text-sm">Loading comments...</div>
+            ) : commentItems.length > 0 ? (
+              <div className="space-y-4">
+                {commentItems.map((comment: any) => {
+                  const novel = Array.isArray(comment.novels) ? comment.novels[0] : comment.novels
+
+                  return (
+                    <div key={comment.id} className="bg-gray-900 border border-gray-800 rounded-lg p-4 transition hover:border-gray-700">
+                      <div className="flex justify-between items-start mb-2">
+                        {novel ? (
+                          <Link
+                            href={`/novel/${novel.slug}`}
+                            className="text-xs font-bold text-blue-400 hover:underline flex items-center gap-1"
+                          >
+                            📖 {novel.title}
+                          </Link>
+                        ) : (
+                          <span className="text-xs font-semibold text-gray-100">Unknown Novel</span>
+                        )}
+
+                        <span className="text-[10px] text-gray-100">
+                          {timeAgo(comment.created_at)}
+                        </span>
+                      </div>
+
+                      <p className="text-sm text-gray-100 whitespace-pre-line mb-2">
+                        {comment.is_spoiler && (
+                          <span className="text-gray-100 text-xs font-semibold mr-1">[Spoiler]</span>
+                        )}
+                        {comment.content}
+                      </p>
+
+                      <div className="flex justify-between items-center text-[10px] text-gray-100 pt-2 border-t border-gray-800/60">
+                        <span className="flex items-center gap-1">
+                          👍 {comment.likes_count || 0} Likes
+                        </span>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            ) : (
+              <div className="p-8 text-center border border-dashed border-gray-800 rounded text-gray-500 text-sm">
+                You haven't posted any comments yet.
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab !== 'Info' && activeTab !== 'Library' && activeTab !== 'History' && activeTab !== 'Comments' && (
           <div>
             <h2 className="text-base font-bold mb-4 text-gray-200 border-b border-gray-800 pb-2">{activeTab}</h2>
             <div className="p-8 text-center border border-dashed border-gray-800 rounded text-gray-500 text-sm">
