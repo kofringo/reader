@@ -23,10 +23,10 @@ export default function AdBanner() {
       };
     `;
 
-    // 2. Create the invocation script
+    // 2. Create the invocation script using the correct domain from your dashboard
     const invokeScript = document.createElement("script");
     invokeScript.type = "text/javascript";
-    invokeScript.src = "https://www.highperformanceformat.com/2daae70426275507cf34b426b755d5d6/invoke.js";
+    invokeScript.src = "https://behavecurlescalator.com/2daae70426275507cf34b426b755d5d6/invoke.js";
     invokeScript.async = true;
 
     // 3. Append both scripts into the container

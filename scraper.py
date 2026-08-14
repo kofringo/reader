@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/i-stepped-on-a-bug-and-the-system-says-i-slayed-a-dragon",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-stepped-on-a-bug-and-the-system-says-i-slayed-a-dragon/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/eternal-life-starts-from-tai-chi",
+            "chapter_pattern": "https://freewebnovel.com/novel/eternal-life-starts-from-tai-chi/chapter-{}",
             "start_chap": 1,
-            "end_chap": 388
+            "end_chap": 536
         },
         {
-            "main_url": "https://freewebnovel.com/novel/harem-system-in-a-fantasy-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/harem-system-in-a-fantasy-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/fairy-dont-be-afraid-i-am-blind",
+            "chapter_pattern": "https://freewebnovel.com/novel/fairy-dont-be-afraid-i-am-blind/chapter-{}",
             "start_chap": 1,
-            "end_chap": 533
+            "end_chap": 499
         },
         {
-            "main_url": "https://freewebnovel.com/novel/immortality-simulator",
-            "chapter_pattern": "https://freewebnovel.com/novel/immortality-simulator/chapter-{}",
-            "start_chap": 501,
-            "end_chap": 556
+            "main_url": "https://freewebnovel.com/novel/infinite-rebate-i-get-richer-every-time-i-spend",
+            "chapter_pattern": "https://freewebnovel.com/novel/infinite-rebate-i-get-richer-every-time-i-spend/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 242
         },
         {
-             "main_url": "https://freewebnovel.com/novel/roadmap-to-the-boundless-sky",
-             "chapter_pattern": "https://freewebnovel.com/novel/roadmap-to-the-boundless-sky/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/thats-how-we-necromancers-do-things",
+             "chapter_pattern": "https://freewebnovel.com/novel/thats-how-we-necromancers-do-things/chapter-{}",
              "start_chap": 1,
-             "end_chap": 711
+             "end_chap": 296
         },
         {
-             "main_url": "https://freewebnovel.com/novel/re-awakened-i-ascend-as-an-sss-ranked-dragon-summoner",
-             "chapter_pattern": "https://freewebnovel.com/novel/re-awakened-i-ascend-as-an-sss-ranked-dragon-summoner/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/swamp-lord-with-an-intelligence-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/swamp-lord-with-an-intelligence-system/chapter-{}",
              "start_chap": 1,
-             "end_chap": 788
+             "end_chap": 968
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-mirror-legacy",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-mirror-legacy/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/elven-invasion",
+            "chapter_pattern": "https://freewebnovel.com/novel/elven-invasion/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1674
+            "end_chap": 562
         }
     ]
 
