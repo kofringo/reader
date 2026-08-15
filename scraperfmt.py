@@ -213,10 +213,10 @@ def scrape_novel_batch(novel_info):
 if __name__ == "__main__":
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://fanmtl.com/novel/wizard-of-all-souls.html",
-            "chapter_pattern": "https://fanmtl.com/novel/wizard-of-all-souls_{}.html",
-            "start_chap": 51,   # Adjust this to 51 or higher when adding subsequent chapters later
-            "end_chap": 985    # Adjust this to your new end target chapter
+            "main_url": "https://fanmtl.com/novel/6975590.html",
+            "chapter_pattern": "https://fanmtl.com/novel/6975590_{}.html",
+            "start_chap": 1,   # Adjust this to 51 or higher when adding subsequent chapters later
+            "end_chap": 244    # Adjust this to your new end target chapter
         }
     ]
 

@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/eternal-life-starts-from-tai-chi",
-            "chapter_pattern": "https://freewebnovel.com/novel/eternal-life-starts-from-tai-chi/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-first-legendary-beast-master",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-first-legendary-beast-master/chapter-{}",
             "start_chap": 1,
-            "end_chap": 536
+            "end_chap": 1937
         },
         {
-            "main_url": "https://freewebnovel.com/novel/fairy-dont-be-afraid-i-am-blind",
-            "chapter_pattern": "https://freewebnovel.com/novel/fairy-dont-be-afraid-i-am-blind/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead",
+            "chapter_pattern": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead/chapter-{}",
             "start_chap": 1,
-            "end_chap": 499
+            "end_chap": 929
         },
         {
-            "main_url": "https://freewebnovel.com/novel/infinite-rebate-i-get-richer-every-time-i-spend",
-            "chapter_pattern": "https://freewebnovel.com/novel/infinite-rebate-i-get-richer-every-time-i-spend/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/summoning-players-into-my-game",
+            "chapter_pattern": "https://freewebnovel.com/novel/summoning-players-into-my-game/chapter-{}",
             "start_chap": 1,
-            "end_chap": 242
+            "end_chap": 825
         },
         {
-             "main_url": "https://freewebnovel.com/novel/thats-how-we-necromancers-do-things",
-             "chapter_pattern": "https://freewebnovel.com/novel/thats-how-we-necromancers-do-things/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/shadow-monarch-in-dc",
+             "chapter_pattern": "https://freewebnovel.com/novel/shadow-monarch-in-dc/chapter-{}",
              "start_chap": 1,
-             "end_chap": 296
+             "end_chap": 553
         },
         {
-             "main_url": "https://freewebnovel.com/novel/swamp-lord-with-an-intelligence-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/swamp-lord-with-an-intelligence-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-mech-touch",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-mech-touch/chapter-{}",
              "start_chap": 1,
-             "end_chap": 968
+             "end_chap": 2000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/elven-invasion",
-            "chapter_pattern": "https://freewebnovel.com/novel/elven-invasion/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/entry-editing-loyal-succubus-nun",
+            "chapter_pattern": "https://freewebnovel.com/novel/entry-editing-loyal-succubus-nun/chapter-{}",
             "start_chap": 1,
-            "end_chap": 562
+            "end_chap": 293
         }
     ]
 
