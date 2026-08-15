@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import AdBanner468 from '@/components/AdBanner468'
+import AdBanner728 from '@/components/AdBanner728'
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
@@ -218,7 +218,7 @@ export default async function HomePage() {
           })}
         </div>
       </section>
-      <AdBanner468 />
+      <AdBanner728 />
     </main>
   )
 }
