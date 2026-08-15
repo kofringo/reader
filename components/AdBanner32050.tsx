@@ -5,9 +5,9 @@ import AdsterraAd from "./AdsterraAd";
 export default function AdBanner32050() {
   return (
     <AdsterraAd
-      adKey="2daae70426275507cf34b426b755d5d6"
-      width={300}
-      height={250}
+      adKey="dfc0e1c79cad7e6bb47a5615a8e47ac6"
+      width={320}
+      height={50}
     />
   );
-}
+} 

@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/the-first-legendary-beast-master",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-first-legendary-beast-master/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/a-psychopath-reborn-as-a-third-rate-villain",
+            "chapter_pattern": "https://freewebnovel.com/novel/a-psychopath-reborn-as-a-third-rate-villain/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1937
+            "end_chap": 102
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead",
-            "chapter_pattern": "https://freewebnovel.com/novel/beating-instances-through-words-left-by-the-dead/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/wizard-my-skills-can-infinitely-break-through",
+            "chapter_pattern": "https://freewebnovel.com/novel/wizard-my-skills-can-infinitely-break-through/chapter-{}",
             "start_chap": 1,
-            "end_chap": 929
+            "end_chap": 328
         },
         {
-            "main_url": "https://freewebnovel.com/novel/summoning-players-into-my-game",
-            "chapter_pattern": "https://freewebnovel.com/novel/summoning-players-into-my-game/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/endless-winter-my-camp-upgrades-infinitely",
+            "chapter_pattern": "https://freewebnovel.com/novel/endless-winter-my-camp-upgrades-infinitely/chapter-{}",
             "start_chap": 1,
-            "end_chap": 825
+            "end_chap": 1601
         },
         {
-             "main_url": "https://freewebnovel.com/novel/shadow-monarch-in-dc",
-             "chapter_pattern": "https://freewebnovel.com/novel/shadow-monarch-in-dc/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/i-just-wanted-to-teach-cultivation-but-goddesses-keep-coming",
+             "chapter_pattern": "https://freewebnovel.com/novel/i-just-wanted-to-teach-cultivation-but-goddesses-keep-coming/chapter-{}",
              "start_chap": 1,
-             "end_chap": 553
+             "end_chap": 589
         },
         {
              "main_url": "https://freewebnovel.com/novel/the-mech-touch",
              "chapter_pattern": "https://freewebnovel.com/novel/the-mech-touch/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 2000
+             "start_chap": 2001,
+             "end_chap": 4000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/entry-editing-loyal-succubus-nun",
-            "chapter_pattern": "https://freewebnovel.com/novel/entry-editing-loyal-succubus-nun/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor",
+            "chapter_pattern": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor/chapter-{}",
             "start_chap": 1,
-            "end_chap": 293
+            "end_chap": 2279
         }
     ]
 
