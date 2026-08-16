@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/a-psychopath-reborn-as-a-third-rate-villain",
-            "chapter_pattern": "https://freewebnovel.com/novel/a-psychopath-reborn-as-a-third-rate-villain/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/foreign-land-reclamation-by-a-vegetable-growing-skeleton",
+            "chapter_pattern": "https://freewebnovel.com/novel/foreign-land-reclamation-by-a-vegetable-growing-skeleton/chapter-{}",
             "start_chap": 1,
-            "end_chap": 102
+            "end_chap": 2112
         },
         {
-            "main_url": "https://freewebnovel.com/novel/wizard-my-skills-can-infinitely-break-through",
-            "chapter_pattern": "https://freewebnovel.com/novel/wizard-my-skills-can-infinitely-break-through/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/demon-slayer-rise-of-the-first-werewolf",
+            "chapter_pattern": "https://freewebnovel.com/novel/demon-slayer-rise-of-the-first-werewolf/chapter-{}",
             "start_chap": 1,
-            "end_chap": 328
+            "end_chap": 294
         },
         {
-            "main_url": "https://freewebnovel.com/novel/endless-winter-my-camp-upgrades-infinitely",
-            "chapter_pattern": "https://freewebnovel.com/novel/endless-winter-my-camp-upgrades-infinitely/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/honkai-impact-become-their-hero",
+            "chapter_pattern": "https://freewebnovel.com/novel/honkai-impact-become-their-hero/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1601
+            "end_chap": 544
         },
         {
-             "main_url": "https://freewebnovel.com/novel/i-just-wanted-to-teach-cultivation-but-goddesses-keep-coming",
-             "chapter_pattern": "https://freewebnovel.com/novel/i-just-wanted-to-teach-cultivation-but-goddesses-keep-coming/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/cultivation-is-creation",
+             "chapter_pattern": "https://freewebnovel.com/novel/cultivation-is-creation/chapter-{}",
              "start_chap": 1,
-             "end_chap": 589
+             "end_chap": 585
         },
         {
              "main_url": "https://freewebnovel.com/novel/the-mech-touch",
              "chapter_pattern": "https://freewebnovel.com/novel/the-mech-touch/chapter-{}",
-             "start_chap": 2001,
-             "end_chap": 4000
+             "start_chap": 4001,
+             "end_chap": 6000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor",
-            "chapter_pattern": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/naruto-the-ridiculously-talented-uzumaki",
+            "chapter_pattern": "https://freewebnovel.com/novel/naruto-the-ridiculously-talented-uzumaki/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2279
+            "end_chap": 421
         }
     ]
 
