@@ -34,16 +34,14 @@ export default async function SearchPage({
   const query = resolvedSearchParams?.q?.trim() || ''
   const supabase = await createClient()
 
-  // Log the search query directly using await so the serverless function doesn't exit early
+  // Log the search query directly
   if (query.length > 0) {
-    try {
-      const { data: { user } } = await supabase.auth.getUser()
-      await supabase.from('search_logs').insert({
-        query: query.toLowerCase(),
-        user_id: user?.id || null,
-      })
-    } catch (err) {
-      console.error('Failed to log search:', err)
+    const { error: logError } = await supabase.from('search_logs').insert({
+      query: query.toLowerCase(),
+    })
+    
+    if (logError) {
+      console.error('Search logging error:', logError.message)
     }
   }
 
