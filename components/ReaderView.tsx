@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdBanner from '@/components/AdBanner';
-import AdBanner32050 from '@/components/AdBanner32050';
+
 interface Chapter {
   chapter_number: number
   title: string
@@ -158,7 +158,7 @@ export default function ReaderView({
         </article>
 
         {/* Bottom Chapter Navigation */}
-        <AdBanner32050 />
+        
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">
           {prevChapterNum ? (
             <Link
