@@ -34,16 +34,17 @@ export default async function SearchPage({
   const query = resolvedSearchParams?.q?.trim() || ''
   const supabase = await createClient()
 
-  // Track the search query asynchronously if a query exists
+  // Log the search query directly using await so the serverless function doesn't exit early
   if (query.length > 0) {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      supabase.from('search_logs').insert({
+    try {
+      const { data: { user } } = await supabase.auth.getUser()
+      await supabase.from('search_logs').insert({
         query: query.toLowerCase(),
         user_id: user?.id || null,
-      }).then(({ error }) => {
-        if (error) console.error('Error logging search:', error)
       })
-    })
+    } catch (err) {
+      console.error('Failed to log search:', err)
+    }
   }
 
   // Fetch novels matching the search title query
