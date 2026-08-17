@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/foreign-land-reclamation-by-a-vegetable-growing-skeleton",
-            "chapter_pattern": "https://freewebnovel.com/novel/foreign-land-reclamation-by-a-vegetable-growing-skeleton/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/vrmmo-worlds-first-glyphborne",
+            "chapter_pattern": "https://freewebnovel.com/novel/vrmmo-worlds-first-glyphborne/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2112
+            "end_chap": 370
         },
         {
-            "main_url": "https://freewebnovel.com/novel/demon-slayer-rise-of-the-first-werewolf",
-            "chapter_pattern": "https://freewebnovel.com/novel/demon-slayer-rise-of-the-first-werewolf/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-prodigies-war",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-prodigies-war/chapter-{}",
             "start_chap": 1,
-            "end_chap": 294
+            "end_chap": 3181
         },
         {
-            "main_url": "https://freewebnovel.com/novel/honkai-impact-become-their-hero",
-            "chapter_pattern": "https://freewebnovel.com/novel/honkai-impact-become-their-hero/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-hidden-heresy-skill-forged-an-sss-ranked-harem-for-infinite-points",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-hidden-heresy-skill-forged-an-sss-ranked-harem-for-infinite-points/chapter-{}",
             "start_chap": 1,
-            "end_chap": 544
+            "end_chap": 292
         },
         {
-             "main_url": "https://freewebnovel.com/novel/cultivation-is-creation",
-             "chapter_pattern": "https://freewebnovel.com/novel/cultivation-is-creation/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/evolution-of-the-ruined-heir",
+             "chapter_pattern": "https://freewebnovel.com/novel/evolution-of-the-ruined-heir/chapter-{}",
              "start_chap": 1,
-             "end_chap": 585
+             "end_chap": 383
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-mech-touch",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-mech-touch/chapter-{}",
-             "start_chap": 4001,
-             "end_chap": 6000
+             "main_url": "https://freewebnovel.com/novel/golden-fox-with-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/golden-fox-with-system/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 633
         },
         {
-            "main_url": "https://freewebnovel.com/novel/naruto-the-ridiculously-talented-uzumaki",
-            "chapter_pattern": "https://freewebnovel.com/novel/naruto-the-ridiculously-talented-uzumaki/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/hide-in-the-banished-palace-and-level-up-to-a-big-boss",
+            "chapter_pattern": "https://freewebnovel.com/novel/hide-in-the-banished-palace-and-level-up-to-a-big-boss/chapter-{}",
             "start_chap": 1,
-            "end_chap": 421
+            "end_chap": 706
         }
     ]
 
