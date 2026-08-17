@@ -4,8 +4,9 @@ import { useEffect } from 'react'
 
 export default function SocialBar() {
   useEffect(() => {
-    // Check if the script is already added to avoid duplicates on re-renders
     const scriptId = 'adsterra-social-bar'
+    
+    // If the script is already loaded anywhere in the DOM, don't duplicate it
     if (document.getElementById(scriptId)) return
 
     const script = document.createElement('script')
@@ -15,7 +16,9 @@ export default function SocialBar() {
     script.src = 'https://behavecurlescalator.com/2f/d2/8b/2fd28be4c1e7ea427fdac80b69fc0222.js'
 
     document.body.appendChild(script)
+
+    // ❌ REMOVE any return cleanup function here so the script stays active while reading chapters
   }, [])
 
-  return null // The Social Bar floats automatically, nothing needs to be rendered visually here
+  return null
 }

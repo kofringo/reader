@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdBanner from '@/components/AdBanner';
 
+
 interface Chapter {
   chapter_number: number
   title: string
@@ -60,6 +61,7 @@ export default function ReaderView({
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${themeClasses[theme]}`}>
+      
       <main className="max-w-3xl mx-auto p-6 leading-relaxed">
         {/* Top Header & Settings Bar */}
         <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">

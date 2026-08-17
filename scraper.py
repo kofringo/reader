@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/vrmmo-worlds-first-glyphborne",
-            "chapter_pattern": "https://freewebnovel.com/novel/vrmmo-worlds-first-glyphborne/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/dual-cultivation-with-my-yandere-disciples",
+            "chapter_pattern": "https://freewebnovel.com/novel/dual-cultivation-with-my-yandere-disciples/chapter-{}",
             "start_chap": 1,
-            "end_chap": 370
+            "end_chap": 200
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-prodigies-war",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-prodigies-war/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/lord-of-the-mysteries",
+            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-the-mysteries/chapter-{}",
             "start_chap": 1,
-            "end_chap": 3181
+            "end_chap": 1432
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-hidden-heresy-skill-forged-an-sss-ranked-harem-for-infinite-points",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-hidden-heresy-skill-forged-an-sss-ranked-harem-for-infinite-points/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/infinite-cashback-my-god-tier-cashback-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/infinite-cashback-my-god-tier-cashback-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 292
+            "end_chap": 179
         },
         {
-             "main_url": "https://freewebnovel.com/novel/evolution-of-the-ruined-heir",
-             "chapter_pattern": "https://freewebnovel.com/novel/evolution-of-the-ruined-heir/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/unparalleled-after-ten-consecutive-draws",
+             "chapter_pattern": "https://freewebnovel.com/novel/unparalleled-after-ten-consecutive-draws/chapter-{}",
              "start_chap": 1,
-             "end_chap": 383
+             "end_chap": 2511
         },
         {
-             "main_url": "https://freewebnovel.com/novel/golden-fox-with-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/golden-fox-with-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/lord-starting-with-biological-modification",
+             "chapter_pattern": "https://freewebnovel.com/novel/lord-starting-with-biological-modification/chapter-{}",
              "start_chap": 1,
-             "end_chap": 633
+             "end_chap": 215
         },
         {
-            "main_url": "https://freewebnovel.com/novel/hide-in-the-banished-palace-and-level-up-to-a-big-boss",
-            "chapter_pattern": "https://freewebnovel.com/novel/hide-in-the-banished-palace-and-level-up-to-a-big-boss/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mushoku-tensei-full-version",
+            "chapter_pattern": "https://freewebnovel.com/novel/mushoku-tensei-full-version/chapter-{}",
             "start_chap": 1,
-            "end_chap": 706
+            "end_chap": 277
         }
     ]
 
