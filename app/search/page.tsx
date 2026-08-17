@@ -31,10 +31,22 @@ export default async function SearchPage({
   searchParams: Promise<{ q?: string }>
 }) {
   const resolvedSearchParams = await searchParams
-  const query = resolvedSearchParams?.q || ''
+  const query = resolvedSearchParams?.q?.trim() || ''
   const supabase = await createClient()
 
-  // Fetch novels matching the search title query (selecting all columns including chapter_count)
+  // Track the search query asynchronously if a query exists
+  if (query.length > 0) {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      supabase.from('search_logs').insert({
+        query: query.toLowerCase(),
+        user_id: user?.id || null,
+      }).then(({ error }) => {
+        if (error) console.error('Error logging search:', error)
+      })
+    })
+  }
+
+  // Fetch novels matching the search title query
   const { data: novels, error } = await supabase
     .from('novels')
     .select('*')
