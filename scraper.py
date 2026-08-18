@@ -176,40 +176,52 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/lord-of-the-truth",
-            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-the-truth/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 2341
+            "main_url": "https://freewebnovel.com/novel/i-can-gain-one-skill-point-per-second",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-can-gain-one-skill-point-per-second/chapter-{}",
+            "start_chap": 892,
+            "end_chap": 938
         },
         {
-            "main_url": "https://freewebnovel.com/novel/supreme-harem-god-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/supreme-harem-god-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/creating-heavenly-laws",
+            "chapter_pattern": "https://freewebnovel.com/novel/creating-heavenly-laws/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2410
+            "end_chap": 794
         },
         {
-            "main_url": "https://freewebnovel.com/novel/top-tier-providence-secretly-cultivate-for-a-thousand-years",
-            "chapter_pattern": "https://freewebnovel.com/novel/top-tier-providence-secretly-cultivate-for-a-thousand-years/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/supreme-magus-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/supreme-magus-novel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1192
+            "end_chap": 4428
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-first-legendary-beast-master",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-first-legendary-beast-master/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/milf-hunter-seducing-and-taming-beauties",
+             "chapter_pattern": "https://freewebnovel.com/novel/milf-hunter-seducing-and-taming-beauties/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1943
+             "end_chap": 1217
         },
         {
-             "main_url": "https://freewebnovel.com/novel/bleach-stirring-up-a-storm",
-             "chapter_pattern": "https://freewebnovel.com/novel/bleach-stirring-up-a-storm/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/one-piece-capitalist-brooks-crew-expansion-plan",
+             "chapter_pattern": "https://freewebnovel.com/novel/one-piece-capitalist-brooks-crew-expansion-plan/chapter-{}",
              "start_chap": 1,
-             "end_chap": 289
+             "end_chap": 496
         },
         {
-            "main_url": "https://freewebnovel.com/novel/diary-of-a-dead-wizard",
-            "chapter_pattern": "https://freewebnovel.com/novel/diary-of-a-dead-wizard/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/this-young-master-is-not-cannon-fodder",
+             "chapter_pattern": "https://freewebnovel.com/novel/this-young-master-is-not-cannon-fodder/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 752
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/cleaver-of-sin",
+            "chapter_pattern": "https://freewebnovel.com/novel/cleaver-of-sin/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1037
+            "end_chap": 1000
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/evolving-my-mythic-legion-with-a-legendary-skill",
+            "chapter_pattern": "https://freewebnovel.com/novel/evolving-my-mythic-legion-with-a-legendary-skill/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 246
         }
     ]
 
