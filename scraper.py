@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/dual-cultivation-with-my-yandere-disciples",
-            "chapter_pattern": "https://freewebnovel.com/novel/dual-cultivation-with-my-yandere-disciples/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/global-game-afk-in-the-zombie-apocalypse-game",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-game-afk-in-the-zombie-apocalypse-game/chapter-{}",
             "start_chap": 1,
-            "end_chap": 200
+            "end_chap": 3703
         },
         {
-            "main_url": "https://freewebnovel.com/novel/lord-of-the-mysteries",
-            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-the-mysteries/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/blasphemy-wizard-by-deceit-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/blasphemy-wizard-by-deceit-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1432
+            "end_chap": 468
         },
         {
-            "main_url": "https://freewebnovel.com/novel/infinite-cashback-my-god-tier-cashback-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/infinite-cashback-my-god-tier-cashback-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/clan-building-system-im-not-the-protagonist",
+            "chapter_pattern": "https://freewebnovel.com/novel/clan-building-system-im-not-the-protagonist/chapter-{}",
             "start_chap": 1,
-            "end_chap": 179
+            "end_chap": 454
         },
         {
-             "main_url": "https://freewebnovel.com/novel/unparalleled-after-ten-consecutive-draws",
-             "chapter_pattern": "https://freewebnovel.com/novel/unparalleled-after-ten-consecutive-draws/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/tree-of-aeons",
+             "chapter_pattern": "https://freewebnovel.com/novel/tree-of-aeons/chapter-{}",
              "start_chap": 1,
-             "end_chap": 2511
+             "end_chap": 372
         },
         {
-             "main_url": "https://freewebnovel.com/novel/lord-starting-with-biological-modification",
-             "chapter_pattern": "https://freewebnovel.com/novel/lord-starting-with-biological-modification/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/re-awakening-i-ascend-with-a-legendary-class",
+             "chapter_pattern": "https://freewebnovel.com/novel/re-awakening-i-ascend-with-a-legendary-class/chapter-{}",
              "start_chap": 1,
-             "end_chap": 215
+             "end_chap": 775
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mushoku-tensei-full-version",
-            "chapter_pattern": "https://freewebnovel.com/novel/mushoku-tensei-full-version/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ultra-level-weeb-rise-in-an-awakened-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/ultra-level-weeb-rise-in-an-awakened-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 277
+            "end_chap": 105
         }
     ]
 
