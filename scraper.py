@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/global-game-afk-in-the-zombie-apocalypse-game",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-game-afk-in-the-zombie-apocalypse-game/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor",
+            "chapter_pattern": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor/chapter-{}",
+            "start_chap": 2279,
+            "end_chap": 2290
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique",
+            "chapter_pattern": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique/chapter-{}",
+            "start_chap": 3198,
+            "end_chap": 3223
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism/chapter-{}",
+            "start_chap": 396,
+            "end_chap": 436
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/the-primal-hunter",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-primal-hunter/chapter-{}",
+             "start_chap": 101,
+             "end_chap": 1370
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department",
+             "chapter_pattern": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department/chapter-{}",
+             "start_chap": 725,
+             "end_chap": 764
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/affinity-chaos",
+            "chapter_pattern": "https://freewebnovel.com/novel/affinity-chaos/chapter-{}",
             "start_chap": 1,
-            "end_chap": 3703
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/blasphemy-wizard-by-deceit-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/blasphemy-wizard-by-deceit-world/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 468
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/clan-building-system-im-not-the-protagonist",
-            "chapter_pattern": "https://freewebnovel.com/novel/clan-building-system-im-not-the-protagonist/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 454
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/tree-of-aeons",
-             "chapter_pattern": "https://freewebnovel.com/novel/tree-of-aeons/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 372
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/re-awakening-i-ascend-with-a-legendary-class",
-             "chapter_pattern": "https://freewebnovel.com/novel/re-awakening-i-ascend-with-a-legendary-class/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 775
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/ultra-level-weeb-rise-in-an-awakened-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/ultra-level-weeb-rise-in-an-awakened-world/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 105
+            "end_chap": 2104
         }
     ]
 

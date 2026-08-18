@@ -4,7 +4,6 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdBanner from '@/components/AdBanner'
-import TrafficStarsWidget from '@/components/TrafficStarsWidget' // 👈 Import your TrafficStars push widget
 
 
 interface Chapter {
@@ -65,7 +64,7 @@ export default function ReaderView({
     <div className={`min-h-screen transition-colors duration-300 ${themeClasses[theme]}`}>
       
       {/* 🚀 Loads TrafficStars In-Page Push widget strictly on chapter views */}
-      <TrafficStarsWidget />
+    
 
       <main className="max-w-3xl mx-auto p-6 leading-relaxed">
         {/* Top Header & Settings Bar */}
