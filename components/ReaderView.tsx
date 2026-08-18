@@ -1,8 +1,10 @@
+// components/ReaderView.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import AdBanner from '@/components/AdBanner';
+import AdBanner from '@/components/AdBanner'
+import TrafficStarsWidget from '@/components/TrafficStarsWidget' // 👈 Import your TrafficStars push widget
 
 
 interface Chapter {
@@ -62,6 +64,9 @@ export default function ReaderView({
   return (
     <div className={`min-h-screen transition-colors duration-300 ${themeClasses[theme]}`}>
       
+      {/* 🚀 Loads TrafficStars In-Page Push widget strictly on chapter views */}
+      <TrafficStarsWidget />
+
       <main className="max-w-3xl mx-auto p-6 leading-relaxed">
         {/* Top Header & Settings Bar */}
         <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">
@@ -160,7 +165,6 @@ export default function ReaderView({
         </article>
 
         {/* Bottom Chapter Navigation */}
-        
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">
           {prevChapterNum ? (
             <Link
