@@ -1,10 +1,8 @@
-// components/ReaderView.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import AdBanner from '@/components/AdBanner'
-
+import AdcashWidget from '@/components/AdcashWidget'; //[cite: 1]
 
 interface Chapter {
   chapter_number: number
@@ -25,33 +23,33 @@ export default function ReaderView({
   prevChapterNum,
   nextChapterNum,
 }: ReaderViewProps) {
-  const [fontSize, setFontSize] = useState<'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>('text-lg')
-  const [theme, setTheme] = useState<'dark' | 'sepia' | 'light'>('dark')
+  const [fontSize, setFontSize] = useState<'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>('text-lg') //[cite: 1]
+  const [theme, setTheme] = useState<'dark' | 'sepia' | 'light'>('dark') //[cite: 1]
 
   // Load saved preferences and history progress on mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('reader_theme') as 'dark' | 'sepia' | 'light'
-      if (savedTheme) setTheme(savedTheme)
+      const savedTheme = localStorage.getItem('reader_theme') as 'dark' | 'sepia' | 'light' //[cite: 1]
+      if (savedTheme) setTheme(savedTheme) //[cite: 1]
 
-      const savedFontSize = localStorage.getItem('reader_fontsize') as 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'
-      if (savedFontSize) setFontSize(savedFontSize)
+      const savedFontSize = localStorage.getItem('reader_fontsize') as 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl' //[cite: 1]
+      if (savedFontSize) setFontSize(savedFontSize) //[cite: 1]
 
       if (novelSlug && chapter.chapter_number) {
-        localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString())
+        localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString()) //[cite: 1]
       }
     }
   }, [novelSlug, chapter.chapter_number])
 
   // Handlers that update state AND save to localStorage
   const changeTheme = (newTheme: 'dark' | 'sepia' | 'light') => {
-    setTheme(newTheme)
-    localStorage.setItem('reader_theme', newTheme)
+    setTheme(newTheme) //[cite: 1]
+    localStorage.setItem('reader_theme', newTheme) //[cite: 1]
   }
 
   const changeFontSize = (newSize: 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl') => {
-    setFontSize(newSize)
-    localStorage.setItem('reader_fontsize', newSize)
+    setFontSize(newSize) //[cite: 1]
+    localStorage.setItem('reader_fontsize', newSize) //[cite: 1]
   }
 
   const themeClasses = {
@@ -63,9 +61,6 @@ export default function ReaderView({
   return (
     <div className={`min-h-screen transition-colors duration-300 ${themeClasses[theme]}`}>
       
-      {/* 🚀 Loads TrafficStars In-Page Push widget strictly on chapter views */}
-    
-
       <main className="max-w-3xl mx-auto p-6 leading-relaxed">
         {/* Top Header & Settings Bar */}
         <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">
@@ -153,8 +148,8 @@ export default function ReaderView({
           </div>
         </div>
 
-        {/* Top Ad Banner placed right below navigation controls */}
-        <AdBanner />
+        {/* Adcash Widget Integration placed right below navigation controls */}
+        <AdcashWidget />
         
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
        

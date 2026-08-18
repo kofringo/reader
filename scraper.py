@@ -176,40 +176,40 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor",
-            "chapter_pattern": "https://freewebnovel.com/novel/ancient-fiend-dragon-emperor/chapter-{}",
-            "start_chap": 2279,
-            "end_chap": 2290
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique",
-            "chapter_pattern": "https://freewebnovel.com/novel/witch-accumulate-experience-through-the-knight-breathing-technique/chapter-{}",
-            "start_chap": 3198,
-            "end_chap": 3223
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism/chapter-{}",
-            "start_chap": 396,
-            "end_chap": 436
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/the-primal-hunter",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-primal-hunter/chapter-{}",
-             "start_chap": 101,
-             "end_chap": 1370
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department",
-             "chapter_pattern": "https://freewebnovel.com/novel/catching-ghosts-as-head-of-yin-department/chapter-{}",
-             "start_chap": 725,
-             "end_chap": 764
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/affinity-chaos",
-            "chapter_pattern": "https://freewebnovel.com/novel/affinity-chaos/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/lord-of-the-truth",
+            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-the-truth/chapter-{}",
             "start_chap": 1,
-            "end_chap": 2104
+            "end_chap": 2341
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/supreme-harem-god-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/supreme-harem-god-system/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 2410
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/top-tier-providence-secretly-cultivate-for-a-thousand-years",
+            "chapter_pattern": "https://freewebnovel.com/novel/top-tier-providence-secretly-cultivate-for-a-thousand-years/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1192
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/the-first-legendary-beast-master",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-first-legendary-beast-master/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 1943
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/bleach-stirring-up-a-storm",
+             "chapter_pattern": "https://freewebnovel.com/novel/bleach-stirring-up-a-storm/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 289
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/diary-of-a-dead-wizard",
+            "chapter_pattern": "https://freewebnovel.com/novel/diary-of-a-dead-wizard/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1037
         }
     ]
 
