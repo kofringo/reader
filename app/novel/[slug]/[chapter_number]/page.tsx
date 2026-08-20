@@ -88,7 +88,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   }
 
   // Execute background tasks asynchronously without blocking the render return
-  await Promise.all(backgroundTasks).catch((err) => console.error('Background task error:', err))
+  Promise.all(backgroundTasks).catch((err) => console.error('Background task error:', err))
 
   return (
     <div className="flex flex-col items-center">
