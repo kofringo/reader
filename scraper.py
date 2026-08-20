@@ -176,52 +176,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/i-can-gain-one-skill-point-per-second",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-can-gain-one-skill-point-per-second/chapter-{}",
-            "start_chap": 892,
-            "end_chap": 938
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/creating-heavenly-laws",
-            "chapter_pattern": "https://freewebnovel.com/novel/creating-heavenly-laws/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-innkeeper",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-innkeeper/chapter-{}",
             "start_chap": 1,
-            "end_chap": 794
+            "end_chap": 2390
         },
         {
-            "main_url": "https://freewebnovel.com/novel/supreme-magus-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/supreme-magus-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/young-masters-pov-woke-up-as-a-villain-in-a-game-one-day",
+            "chapter_pattern": "https://freewebnovel.com/novel/young-masters-pov-woke-up-as-a-villain-in-a-game-one-day/chapter-{}",
             "start_chap": 1,
-            "end_chap": 4428
+            "end_chap": 476
         },
         {
-             "main_url": "https://freewebnovel.com/novel/milf-hunter-seducing-and-taming-beauties",
-             "chapter_pattern": "https://freewebnovel.com/novel/milf-hunter-seducing-and-taming-beauties/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/immortality-through-array-formations",
+            "chapter_pattern": "https://freewebnovel.com/novel/immortality-through-array-formations/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 2674
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/kill-the-sun",
+             "chapter_pattern": "https://freewebnovel.com/novel/kill-the-sun/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1217
+             "end_chap": 992
         },
         {
-             "main_url": "https://freewebnovel.com/novel/one-piece-capitalist-brooks-crew-expansion-plan",
-             "chapter_pattern": "https://freewebnovel.com/novel/one-piece-capitalist-brooks-crew-expansion-plan/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/investing-in-my-crippled-wife-every-return-makes-me-stronger",
+             "chapter_pattern": "https://freewebnovel.com/novel/investing-in-my-crippled-wife-every-return-makes-me-stronger/chapter-{}",
              "start_chap": 1,
-             "end_chap": 496
+             "end_chap": 262
         },
         {
-             "main_url": "https://freewebnovel.com/novel/this-young-master-is-not-cannon-fodder",
-             "chapter_pattern": "https://freewebnovel.com/novel/this-young-master-is-not-cannon-fodder/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-living-shadow-system-devours-to-make-me-stronger",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-living-shadow-system-devours-to-make-me-stronger/chapter-{}",
              "start_chap": 1,
-             "end_chap": 752
+             "end_chap": 1175
         },
         {
-            "main_url": "https://freewebnovel.com/novel/cleaver-of-sin",
-            "chapter_pattern": "https://freewebnovel.com/novel/cleaver-of-sin/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/lord-of-mysteries-2-circle-of-inevitability",
+            "chapter_pattern": "https://freewebnovel.com/novel/lord-of-mysteries-2-circle-of-inevitability/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1000
+            "end_chap": 1181
         },
         {
-            "main_url": "https://freewebnovel.com/novel/evolving-my-mythic-legion-with-a-legendary-skill",
-            "chapter_pattern": "https://freewebnovel.com/novel/evolving-my-mythic-legion-with-a-legendary-skill/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/super-gene",
+            "chapter_pattern": "https://freewebnovel.com/novel/super-gene/chapter-{}",
+            "start_chap": 1001,
+            "end_chap": 3462
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/chrysalis",
+            "chapter_pattern": "https://freewebnovel.com/novel/chrysalis/chapter-{}",
             "start_chap": 1,
-            "end_chap": 246
+            "end_chap": 1829
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/unscientific-beast-taming-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/unscientific-beast-taming-novel/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1962
         }
     ]
 
