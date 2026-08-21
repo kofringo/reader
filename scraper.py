@@ -178,20 +178,20 @@ if __name__ == "__main__":
         {
             "main_url": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse",
             "chapter_pattern": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse/chapter-{}",
-            "start_chap": 1001,
-            "end_chap": 2000
+            "start_chap": 2001,
+            "end_chap": 3000
         },
         {
             "main_url": "https://freewebnovel.com/novel/complete-martial-arts-attributes",
             "chapter_pattern": "https://freewebnovel.com/novel/complete-martial-arts-attributes/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 1000
+            "start_chap": 1001,
+            "end_chap": 2000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/100-drop-rate-my-special-ability-is-perfect-replication",
-            "chapter_pattern": "https://freewebnovel.com/novel/100-drop-rate-my-special-ability-is-perfect-replication/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 161
+            "main_url": "https://freewebnovel.com/novel/shadow-slave",
+            "chapter_pattern": "https://freewebnovel.com/novel/shadow-slave/chapter-{}",
+            "start_chap": 3148,
+            "end_chap": 3160
         },
         {
              "main_url": "https://freewebnovel.com/novel/the-martial-unity",
@@ -200,38 +200,38 @@ if __name__ == "__main__":
              "end_chap": 1000
         },
         {
-             "main_url": "https://freewebnovel.com/novel/extras-path-the-eternal-frost-monarch",
-             "chapter_pattern": "https://freewebnovel.com/novel/extras-path-the-eternal-frost-monarch/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
+             "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
+             "start_chap": 3870,
+             "end_chap": 3873
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/creation-of-all-things",
+             "chapter_pattern": "https://freewebnovel.com/novel/creation-of-all-things/chapter-{}",
              "start_chap": 1,
-             "end_chap": 267
+             "end_chap": 292
         },
         {
-             "main_url": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage",
-             "chapter_pattern": "https://freewebnovel.com/novel/re-tales-of-the-rune-tech-sage/chapter-{}",
-             "start_chap": 791,
-             "end_chap": 818
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/investing-in-my-three-crippled-wives-get-10000x-times-return",
-            "chapter_pattern": "https://freewebnovel.com/novel/investing-in-my-three-crippled-wives-get-10000x-times-return/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 147
+            "main_url": "https://freewebnovel.com/novel/star-odyssey",
+            "chapter_pattern": "https://freewebnovel.com/novel/star-odyssey/chapter-{}",
+            "start_chap": 4448,
+            "end_chap": 4468
         },
         {
             "main_url": "https://freewebnovel.com/novel/god-of-fishing",
             "chapter_pattern": "https://freewebnovel.com/novel/god-of-fishing/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 1000
+            "start_chap": 1001,
+            "end_chap": 2000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-scumbags-guide-to-heroism/chapter-{}",
-            "start_chap": 439,
-            "end_chap": 443
+            "main_url": "https://freewebnovel.com/novel/cultivation-online-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/cultivation-online-novel/chapter-{}",
+            "start_chap": 2582,
+            "end_chap": 2594
         },
         {
-            "main_url": "https://freewebnovel.com/novel/magus-infinite",
-            "chapter_pattern": "https://freewebnovel.com/novel/magus-infinite/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/journey-of-the-fate-destroying-emperor",
+            "chapter_pattern": "https://freewebnovel.com/novel/journey-of-the-fate-destroying-emperor/chapter-{}",
             "start_chap": 1,
             "end_chap": 334
         }
