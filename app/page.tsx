@@ -1,6 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
-import AdBanner468 from '@/components/AdBanner468'
+
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
@@ -28,21 +28,29 @@ function timeAgo(dateString: string) {
 export default async function HomePage() {
   const supabase = await createClient()
 
-  // Fetch popular novels sorted by views
+  // Fetch popular novels sorted by views[cite: 2]
   const { data: popularNovels } = await supabase
     .from('novels')
     .select('*')
     .limit(6)
     .order('views', { ascending: false })
 
-  // Fetch newly added novels sorted by creation date
+  // Fetch newly added novels sorted by creation date[cite: 2]
   const { data: newNovels } = await supabase
     .from('novels')
     .select('*')
     .limit(6)
     .order('created_at', { ascending: false })
 
-  // Fetch recently added chapters joining with novels (including slug and genre)
+  // Fetch completed novels (12 novels to show 2 rows of 6)
+  const { data: completedNovels } = await supabase
+    .from('novels')
+    .select('*')
+    .ilike('status', 'completed')
+    .limit(12)
+    .order('created_at', { ascending: false })
+
+  // Fetch recently added chapters joining with novels (including slug and genre)[cite: 2]
   const { data: recentChapters } = await supabase
     .from('chapters')
     .select(`
@@ -62,7 +70,7 @@ export default async function HomePage() {
     .order('created_at', { ascending: false })
 
   return (
-    <main className="p-8 max-w-7xl mx-auto">
+    <main className="px-8 pt-8 pb-4 max-w-7xl mx-auto">
       
       {/* Most Popular Section */}
       <section className="mb-12">
@@ -218,7 +226,57 @@ export default async function HomePage() {
           })}
         </div>
       </section>
-      <AdBanner468 />
+
+      {/* Completed Novels Section (2 rows of 6 novels) */}
+      <section className="mb-12">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-3">
+            <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
+            <div>
+              <h2 className="text-2xl font-extrabold text-white">Completed Novels</h2>
+            </div>
+          </div>
+          <Link
+            href="/completed"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+          >
+            View More
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {completedNovels?.map((novel) => (
+            <Link
+              key={novel.slug}
+              href={`/novel/${novel.slug}`}
+              className="group flex flex-col bg-gray-900 border border-gray-800 rounded-lg overflow-hidden hover:border-gray-700 transition"
+            >
+              <div className="relative aspect-[3/4] w-full overflow-hidden bg-gray-800">
+                {novel.cover_url ? (
+                  <img
+                    src={novel.cover_url}
+                    alt={novel.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-500 text-xs">
+                    No Cover
+                  </div>
+                )}
+              </div>
+              <div className="p-3 flex flex-col flex-1 justify-between">
+                <h3 className="text-xs font-bold text-white group-hover:text-blue-400 transition line-clamp-2 mb-1">
+                  {novel.title}
+                </h3>
+                <p className="text-[11px] text-gray-400 truncate">
+                  {novel.author || 'Unknown'}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+      
     </main>
   )
 }

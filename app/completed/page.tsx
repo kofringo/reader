@@ -3,7 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Most Popular Novels",
+  title: "Completed Novels",
 };
 
 function timeAgo(dateString: string) {
@@ -30,7 +30,7 @@ function timeAgo(dateString: string) {
   return 'Just now'
 }
 
-export default async function PopularNovelsPage({
+export default async function CompletedNovelsPage({
   searchParams,
 }: {
   searchParams: Promise<{ page?: string }>
@@ -43,26 +43,24 @@ export default async function PopularNovelsPage({
   const from = (page - 1) * pageSize
   const to = from + pageSize - 1
 
+  // Get total count of completed novels for pagination
   const { count } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
+    .ilike('status', 'completed')
 
-  // Fetch novels and grab the latest chapter created_at date for each novel
+  // Fetch paginated completed novels
   const { data: novels, error } = await supabase
     .from('novels')
-    .select(`
-      *,
-      chapters (
-        created_at
-      )
-    `)
-    .order('views', { ascending: false })
+    .select('*')
+    .ilike('status', 'completed')
+    .order('created_at', { ascending: false })
     .range(from, to)
 
   if (error) {
     return (
       <div className="p-8 text-red-500 font-mono max-w-7xl mx-auto">
-        ✕ Error loading popular novels: {error.message}
+        ✕ Error loading completed novels: {error.message}
       </div>
     )
   }
@@ -104,7 +102,7 @@ export default async function PopularNovelsPage({
       <div className="flex items-center gap-3 mb-6">
         <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Most Popular Novels</h1>
+          <h1 className="text-2xl font-extrabold text-white">Completed Novels</h1>
         </div>
       </div>
 
@@ -112,13 +110,6 @@ export default async function PopularNovelsPage({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
         {novels?.map((novel) => {
           const chapterCount = novel.chapter_count || 0
-
-          // Find the latest chapter creation date from the chapters array
-          let latestChapterDate = novel.created_at
-          if (novel.chapters && Array.isArray(novel.chapters) && novel.chapters.length > 0) {
-            const dates = novel.chapters.map((c: any) => new Date(c.created_at).getTime())
-            latestChapterDate = new Date(Math.max(...dates)).toISOString()
-          }
 
           return (
             <Link
@@ -159,14 +150,14 @@ export default async function PopularNovelsPage({
                   </div>
                   <div className="flex items-center gap-2">
                     <span>📅</span>
-                    <span>Update {timeAgo(latestChapterDate)}</span>
+                    <span>Added {timeAgo(novel.created_at)}</span>
                   </div>
                 </div>
 
                 {/* Status Badge */}
                 <div>
-                  <span className="inline-block px-2 py-0.5 bg-red-600 text-gray-50 text-[11px] font-bold uppercase rounded">
-                    {novel.status || 'Ongoing'}
+                  <span className="inline-block px-2 py-0.5 bg-emerald-600 text-gray-50 text-[11px] font-bold uppercase rounded">
+                    Completed
                   </span>
                 </div>
               </div>
@@ -184,7 +175,7 @@ export default async function PopularNovelsPage({
               return (
                 <Link
                   key={`jump-prev-${index}`}
-                  href={`/popular?page=${targetPage}`}
+                  href={`/completed?page=${targetPage}`}
                   className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &lt;&lt;
@@ -197,7 +188,7 @@ export default async function PopularNovelsPage({
               return (
                 <Link
                   key={`jump-next-${index}`}
-                  href={`/popular?page=${targetPage}`}
+                  href={`/completed?page=${targetPage}`}
                   className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm"
                 >
                   &gt;&gt;
@@ -211,7 +202,7 @@ export default async function PopularNovelsPage({
             return (
               <Link
                 key={pageNum}
-                href={`/popular?page=${pageNum}`}
+                href={`/completed?page=${pageNum}`}
                 className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
                   isCurrent
                     ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
