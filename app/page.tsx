@@ -66,7 +66,7 @@ export default async function HomePage() {
         genre
       )
     `)
-    .limit(33)
+    .limit(15)
     .order('created_at', { ascending: false })
 
   return (
