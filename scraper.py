@@ -178,62 +178,62 @@ if __name__ == "__main__":
         {
             "main_url": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse",
             "chapter_pattern": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse/chapter-{}",
-            "start_chap": 3001,
-            "end_chap": 4000
+            "start_chap": 4001,
+            "end_chap": 5000
         },
         {
             "main_url": "https://freewebnovel.com/novel/complete-martial-arts-attributes",
             "chapter_pattern": "https://freewebnovel.com/novel/complete-martial-arts-attributes/chapter-{}",
-            "start_chap": 2001,
-            "end_chap": 3000
+            "start_chap": 3001,
+            "end_chap": 4000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/star-odyssey",
-            "chapter_pattern": "https://freewebnovel.com/novel/star-odyssey/chapter-{}",
-            "start_chap": 4468,
-            "end_chap": 4470
+            "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
+            "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
+            "start_chap": 3873,
+            "end_chap": 3875
         },
         {
              "main_url": "https://freewebnovel.com/novel/the-martial-unity",
              "chapter_pattern": "https://freewebnovel.com/novel/the-martial-unity/chapter-{}",
-             "start_chap": 1001,
-             "end_chap": 2000
+             "start_chap": 2001,
+             "end_chap": 3000
         },
         {
-             "main_url": "https://freewebnovel.com/novel/space-odyssey-from-abandoned-mining-space-station",
-             "chapter_pattern": "https://freewebnovel.com/novel/space-odyssey-from-abandoned-mining-space-station/chapter-{}",
-             "start_chap": 1145,
-             "end_chap": 1148
+             "main_url": "https://freewebnovel.com/novel/global-lords-i-have-information-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/global-lords-i-have-information-system/chapter-{}",
+             "start_chap": 932,
+             "end_chap": 986
         },
         {
-             "main_url": "https://freewebnovel.com/novel/this-is-really-not-mechanical-ascension",
-             "chapter_pattern": "https://freewebnovel.com/novel/this-is-really-not-mechanical-ascension/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-avatar-is-becoming-the-ultimate-boss",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-avatar-is-becoming-the-ultimate-boss/chapter-{}",
              "start_chap": 1,
-             "end_chap": 1418
+             "end_chap": 884
         },
         {
-            "main_url": "https://freewebnovel.com/novel/overlord-the-multiverse",
-            "chapter_pattern": "https://freewebnovel.com/novel/overlord-the-multiverse/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 446
+            "main_url": "https://freewebnovel.com/novel/online-i-can-see-health-bars",
+            "chapter_pattern": "https://freewebnovel.com/novel/online-i-can-see-health-bars/chapter-{}",
+            "start_chap": 1568,
+            "end_chap": 1625
         },
         {
             "main_url": "https://freewebnovel.com/novel/god-of-fishing",
             "chapter_pattern": "https://freewebnovel.com/novel/god-of-fishing/chapter-{}",
-            "start_chap": 2001,
-            "end_chap": 3000
+            "start_chap": 3001,
+            "end_chap": 3715
         },
         {
-            "main_url": "https://freewebnovel.com/novel/extraction-infinite-hunger",
-            "chapter_pattern": "https://freewebnovel.com/novel/extraction-infinite-hunger/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/ascendant-path-of-a-lustful-vampire",
+            "chapter_pattern": "https://freewebnovel.com/novel/ascendant-path-of-a-lustful-vampire/chapter-{}",
             "start_chap": 1,
-            "end_chap": 115
+            "end_chap": 576
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-vampire-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-vampire-system/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 2545
+            "main_url": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book",
+            "chapter_pattern": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book/chapter-{}",
+            "start_chap": 1333,
+            "end_chap": 1341
         }
     ]
 
