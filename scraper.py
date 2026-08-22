@@ -178,62 +178,62 @@ if __name__ == "__main__":
         {
             "main_url": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse",
             "chapter_pattern": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse/chapter-{}",
-            "start_chap": 2001,
-            "end_chap": 3000
+            "start_chap": 3001,
+            "end_chap": 4000
         },
         {
             "main_url": "https://freewebnovel.com/novel/complete-martial-arts-attributes",
             "chapter_pattern": "https://freewebnovel.com/novel/complete-martial-arts-attributes/chapter-{}",
-            "start_chap": 1001,
-            "end_chap": 2000
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/shadow-slave",
-            "chapter_pattern": "https://freewebnovel.com/novel/shadow-slave/chapter-{}",
-            "start_chap": 3148,
-            "end_chap": 3160
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/the-martial-unity",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-martial-unity/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 1000
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
-             "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
-             "start_chap": 3870,
-             "end_chap": 3873
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/creation-of-all-things",
-             "chapter_pattern": "https://freewebnovel.com/novel/creation-of-all-things/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 292
+            "start_chap": 2001,
+            "end_chap": 3000
         },
         {
             "main_url": "https://freewebnovel.com/novel/star-odyssey",
             "chapter_pattern": "https://freewebnovel.com/novel/star-odyssey/chapter-{}",
-            "start_chap": 4448,
-            "end_chap": 4468
+            "start_chap": 4468,
+            "end_chap": 4470
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/the-martial-unity",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-martial-unity/chapter-{}",
+             "start_chap": 1001,
+             "end_chap": 2000
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/space-odyssey-from-abandoned-mining-space-station",
+             "chapter_pattern": "https://freewebnovel.com/novel/space-odyssey-from-abandoned-mining-space-station/chapter-{}",
+             "start_chap": 1145,
+             "end_chap": 1148
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/this-is-really-not-mechanical-ascension",
+             "chapter_pattern": "https://freewebnovel.com/novel/this-is-really-not-mechanical-ascension/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 1418
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/overlord-the-multiverse",
+            "chapter_pattern": "https://freewebnovel.com/novel/overlord-the-multiverse/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 446
         },
         {
             "main_url": "https://freewebnovel.com/novel/god-of-fishing",
             "chapter_pattern": "https://freewebnovel.com/novel/god-of-fishing/chapter-{}",
-            "start_chap": 1001,
-            "end_chap": 2000
+            "start_chap": 2001,
+            "end_chap": 3000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/cultivation-online-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/cultivation-online-novel/chapter-{}",
-            "start_chap": 2582,
-            "end_chap": 2594
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/journey-of-the-fate-destroying-emperor",
-            "chapter_pattern": "https://freewebnovel.com/novel/journey-of-the-fate-destroying-emperor/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/extraction-infinite-hunger",
+            "chapter_pattern": "https://freewebnovel.com/novel/extraction-infinite-hunger/chapter-{}",
             "start_chap": 1,
-            "end_chap": 334
+            "end_chap": 115
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/my-vampire-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-vampire-system/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 2545
         }
     ]
 
