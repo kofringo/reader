@@ -1,6 +1,9 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
+// 👇 Force Next.js to always fetch fresh data on every request instead of caching it
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
@@ -50,7 +53,7 @@ export default async function HomePage() {
     .limit(12)
     .order('created_at', { ascending: false })
 
-  // Fetch recently added chapters joining with novels (including slug and genre)[cite: 2]
+  // Fetch recently added chapters joining with novels (15 items to show 3 columns and 5 rows)[cite: 2]
   const { data: recentChapters } = await supabase
     .from('chapters')
     .select(`
@@ -174,7 +177,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Recently Added Chapters Section */}
+      {/* Recently Added Chapters Section (3 columns, 5 rows) */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
