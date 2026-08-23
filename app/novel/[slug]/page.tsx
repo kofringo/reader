@@ -7,7 +7,7 @@ import BookmarkButton from '@/components/BookmarkButton'
 import AdBanner728 from '@/components/AdBanner728'
 import NovelComments from '@/components/NovelComments'
 
-
+export const revalidate = 60
 interface PageProps {
   params: Promise<{ slug: string }>
   searchParams: Promise<{ page?: string }>
