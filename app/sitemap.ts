@@ -33,7 +33,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // 2. Fetch all novels for sitemap entries
+  // 2. Fetch all 438+ novels from Supabase
   const { data: novels } = await supabase
     .from('novels')
     .select('slug, updated_at')
@@ -44,10 +44,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'daily',
     priority: 0.9,
   }))
-
-  // 3. (Optional) Fetch recent or key chapters if you want them indexed directly
-  // Note: If you have tens of thousands of chapters, it's best to split sitemaps, 
-  // but for starting out, you can include recent chapters or let Google find them via novel pages.
 
   return [...staticPages, ...novelPages]
 }
