@@ -1,9 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@/lib/supabase/server'
 import { MetadataRoute } from 'next'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.webnovelreader.com'
-  
+  const supabase = await createClient()
+
+  // 1. Static pages
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -31,33 +33,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  try {
-    // Use public Supabase client for sitemap generation
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
+  // 2. Fetch all novels for sitemap entries
+  const { data: novels } = await supabase
+    .from('novels')
+    .select('slug, updated_at')
 
-    const { data: novels, error } = await supabase
-      .from('novels')
-      .select('slug, updated_at')
-      .range(0, 999)
+  const novelPages: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
+    url: `${baseUrl}/novel/${novel.slug}`,
+    lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
+    changeFrequency: 'daily',
+    priority: 0.9,
+  }))
 
-    if (error) {
-      console.error('Sitemap DB Error:', error)
-      return staticPages
-    }
+  // 3. (Optional) Fetch recent or key chapters if you want them indexed directly
+  // Note: If you have tens of thousands of chapters, it's best to split sitemaps, 
+  // but for starting out, you can include recent chapters or let Google find them via novel pages.
 
-    const novelPages: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
-      url: `${baseUrl}/novel/${novel.slug}`,
-      lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
-      changeFrequency: 'daily',
-      priority: 0.9,
-    }))
-
-    return [...staticPages, ...novelPages]
-  } catch (err) {
-    console.error('Sitemap Generation Exception:', err)
-    return staticPages
-  }
+  return [...staticPages, ...novelPages]
 }
