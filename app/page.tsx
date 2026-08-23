@@ -1,7 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
-// 👇 Force Next.js to always fetch fresh data on every request instead of caching it
+// Force Next.js to always fetch fresh data on every request instead of caching it
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
@@ -31,21 +31,21 @@ function timeAgo(dateString: string) {
 export default async function HomePage() {
   const supabase = await createClient()
 
-  // Fetch popular novels sorted by views[cite: 2]
+  // Fetch popular novels sorted by views[cite: 8]
   const { data: popularNovels } = await supabase
     .from('novels')
     .select('*')
     .limit(6)
     .order('views', { ascending: false })
 
-  // Fetch newly added novels sorted by creation date[cite: 2]
+  // Fetch newly added novels sorted by creation date[cite: 8]
   const { data: newNovels } = await supabase
     .from('novels')
     .select('*')
     .limit(6)
     .order('created_at', { ascending: false })
 
-  // Fetch completed novels (12 novels to show 2 rows of 6)
+  // Fetch completed novels (12 novels to show 2 rows of 6)[cite: 8]
   const { data: completedNovels } = await supabase
     .from('novels')
     .select('*')
@@ -53,24 +53,28 @@ export default async function HomePage() {
     .limit(12)
     .order('created_at', { ascending: false })
 
-  // Fetch recently added chapters joining with novels (15 items to show 3 columns and 5 rows)[cite: 2]
-  const { data: recentChapters } = await supabase
+  // Fetch recently added chapters safely (two-step query to prevent missing join issues)
+  const { data: rawChapters } = await supabase
     .from('chapters')
-    .select(`
-      id,
-      chapter_number,
-      created_at,
-      novel_id,
-      novels (
-        id,
-        title,
-        slug,
-        cover_url,
-        genre
-      )
-    `)
+    .select('id, chapter_number, created_at, novel_id')
     .limit(15)
     .order('created_at', { ascending: false })
+
+  let recentChapters: any[] = []
+  if (rawChapters && rawChapters.length > 0) {
+    const novelIds = Array.from(new Set(rawChapters.map(c => c.novel_id)))
+    const { data: novelsData } = await supabase
+      .from('novels')
+      .select('id, title, slug, cover_url, genre')
+      .in('id', novelIds)
+
+    const novelMap = new Map(novelsData?.map(n => [n.id, n]) || [])
+
+    recentChapters = rawChapters.map(chap => ({
+      ...chap,
+      novels: novelMap.get(chap.novel_id) || null
+    }))
+  }
 
   return (
     <main className="px-8 pt-8 pb-4 max-w-7xl mx-auto">

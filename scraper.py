@@ -176,64 +176,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse",
-            "chapter_pattern": "https://freewebnovel.com/novel/infinite-mana-in-the-apocalypse/chapter-{}",
-            "start_chap": 4001,
-            "end_chap": 5000
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/complete-martial-arts-attributes",
-            "chapter_pattern": "https://freewebnovel.com/novel/complete-martial-arts-attributes/chapter-{}",
-            "start_chap": 3001,
-            "end_chap": 4000
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
-            "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
-            "start_chap": 3873,
-            "end_chap": 3875
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/the-martial-unity",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-martial-unity/chapter-{}",
-             "start_chap": 2001,
-             "end_chap": 3000
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/global-lords-i-have-information-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/global-lords-i-have-information-system/chapter-{}",
-             "start_chap": 932,
-             "end_chap": 986
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/my-avatar-is-becoming-the-ultimate-boss",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-avatar-is-becoming-the-ultimate-boss/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 884
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/online-i-can-see-health-bars",
-            "chapter_pattern": "https://freewebnovel.com/novel/online-i-can-see-health-bars/chapter-{}",
-            "start_chap": 1568,
-            "end_chap": 1625
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/god-of-fishing",
-            "chapter_pattern": "https://freewebnovel.com/novel/god-of-fishing/chapter-{}",
-            "start_chap": 3001,
-            "end_chap": 3715
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/ascendant-path-of-a-lustful-vampire",
-            "chapter_pattern": "https://freewebnovel.com/novel/ascendant-path-of-a-lustful-vampire/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/path-of-the-extra",
+            "chapter_pattern": "https://freewebnovel.com/novel/path-of-the-extra/chapter-{}",
             "start_chap": 1,
-            "end_chap": 576
+            "end_chap": 445
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book",
-            "chapter_pattern": "https://freewebnovel.com/novel/beast-taming-clan-i-have-a-jade-book/chapter-{}",
-            "start_chap": 1333,
-            "end_chap": 1341
+            "main_url": "https://freewebnovel.com/novel/the-beginning-after-the-end-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-beginning-after-the-end-novel/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 531
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/the-first-order",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-first-order/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1260
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/the-broken-halo",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-broken-halo/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 752
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/investing-in-the-reborn-empress-she-actually-calls-me-husband",
+             "chapter_pattern": "https://freewebnovel.com/novel/investing-in-the-reborn-empress-she-actually-calls-me-husband/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 737
+        },
+        {
+             "main_url": "https://freewebnovel.com/novel/evolving-my-undead-legion-in-a-game-like-world",
+             "chapter_pattern": "https://freewebnovel.com/novel/evolving-my-undead-legion-in-a-game-like-world/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 1194
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/the-nameless-extra-i-proofread-this-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-nameless-extra-i-proofread-this-world/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 295
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/steadily-becoming-a-saint-the-immortal-officials-hired-me-to-tend-the-horses",
+            "chapter_pattern": "https://freewebnovel.com/novel/steadily-becoming-a-saint-the-immortal-officials-hired-me-to-tend-the-horses/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1140
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/divine-emperor-of-death",
+            "chapter_pattern": "https://freewebnovel.com/novel/divine-emperor-of-death/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 2000
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/let-me-game-in-peace",
+            "chapter_pattern": "https://freewebnovel.com/novel/let-me-game-in-peace/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1905
         }
     ]
 
