@@ -4,6 +4,7 @@ import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from supabase import create_client, Client
+import requests
 
 # --- SECURE CONFIGURATION ---
 # Load environment variables from .env file
@@ -242,3 +243,7 @@ if __name__ == "__main__":
         scrape_novel_batch(novel)
         time.sleep(2)  # Delay between novel batches
     print("\n🎉 All scraping tasks finished!")
+   
+
+# Call your Next.js revalidation endpoint
+requests.get("https://yourdomain.com/api/revalidate?secret=YOUR_SECRET_TOKEN")

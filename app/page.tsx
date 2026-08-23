@@ -2,8 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
 // Force Next.js to always fetch fresh data on every request instead of caching it
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+export const revalidate = 60 
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
