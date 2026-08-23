@@ -1,7 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 
-// Force Next.js to always fetch fresh data on every request instead of caching it
 export const revalidate = 60 
 
 function timeAgo(dateString: string) {
@@ -30,37 +29,21 @@ function timeAgo(dateString: string) {
 export default async function HomePage() {
   const supabase = await createClient()
 
-  // Fetch popular novels sorted by views[cite: 8]
-  const { data: popularNovels } = await supabase
-    .from('novels')
-    .select('*')
-    .limit(6)
-    .order('views', { ascending: false })
+  // Fetch all homepage data concurrently in parallel with strict limits to prevent timeouts
+  const [popularRes, newRes, completedRes, rawChaptersRes] = await Promise.all([
+    supabase.from('novels').select('slug, title, cover_url, author, views').order('views', { ascending: false }).limit(6),
+    supabase.from('novels').select('slug, title, cover_url, author, created_at').order('created_at', { ascending: false }).limit(6),
+    supabase.from('novels').select('slug, title, cover_url, author, status').ilike('status', 'completed').order('created_at', { ascending: false }).limit(12),
+    supabase.from('chapters').select('id, chapter_number, created_at, novel_id').order('created_at', { ascending: false }).limit(15)
+  ])
 
-  // Fetch newly added novels sorted by creation date[cite: 8]
-  const { data: newNovels } = await supabase
-    .from('novels')
-    .select('*')
-    .limit(6)
-    .order('created_at', { ascending: false })
-
-  // Fetch completed novels (12 novels to show 2 rows of 6)[cite: 8]
-  const { data: completedNovels } = await supabase
-    .from('novels')
-    .select('*')
-    .ilike('status', 'completed')
-    .limit(12)
-    .order('created_at', { ascending: false })
-
-  // Fetch recently added chapters safely (two-step query to prevent missing join issues)
-  const { data: rawChapters } = await supabase
-    .from('chapters')
-    .select('id, chapter_number, created_at, novel_id')
-    .limit(15)
-    .order('created_at', { ascending: false })
+  const popularNovels = popularRes.data || []
+  const newNovels = newRes.data || []
+  const completedNovels = completedRes.data || []
+  const rawChapters = rawChaptersRes.data || []
 
   let recentChapters: any[] = []
-  if (rawChapters && rawChapters.length > 0) {
+  if (rawChapters.length > 0) {
     const novelIds = Array.from(new Set(rawChapters.map(c => c.novel_id)))
     const { data: novelsData } = await supabase
       .from('novels')
@@ -96,7 +79,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {popularNovels?.map((novel) => (
+          {popularNovels.map((novel) => (
             <Link
               key={novel.slug}
               href={`/novel/${novel.slug}`}
@@ -114,7 +97,6 @@ export default async function HomePage() {
                     No Cover
                   </div>
                 )}
-                
               </div>
               <div className="p-3 flex flex-col flex-1 justify-between">
                 <h3 className="text-xs font-bold text-white group-hover:text-blue-400 transition line-clamp-2 mb-1">
@@ -129,7 +111,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* New to Web Novels Section */}
+      {/* New Novels Section */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
@@ -147,7 +129,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {newNovels?.map((novel) => (
+          {newNovels.map((novel) => (
             <Link
               key={novel.slug}
               href={`/novel/${novel.slug}`}
@@ -165,7 +147,6 @@ export default async function HomePage() {
                     No Cover
                   </div>
                 )}
-                
               </div>
               <div className="p-3 flex flex-col flex-1 justify-between">
                 <h3 className="text-xs font-bold text-white group-hover:text-blue-400 transition line-clamp-2 mb-1">
@@ -180,7 +161,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Recently Added Chapters Section (3 columns, 5 rows) */}
+      {/* Recently Added Chapters Section */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
@@ -190,7 +171,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {recentChapters?.map((item: any) => {
+          {recentChapters.map((item: any) => {
             const novel = item.novels
             if (!novel || !novel.slug) return null
             return (
@@ -233,7 +214,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Completed Novels Section (2 rows of 6 novels) */}
+      {/* Completed Novels Section */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
@@ -251,7 +232,7 @@ export default async function HomePage() {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {completedNovels?.map((novel) => (
+          {completedNovels.map((novel) => (
             <Link
               key={novel.slug}
               href={`/novel/${novel.slug}`}
