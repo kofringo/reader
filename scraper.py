@@ -4,7 +4,6 @@ import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from supabase import create_client, Client
-import requests
 
 # --- SECURE CONFIGURATION ---
 # Load environment variables from .env file
@@ -179,25 +178,25 @@ if __name__ == "__main__":
         {
             "main_url": "https://freewebnovel.com/novel/the-god-eater",
             "chapter_pattern": "https://freewebnovel.com/novel/the-god-eater/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 1001,
             "end_chap": 1011
         },
         {
             "main_url": "https://freewebnovel.com/novel/my-step-daughters-are-the-villainesses",
             "chapter_pattern": "https://freewebnovel.com/novel/my-step-daughters-are-the-villainesses/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 173,
             "end_chap": 174
         },
         {
             "main_url": "https://freewebnovel.com/novel/i-grow-stronger-by-making-my-wife-happy",
             "chapter_pattern": "https://freewebnovel.com/novel/i-grow-stronger-by-making-my-wife-happy/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 223,
             "end_chap": 224
         },
         {
              "main_url": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem",
              "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem/chapter-{}",
-             "start_chap": 1,
+             "start_chap": 100,
              "end_chap": 1111
         },
         {
@@ -243,7 +242,3 @@ if __name__ == "__main__":
         scrape_novel_batch(novel)
         time.sleep(2)  # Delay between novel batches
     print("\n🎉 All scraping tasks finished!")
-   
-
-# Call your Next.js revalidation endpoint
-requests.get("https://yourdomain.com/api/revalidate?secret=YOUR_SECRET_TOKEN")

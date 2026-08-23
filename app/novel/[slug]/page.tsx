@@ -13,19 +13,45 @@ interface PageProps {
   searchParams: Promise<{ page?: string }>
 }
 
-// Generate metadata using the slug parameter
+// Generate rich SEO metadata using the novel details
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const supabase = await createClient()
 
   const { data: novel } = await supabase
     .from('novels')
-    .select('title')
+    .select('title, summary, cover_url, author, genre')
     .eq('slug', slug)
     .single()
 
+  if (!novel) {
+    return {
+      title: 'Novel Not Found',
+    }
+  }
+
+  const siteName = 'Web Novel Reader'
+  const description = novel.summary 
+    ? novel.summary.slice(0, 160) + '...' 
+    : `Read ${novel.title} light novel online for free. Author: ${novel.author || 'Unknown'}.`
+
   return {
-    title: novel?.title || 'Novel Details',
+    title: `${novel.title} - Read Online Free | ${siteName}`,
+    description: description,
+    openGraph: {
+      title: `${novel.title} - Read Online Free`,
+      description: description,
+      url: `https://www.webnovelreader.com/novel/${slug}`,
+      siteName: siteName,
+      images: novel.cover_url ? [{ url: novel.cover_url }] : [],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${novel.title} - Read Online Free`,
+      description: description,
+      images: novel.cover_url ? [novel.cover_url] : [],
+    },
   }
 }
 

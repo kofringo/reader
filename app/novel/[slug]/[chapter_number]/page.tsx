@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ReaderView from '@/components/ReaderView'
 
+export const revalidate = 60
+
 interface PageProps {
   params: Promise<{ slug: string; chapter_number: string }>
 }
@@ -12,7 +14,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // Single join query for metadata instead of multiple lookups
+  // Single join query for rich chapter and novel metadata
   const { data } = await supabase
     .from('chapters')
     .select(`
@@ -28,8 +30,32 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const novel = Array.isArray(data?.novels) ? data?.novels[0] : data?.novels
 
+  if (!data || !novel) {
+    return {
+      title: `Chapter ${currentChapterNum} - Read Online`,
+    }
+  }
+
+  const siteName = 'Web Novel Reader'
+  const chapterTitle = data.title || `Chapter ${currentChapterNum}`
+  const pageTitle = `${chapterTitle} - ${novel.title} Free Online | ${siteName}`
+  const description = `Read ${novel.title} - ${chapterTitle} online for free. Explore more chapters and light novels on ${siteName}.`
+
   return {
-    title: data?.title && novel?.title ? `${data.title} - ${novel.title}` : `Chapter ${currentChapterNum}`,
+    title: pageTitle,
+    description: description,
+    openGraph: {
+      title: pageTitle,
+      description: description,
+      url: `https://www.webnovelreader.com/novel/${slug}/${currentChapterNum}`,
+      siteName: siteName,
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary',
+      title: pageTitle,
+      description: description,
+    },
   }
 }
 
@@ -38,13 +64,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // 1. Fetch novel and current chapter in parallel to cut down wait times
-  const [novelRes, chapterRes] = await Promise.all([
-    supabase.from('novels').select('id').eq('slug', slug).single(),
-    supabase.from('chapters').select('*').eq('novels.slug', slug).eq('chapter_number', currentChapterNum).single() // Note: handled via separate query below if needed, let's keep it safe:
-  ])
-
-  // Proper optimized fetch sequence using foreign keys/joins
+  // 1. Fetch novel ID securely using slug
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('id')
@@ -57,7 +77,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
 
   const novelId = novel.id
 
-  // 2. Fetch current chapter, prev chapter, and next chapter concurrently
+  // 2. Fetch current chapter, prev chapter, next chapter, and user auth concurrently
   const [chapterResQuery, prevChapterRes, nextChapterRes, authRes] = await Promise.all([
     supabase.from('chapters').select('*').eq('novel_id', novelId).eq('chapter_number', currentChapterNum).single(),
     supabase.from('chapters').select('chapter_number').eq('novel_id', novelId).eq('chapter_number', currentChapterNum - 1).maybeSingle(),
