@@ -13,10 +13,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/completed`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
   ]
 
-  const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  )
+  // Explicitly reference the env variables so Next.js bundles them into the build
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!supabaseUrl || !supabaseKey) {
+    console.error('Missing Supabase environment variables in sitemap')
+    return staticPages
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey)
 
   const { data: novels, error } = await supabase
     .from('novels')
@@ -24,7 +30,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .range(0, 999)
 
   if (error) {
-    throw new Error(`Supabase Error: ${error.message}`)
+    console.error('Sitemap DB Error:', error)
+    return staticPages
   }
 
   const novelPages: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
