@@ -1,12 +1,12 @@
 import os
 import time
+import requests
 import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from supabase import create_client, Client
 
 # --- SECURE CONFIGURATION ---
-# Load environment variables from .env file
 load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
@@ -16,6 +16,29 @@ if not SUPABASE_URL or not SUPABASE_KEY:
     raise ValueError("❌ Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env file!")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
+
+
+def notify_indexnow(slug):
+    """Instantly pings Bing and IndexNow participating search engines when a novel is updated/created."""
+    host = "www.webnovelreader.com"
+    key = "84552e3af88c4263aa6a"  # Your IndexNow API Key matching your public text file
+    novel_url = f"https://{host}/novel/{slug}"
+    
+    payload = {
+        "host": host,
+        "key": key,
+        "keyLocation": f"https://{host}/{key}.txt",
+        "urlList": [novel_url]
+    }
+    
+    try:
+        response = requests.post("https://api.indexnow.org/indexnow", json=payload)
+        if response.status_code == 200:
+            print(f"🚀 IndexNow notified successfully for: {novel_url}")
+        else:
+            print(f"⚠️ IndexNow notification returned status {response.status_code}")
+    except Exception as e:
+        print(f"❌ Error pinging IndexNow: {e}")
 
 
 def scrape_novel_metadata(novel_main_url):
@@ -93,12 +116,14 @@ def get_or_create_novel(meta):
         novel_id = existing.data[0]['id']
         supabase.table('novels').update(novel_data).eq('id', novel_id).execute()
         print(f"✅ Metadata updated in Supabase (ID: {novel_id})")
-        return novel_id
     else:
         res = supabase.table('novels').insert(novel_data).execute()
         novel_id = res.data[0]['id']
         print(f"🎉 New Novel created in Supabase (ID: {novel_id})")
-        return novel_id
+
+    # Automatically ping Bing via IndexNow whenever a novel is processed
+    notify_indexnow(slug)
+    return novel_id
 
 
 def scrape_novel_batch(novel_info):
