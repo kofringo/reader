@@ -196,31 +196,31 @@ if __name__ == "__main__":
         {
              "main_url": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem",
              "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem/chapter-{}",
-             "start_chap": 100,
+             "start_chap": 1010,
              "end_chap": 1111
         },
         {
              "main_url": "https://freewebnovel.com/novel/starting-as-a-son-in-law-to-establish-an-immortal-family",
              "chapter_pattern": "https://freewebnovel.com/novel/starting-as-a-son-in-law-to-establish-an-immortal-family/chapter-{}",
-             "start_chap": 1,
+             "start_chap": 110,
              "end_chap": 1111
         },
         {
              "main_url": "https://freewebnovel.com/novel/birth-of-the-demonic-sword",
              "chapter_pattern": "https://freewebnovel.com/novel/birth-of-the-demonic-sword/chapter-{}",
-             "start_chap": 1,
+             "start_chap": 1110,
              "end_chap": 1111
         },
         {
             "main_url": "https://freewebnovel.com/novel/i-can-upgrade-my-talent-infinitely",
             "chapter_pattern": "https://freewebnovel.com/novel/i-can-upgrade-my-talent-infinitely/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 537,
             "end_chap": 538
         },
         {
             "main_url": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system",
             "chapter_pattern": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 701,
             "end_chap": 1111
         },
         {

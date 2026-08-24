@@ -1,11 +1,11 @@
-import { createClient } from '@/lib/supabase/server'
+import { createClient } from '@supabase/supabase-js'
 import { MetadataRoute } from 'next'
+
+export const revalidate = 3600 // Revalidate sitemap every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://www.webnovelreader.com'
-  const supabase = await createClient()
-
-  // 1. Static pages
+  
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
@@ -33,17 +33,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ]
 
-  // 2. Fetch all 438+ novels from Supabase
-  const { data: novels } = await supabase
-    .from('novels')
-    .select('slug, updated_at')
+  try {
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+    )
 
-  const novelPages: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
-    url: `${baseUrl}/novel/${novel.slug}`,
-    lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
-    changeFrequency: 'daily',
-    priority: 0.9,
-  }))
+    // Fetch novels safely with pagination range to get all rows
+    const { data: novels, error } = await supabase
+      .from('novels')
+      .select('slug, updated_at')
+      .range(0, 999)
 
-  return [...staticPages, ...novelPages]
+    if (error) {
+      console.error('Sitemap DB Error:', error)
+      return staticPages
+    }
+
+    const novelPages: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
+      url: `${baseUrl}/novel/${novel.slug}`,
+      lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
+      changeFrequency: 'daily',
+      priority: 0.9,
+    }))
+
+    return [...staticPages, ...novelPages]
+  } catch (err) {
+    console.error('Sitemap Exception:', err)
+    return staticPages
+  }
 }
