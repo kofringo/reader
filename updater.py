@@ -4,7 +4,6 @@ import cloudscraper
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 from supabase import create_client, Client
-import requests
 
 # --- SECURE CONFIGURATION ---
 load_dotenv()
@@ -134,8 +133,3 @@ def update_ongoing_novels():
 
 if __name__ == "__main__":
     update_ongoing_novels()
-
-
-
-# Call your Next.js revalidation endpoint
-requests.get("https://yourdomain.com/api/revalidate?secret=YOUR_SECRET_TOKEN")

@@ -176,64 +176,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/the-god-eater",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-god-eater/chapter-{}",
-            "start_chap": 1001,
-            "end_chap": 1011
+            "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
+            "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
+            "start_chap": 3877,
+            "end_chap": 3879
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-step-daughters-are-the-villainesses",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-step-daughters-are-the-villainesses/chapter-{}",
-            "start_chap": 173,
-            "end_chap": 174
+            "main_url": "https://freewebnovel.com/novel/system-distributing-villain-guide-to-conquering-heroines-hearts",
+            "chapter_pattern": "https://freewebnovel.com/novel/system-distributing-villain-guide-to-conquering-heroines-hearts/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 102
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-grow-stronger-by-making-my-wife-happy",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-grow-stronger-by-making-my-wife-happy/chapter-{}",
-            "start_chap": 223,
-            "end_chap": 224
+            "main_url": "https://freewebnovel.com/novel/timeless-assassin",
+            "chapter_pattern": "https://freewebnovel.com/novel/timeless-assassin/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1200
         },
         {
-             "main_url": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem",
-             "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-descent-farming-with-my-harem/chapter-{}",
-             "start_chap": 1010,
-             "end_chap": 1111
+             "main_url": "https://freewebnovel.com/novel/throne-of-magical-arcana",
+             "chapter_pattern": "https://freewebnovel.com/novel/throne-of-magical-arcana/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 910
         },
         {
-             "main_url": "https://freewebnovel.com/novel/starting-as-a-son-in-law-to-establish-an-immortal-family",
-             "chapter_pattern": "https://freewebnovel.com/novel/starting-as-a-son-in-law-to-establish-an-immortal-family/chapter-{}",
-             "start_chap": 110,
-             "end_chap": 1111
+             "main_url": "https://freewebnovel.com/novel/monster-integration",
+             "chapter_pattern": "https://freewebnovel.com/novel/monster-integration/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 2000
         },
         {
-             "main_url": "https://freewebnovel.com/novel/birth-of-the-demonic-sword",
-             "chapter_pattern": "https://freewebnovel.com/novel/birth-of-the-demonic-sword/chapter-{}",
-             "start_chap": 1110,
-             "end_chap": 1111
+             "main_url": "https://freewebnovel.com/novel/world-evolution-awakening-limit-grade-talent",
+             "chapter_pattern": "https://freewebnovel.com/novel/world-evolution-awakening-limit-grade-talent/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 277
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-can-upgrade-my-talent-infinitely",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-can-upgrade-my-talent-infinitely/chapter-{}",
-            "start_chap": 537,
-            "end_chap": 538
+            "main_url": "https://freewebnovel.com/novel/dungeon-diver-stealing-a-monsters-power",
+            "chapter_pattern": "https://freewebnovel.com/novel/dungeon-diver-stealing-a-monsters-power/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 1112
         },
         {
             "main_url": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system",
             "chapter_pattern": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system/chapter-{}",
-            "start_chap": 701,
+            "start_chap": 1110,
             "end_chap": 1111
         },
         {
             "main_url": "https://freewebnovel.com/novel/radiant-blade-of-the-wilderness",
             "chapter_pattern": "https://freewebnovel.com/novel/radiant-blade-of-the-wilderness/chapter-{}",
-            "start_chap": 1,
+            "start_chap": 168,
             "end_chap": 169
         },
         {
             "main_url": "https://freewebnovel.com/novel/primordial-villain-with-a-slave-harem",
             "chapter_pattern": "https://freewebnovel.com/novel/primordial-villain-with-a-slave-harem/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 1000
+            "start_chap": 1001,
+            "end_chap": 1002
         }
     ]
 
