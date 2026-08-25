@@ -82,7 +82,7 @@ export default function ReaderView({
                 href={`/novel/${novelSlug}/${prevChapterNum}`}
                 className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-50 rounded transition"
               >
-                &lt; Prev Chapter
+                &lt; Prev 
               </Link>
             ) : (
               <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed opacity-50">
@@ -95,7 +95,7 @@ export default function ReaderView({
                 href={`/novel/${novelSlug}/${nextChapterNum}`}
                 className="px-3 py-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-50 rounded transition"
               >
-                Next Chapter &gt;
+                Next &gt;
               </Link>
             ) : (
               <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed opacity-50">
