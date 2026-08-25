@@ -72,7 +72,7 @@ export default function ReaderView({
             className="text-blue-500 hover:underline text-sm font-bold truncate max-w-full md:max-w-[250px]"
             title={novelTitle}
           >
-            ← {novelTitle}
+             {novelTitle}
           </Link>
 
           {/* Centered Prev / Next Navigation for Mobile & Desktop */}
