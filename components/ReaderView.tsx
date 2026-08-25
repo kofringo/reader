@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import AdBanner from '@/components/AdBanner'
+import AdBanner468 from '@/components/AdBanner468'
 
 //import AdcashWidget from '@/components/AdcashWidget'; //[cite: 1]
 
@@ -152,7 +152,7 @@ export default function ReaderView({
 
         {/* Adcash Widget Integration placed right below navigation controls */}
         
-        <AdBanner />
+        <AdBanner468 />
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
        
         {/* Dynamic Text Content */}
