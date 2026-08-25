@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // Single join query for rich chapter and novel metadata
+  // Single join query for rich chapter and novel metadata[cite: 6]
   const { data } = await supabase
     .from('chapters')
     .select(`
@@ -64,10 +64,10 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // 1. Fetch novel ID securely using slug
+  // 1. Fetch novel ID and title securely using slug[cite: 6]
   const { data: novel, error: novelError } = await supabase
     .from('novels')
-    .select('id')
+    .select('id, title')
     .eq('slug', slug)
     .single()
 
@@ -77,7 +77,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
 
   const novelId = novel.id
 
-  // 2. Fetch current chapter, prev chapter, next chapter, and user auth concurrently
+  // 2. Fetch current chapter, prev chapter, next chapter, and user auth concurrently[cite: 6]
   const [chapterResQuery, prevChapterRes, nextChapterRes, authRes] = await Promise.all([
     supabase.from('chapters').select('*').eq('novel_id', novelId).eq('chapter_number', currentChapterNum).single(),
     supabase.from('chapters').select('chapter_number').eq('novel_id', novelId).eq('chapter_number', currentChapterNum - 1).maybeSingle(),
@@ -90,7 +90,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
     notFound()
   }
 
-  // 3. Fire-and-forget background analytics/history updates so they don't block the page response
+  // 3. Fire-and-forget background analytics/history updates[cite: 6]
   const user = authRes.data.user
   const backgroundTasks = [
     supabase.rpc('increment_novel_views', { row_id: novelId })
@@ -107,13 +107,13 @@ export default async function ChapterReaderPage({ params }: PageProps) {
     )
   }
 
-  // Execute background tasks asynchronously without blocking the render return
   Promise.all(backgroundTasks).catch((err) => console.error('Background task error:', err))
 
   return (
     <div className="flex flex-col items-center">
       <ReaderView
         novelSlug={slug}
+        novelTitle={novel.title}
         chapter={chapter}
         prevChapterNum={prevChapterRes.data?.chapter_number}
         nextChapterNum={nextChapterRes.data?.chapter_number}
