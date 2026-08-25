@@ -1,20 +1,21 @@
-"use client";
+'use client'
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react'
 
 export default function AdBanner() {
-  const bannerRef = useRef<HTMLDivElement>(null);
+  const bannerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!bannerRef.current) return;
+    const bannerDiv = bannerRef.current
+    if (!bannerDiv) return
 
-    // Prevent duplicate injection if it renders twice
-    if (bannerRef.current.firstChild) return;
+    // Clear previous contents to prevent duplicate scripts on re-renders
+    bannerDiv.innerHTML = ''
 
-    // 1. Create atOptions script
-    const atOptionsScript = document.createElement("script");
-    atOptionsScript.type = "text/javascript";
-    atOptionsScript.innerHTML = `
+    // 1. Create and set up atOptions script
+    const atOptionsScript = document.createElement('script')
+    atOptionsScript.type = 'text/javascript'
+    atOptionsScript.text = `
       atOptions = {
         'key' : '2daae70426275507cf34b426b755d5d6',
         'format' : 'iframe',
@@ -22,22 +23,22 @@ export default function AdBanner() {
         'width' : 300,
         'params' : {}
       };
-    `;
+    `
 
-    // 2. Create invoke script
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.async = true;
-    invokeScript.src = "https://behavecurlescalator.com/2daae70426275507cf34b426b755d5d6/invoke.js";
+    // 2. Create and set up invoke script
+    const invokeScript = document.createElement('script')
+    invokeScript.type = 'text/javascript'
+    invokeScript.async = true
+    invokeScript.src = 'https://behavecurlescalator.com/2daae70426275507cf34b426b755d5d6/invoke.js'
 
-    // 3. Append to the banner container ref
-    bannerRef.current.appendChild(atOptionsScript);
-    bannerRef.current.appendChild(invokeScript);
-  }, []);
+    // Append both scripts to the container div
+    bannerDiv.appendChild(atOptionsScript)
+    bannerDiv.appendChild(invokeScript)
+  }, [])
 
   return (
-    <div className="flex justify-center my-4 overflow-hidden">
-      <div ref={bannerRef} style={{ width: "300px", height: "250px" }} />
+    <div className="w-full flex justify-center my-4 overflow-hidden">
+      <div ref={bannerRef} />
     </div>
-  );
+  )
 }
