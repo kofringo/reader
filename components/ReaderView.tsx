@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import AdBanner from '@/components/AdBanner'
 
-//import AdcashWidget from '@/components/AdcashWidget'; //[cite: 1]
-
 interface Chapter {
   chapter_number: number
   title: string
@@ -14,6 +12,7 @@ interface Chapter {
 
 interface ReaderViewProps {
   novelSlug: string
+  novelTitle: string
   chapter: Chapter
   prevChapterNum?: number
   nextChapterNum?: number
@@ -21,37 +20,37 @@ interface ReaderViewProps {
 
 export default function ReaderView({
   novelSlug,
+  novelTitle,
   chapter,
   prevChapterNum,
   nextChapterNum,
 }: ReaderViewProps) {
-  const [fontSize, setFontSize] = useState<'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>('text-lg') //[cite: 1]
-  const [theme, setTheme] = useState<'dark' | 'sepia' | 'light'>('dark') //[cite: 1]
+  const [fontSize, setFontSize] = useState<'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>('text-lg')
+  const [theme, setTheme] = useState<'dark' | 'sepia' | 'light'>('dark')
 
   // Load saved preferences and history progress on mount
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedTheme = localStorage.getItem('reader_theme') as 'dark' | 'sepia' | 'light' //[cite: 1]
-      if (savedTheme) setTheme(savedTheme) //[cite: 1]
+      const savedTheme = localStorage.getItem('reader_theme') as 'dark' | 'sepia' | 'light'
+      if (savedTheme) setTheme(savedTheme)
 
-      const savedFontSize = localStorage.getItem('reader_fontsize') as 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl' //[cite: 1]
-      if (savedFontSize) setFontSize(savedFontSize) //[cite: 1]
+      const savedFontSize = localStorage.getItem('reader_fontsize') as 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'
+      if (savedFontSize) setFontSize(savedFontSize)
 
       if (novelSlug && chapter.chapter_number) {
-        localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString()) //[cite: 1]
+        localStorage.setItem(`novel_progress_${novelSlug}`, chapter.chapter_number.toString())
       }
     }
   }, [novelSlug, chapter.chapter_number])
 
-  // Handlers that update state AND save to localStorage
   const changeTheme = (newTheme: 'dark' | 'sepia' | 'light') => {
-    setTheme(newTheme) //[cite: 1]
-    localStorage.setItem('reader_theme', newTheme) //[cite: 1]
+    setTheme(newTheme)
+    localStorage.setItem('reader_theme', newTheme)
   }
 
   const changeFontSize = (newSize: 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl') => {
-    setFontSize(newSize) //[cite: 1]
-    localStorage.setItem('reader_fontsize', newSize) //[cite: 1]
+    setFontSize(newSize)
+    localStorage.setItem('reader_fontsize', newSize)
   }
 
   const themeClasses = {
@@ -65,16 +64,19 @@ export default function ReaderView({
       
       <main className="max-w-3xl mx-auto p-6 leading-relaxed">
         {/* Top Header & Settings Bar */}
-        <div className="flex flex-wrap items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between border-b border-gray-700/40 pb-4 mb-6 gap-4 text-center md:text-left">
+          
+          {/* Novel Title Link */}
           <Link
             href={`/novel/${novelSlug}`}
-            className="text-blue-500 hover:underline text-sm font-bold"
+            className="text-blue-500 hover:underline text-sm font-bold truncate max-w-full md:max-w-[250px]"
+            title={novelTitle}
           >
-            ← Table of Contents
+            ← {novelTitle}
           </Link>
 
-          {/* Top Prev / Next Navigation */}
-          <div className="flex items-center gap-9 text-xs font-semibold">
+          {/* Centered Prev / Next Navigation for Mobile & Desktop */}
+          <div className="flex items-center justify-center gap-4 text-xs font-semibold w-full md:w-auto">
             {prevChapterNum ? (
               <Link
                 href={`/novel/${novelSlug}/${prevChapterNum}`}
@@ -83,7 +85,7 @@ export default function ReaderView({
                 &lt; Prev Chapter
               </Link>
             ) : (
-              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed">
+              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed opacity-50">
                 &lt; Prev
               </button>
             )}
@@ -96,14 +98,14 @@ export default function ReaderView({
                 Next Chapter &gt;
               </Link>
             ) : (
-              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed">
+              <button disabled className="px-3 py-1.5 bg-gray-800 text-gray-50 border border-gray-700/50 rounded cursor-not-allowed opacity-50">
                 Next &gt;
               </button>
             )}
           </div>
 
           {/* Customization Controls */}
-          <div className="flex items-center gap-4 text-xs font-semibold">
+          <div className="flex items-center justify-center gap-4 text-xs font-semibold w-full md:w-auto">
             {/* Font Size Controls */}
             <div className="flex border border-gray-700 rounded overflow-hidden">
               <button
@@ -150,9 +152,9 @@ export default function ReaderView({
           </div>
         </div>
 
-        {/* Adcash Widget Integration placed right below navigation controls */}
-        
+        {/* Ad Banner Widget */}
         <AdBanner />
+        
         <p className="text-2xl md:text-3xl font-bold mb-8 text-center">{chapter.title}</p>
        
         {/* Dynamic Text Content */}
@@ -161,7 +163,6 @@ export default function ReaderView({
         </article>
 
         {/* Bottom Chapter Navigation */}
-       
         <div className="flex justify-between items-center mt-12 pt-6 border-t border-gray-700/40">
           {prevChapterNum ? (
             <Link
