@@ -201,64 +201,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/medieval-knight-system-building-the-strongest-empire-ever",
-            "chapter_pattern": "https://freewebnovel.com/novel/medieval-knight-system-building-the-strongest-empire-ever/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/cultivation-starts-from-farming",
+            "chapter_pattern": "https://freewebnovel.com/novel/cultivation-starts-from-farming/chapter-{}",
             "start_chap": 1,
-            "end_chap": 379
+            "end_chap": 600
         },
         {
-            "main_url": "https://freewebnovel.com/novel/reincarnated-as-the-final-villains-vessel",
-            "chapter_pattern": "https://freewebnovel.com/novel/reincarnated-as-the-final-villains-vessel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/reincarnated-as-the-strongest-ancestor-with-a-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/reincarnated-as-the-strongest-ancestor-with-a-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 232
+            "end_chap": 378
         },
         {
-            "main_url": "https://freewebnovel.com/novel/pokemon-radical-redux",
-            "chapter_pattern": "https://freewebnovel.com/novel/pokemon-radical-redux/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/demon-slayer-the-silent-journey",
+            "chapter_pattern": "https://freewebnovel.com/novel/demon-slayer-the-silent-journey/chapter-{}",
             "start_chap": 1,
-            "end_chap": 634
+            "end_chap": 185
         },
         {
-             "main_url": "https://freewebnovel.com/novel/demon-of-the-barons-family",
-             "chapter_pattern": "https://freewebnovel.com/novel/demon-of-the-barons-family/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-god-of-underworld",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-god-of-underworld/chapter-{}",
              "start_chap": 1,
-             "end_chap": 38
+             "end_chap": 352
         },
         {
-             "main_url": "https://freewebnovel.com/novel/machina-arcanis-two-worlds-collided",
-             "chapter_pattern": "https://freewebnovel.com/novel/machina-arcanis-two-worlds-collided/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/urban-system-in-america",
+             "chapter_pattern": "https://freewebnovel.com/novel/urban-system-in-america/chapter-{}",
              "start_chap": 1,
-             "end_chap": 35
+             "end_chap": 404
         },
         {
-             "main_url": "https://freewebnovel.com/novel/sign-in-system-starting-with-invincible-physique",
-             "chapter_pattern": "https://freewebnovel.com/novel/sign-in-system-starting-with-invincible-physique/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/naruto-we-agreed-on-a-simulation-but-they-actually-came-to-life",
+             "chapter_pattern": "https://freewebnovel.com/novel/naruto-we-agreed-on-a-simulation-but-they-actually-came-to-life/chapter-{}",
              "start_chap": 1,
-             "end_chap": 276
+             "end_chap": 226
         },
         {
-            "main_url": "https://freewebnovel.com/novel/others-summon-dragons-i-summon-legendary-knights",
-            "chapter_pattern": "https://freewebnovel.com/novel/others-summon-dragons-i-summon-legendary-knights/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/imagination-system-i-can-build-anything",
+            "chapter_pattern": "https://freewebnovel.com/novel/imagination-system-i-can-build-anything/chapter-{}",
             "start_chap": 1,
-            "end_chap": 504
+            "end_chap": 210
         },
         {
-            "main_url": "https://freewebnovel.com/novel/second-genesis",
-            "chapter_pattern": "https://freewebnovel.com/novel/second-genesis/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-system-increases-my-power-every-day-without-missions-and-levelling",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-system-increases-my-power-every-day-without-missions-and-levelling/chapter-{}",
             "start_chap": 1,
-            "end_chap": 521
+            "end_chap": 319
         },
         {
-            "main_url": "https://freewebnovel.com/novel/formless-ascension-my-affinity-is-limitless",
-            "chapter_pattern": "https://freewebnovel.com/novel/formless-ascension-my-affinity-is-limitless/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/god-of-technology-creating-the-internet-in-another-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/god-of-technology-creating-the-internet-in-another-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 207
+            "end_chap": 524
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-taboo-harem",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-taboo-harem/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/greed-all-for-what",
+            "chapter_pattern": "https://freewebnovel.com/novel/greed-all-for-what/chapter-{}",
             "start_chap": 1,
-            "end_chap": 302
+            "end_chap": 800
         }
     ]
 
