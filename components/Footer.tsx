@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
         
         <div className="space-y-2">
-          <Link href="privacy" className="block hover:text-white transition">&gt; Privacy Policy</Link>
+          <Link href="/privacy" className="block hover:text-white transition">&gt; Privacy Policy</Link>
          {/* <Link href="#" className="block hover:text-white transition">&gt; Terms of Service</Link>*/}
           <Link href="/contact" className="block hover:text-white transition">&gt; Contact Us</Link>
         </div>

@@ -201,64 +201,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/walker-of-the-worlds",
-            "chapter_pattern": "https://freewebnovel.com/novel/walker-of-the-worlds/chapter-{}",
-            "start_chap": 3877,
-            "end_chap": 3879
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/system-distributing-villain-guide-to-conquering-heroines-hearts",
-            "chapter_pattern": "https://freewebnovel.com/novel/system-distributing-villain-guide-to-conquering-heroines-hearts/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/medieval-knight-system-building-the-strongest-empire-ever",
+            "chapter_pattern": "https://freewebnovel.com/novel/medieval-knight-system-building-the-strongest-empire-ever/chapter-{}",
             "start_chap": 1,
-            "end_chap": 102
+            "end_chap": 379
         },
         {
-            "main_url": "https://freewebnovel.com/novel/timeless-assassin",
-            "chapter_pattern": "https://freewebnovel.com/novel/timeless-assassin/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/reincarnated-as-the-final-villains-vessel",
+            "chapter_pattern": "https://freewebnovel.com/novel/reincarnated-as-the-final-villains-vessel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1200
+            "end_chap": 232
         },
         {
-             "main_url": "https://freewebnovel.com/novel/throne-of-magical-arcana",
-             "chapter_pattern": "https://freewebnovel.com/novel/throne-of-magical-arcana/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 910
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/monster-integration",
-             "chapter_pattern": "https://freewebnovel.com/novel/monster-integration/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 2000
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/world-evolution-awakening-limit-grade-talent",
-             "chapter_pattern": "https://freewebnovel.com/novel/world-evolution-awakening-limit-grade-talent/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 277
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/dungeon-diver-stealing-a-monsters-power",
-            "chapter_pattern": "https://freewebnovel.com/novel/dungeon-diver-stealing-a-monsters-power/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/pokemon-radical-redux",
+            "chapter_pattern": "https://freewebnovel.com/novel/pokemon-radical-redux/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1112
+            "end_chap": 634
         },
         {
-            "main_url": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/primordial-chaos-dragon-tower-harem-system/chapter-{}",
-            "start_chap": 1110,
-            "end_chap": 1111
+             "main_url": "https://freewebnovel.com/novel/demon-of-the-barons-family",
+             "chapter_pattern": "https://freewebnovel.com/novel/demon-of-the-barons-family/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 38
         },
         {
-            "main_url": "https://freewebnovel.com/novel/radiant-blade-of-the-wilderness",
-            "chapter_pattern": "https://freewebnovel.com/novel/radiant-blade-of-the-wilderness/chapter-{}",
-            "start_chap": 168,
-            "end_chap": 169
+             "main_url": "https://freewebnovel.com/novel/machina-arcanis-two-worlds-collided",
+             "chapter_pattern": "https://freewebnovel.com/novel/machina-arcanis-two-worlds-collided/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 35
         },
         {
-            "main_url": "https://freewebnovel.com/novel/primordial-villain-with-a-slave-harem",
-            "chapter_pattern": "https://freewebnovel.com/novel/primordial-villain-with-a-slave-harem/chapter-{}",
-            "start_chap": 1001,
-            "end_chap": 1002
+             "main_url": "https://freewebnovel.com/novel/sign-in-system-starting-with-invincible-physique",
+             "chapter_pattern": "https://freewebnovel.com/novel/sign-in-system-starting-with-invincible-physique/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 276
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/others-summon-dragons-i-summon-legendary-knights",
+            "chapter_pattern": "https://freewebnovel.com/novel/others-summon-dragons-i-summon-legendary-knights/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 504
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/second-genesis",
+            "chapter_pattern": "https://freewebnovel.com/novel/second-genesis/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 521
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/formless-ascension-my-affinity-is-limitless",
+            "chapter_pattern": "https://freewebnovel.com/novel/formless-ascension-my-affinity-is-limitless/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 207
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/my-taboo-harem",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-taboo-harem/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 302
         }
     ]
 
