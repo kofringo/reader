@@ -19,7 +19,6 @@ export async function generateSitemaps() {
 }
 
 export default async function sitemap({ id }: { id: any }): Promise<MetadataRoute.Sitemap> {
-  // Handle both string/number and promise-based IDs safely across Next.js versions
   const resolvedId = Number(await Promise.resolve(id))
   const baseUrl = 'https://www.webnovelreader.com'
 
