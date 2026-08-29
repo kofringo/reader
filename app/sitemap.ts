@@ -5,7 +5,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-const PAGE_SIZE = 40_000 // Safely under Google's 50k limit per file
+const PAGE_SIZE = 40_000
 
 export async function generateSitemaps() {
   const { count } = await supabase
@@ -18,15 +18,12 @@ export async function generateSitemaps() {
   return Array.from({ length: Math.max(1, totalSitemaps) }, (_, id) => ({ id }))
 }
 
-export default async function sitemap(props: {
-  id: Promise<string>
-}): Promise<MetadataRoute.Sitemap> {
-  const resolvedId = await props.id
-  const id = Number(resolvedId)
+export default async function sitemap({ id }: { id: any }): Promise<MetadataRoute.Sitemap> {
+  // Handle both string/number and promise-based IDs safely across Next.js versions
+  const resolvedId = Number(await Promise.resolve(id))
   const baseUrl = 'https://www.webnovelreader.com'
 
-  // ID 0 handles static pages and all parent novel pages
-  if (id === 0) {
+  if (resolvedId === 0) {
     const staticRoutes: MetadataRoute.Sitemap = [
       { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
       { url: `${baseUrl}/library`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
@@ -44,8 +41,7 @@ export default async function sitemap(props: {
     return [...staticRoutes, ...novelRoutes]
   }
 
-  // IDs 1+ paginate through your 466k+ chapters using chunks
-  const start = (id - 1) * PAGE_SIZE
+  const start = (resolvedId - 1) * PAGE_SIZE
   const end = start + PAGE_SIZE - 1
 
   const { data: chapters } = await supabase
@@ -60,7 +56,6 @@ export default async function sitemap(props: {
     .range(start, end)
 
   return (chapters || []).map((chapter: any) => {
-    // Handle Supabase foreign key join structure
     const novelSlug = chapter.novels?.slug || 'unknown'
     
     return {
