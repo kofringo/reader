@@ -122,14 +122,25 @@ export default function Navbar() {
           </div>
         </form>
 
-        {/* Right: Genres, Theme Toggle & Auth State */}
+        {/* Right: Genres, Rankings, Theme Toggle & Auth State */}
         <div className="flex items-center gap-3 shrink-0">
+          
+          {/* Genres Button */}
           <Link
             href="/genres"
             className="px-4 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-700/60 hover:border-blue-500/50 text-white hover:text-blue-400 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm hidden md:flex"
           >
             <span>📚</span>
             <span>Genres</span>
+          </Link>
+
+          {/* New Rankings Button */}
+          <Link
+            href="/rankings"
+            className="px-4 py-2 bg-gray-900 hover:bg-gray-800 border border-gray-700/60 hover:border-amber-500/50 text-white hover:text-amber-400 text-xs font-semibold rounded-xl transition flex items-center gap-1.5 shadow-sm hidden md:flex"
+          >
+            <span>👑</span>
+            <span>Rankings</span>
           </Link>
 
           {/* Moon / Sun Theme Button */}
@@ -147,7 +158,6 @@ export default function Navbar() {
               href="/profile"
               className="flex items-center gap-2 px-3 py-1.5 bg-gray-900 hover:bg-gray-700 border border-gray-700 rounded-xl transition text-white text-xs font-medium"
             >
-              
               <span className="hidden sm:inline max-w-[120px] truncate">
                 {displayName}
               </span>
