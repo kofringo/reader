@@ -5,57 +5,69 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
 const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 const supabase = createClient(supabaseUrl, supabaseKey)
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+const PAGE_SIZE = 40_000 // Safely under Google's 50k limit per file
+
+export async function generateSitemaps() {
+  const { count } = await supabase
+    .from('chapters')
+    .select('*', { count: 'exact', head: true })
+
+  const totalChapters = count || 0
+  const totalSitemaps = Math.ceil(totalChapters / PAGE_SIZE)
+
+  return Array.from({ length: Math.max(1, totalSitemaps) }, (_, id) => ({ id }))
+}
+
+export default async function sitemap(props: {
+  id: Promise<string>
+}): Promise<MetadataRoute.Sitemap> {
+  const resolvedId = await props.id
+  const id = Number(resolvedId)
   const baseUrl = 'https://www.webnovelreader.com'
 
-  // 1. Static pages on your site
-  const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/library`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/completed`,
-      lastModified: new Date(),
+  // ID 0 handles static pages and all parent novel pages
+  if (id === 0) {
+    const staticRoutes: MetadataRoute.Sitemap = [
+      { url: baseUrl, lastModified: new Date(), changeFrequency: 'daily', priority: 1.0 },
+      { url: `${baseUrl}/library`, lastModified: new Date(), changeFrequency: 'daily', priority: 0.8 },
+      { url: `${baseUrl}/completed`, lastModified: new Date(), changeFrequency: 'weekly', priority: 0.7 },
+    ]
+
+    const { data: novels } = await supabase.from('novels').select('slug, updated_at')
+    const novelRoutes: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
+      url: `${baseUrl}/novel/${novel.slug}`,
+      lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
-    },
-  ]
+      priority: 0.8,
+    }))
 
-  // 2. Fetch dynamic novel pages from Supabase
-  // (Adjust 'novels', 'slug', and 'updated_at' to match your actual database column names)
-  const { data: novels } = await supabase
-    .from('novels')
-    .select('slug, updated_at')
+    return [...staticRoutes, ...novelRoutes]
+  }
 
-  const novelRoutes: MetadataRoute.Sitemap = (novels || []).map((novel) => ({
-    url: `${baseUrl}/novel/${novel.slug}`,
-    lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.8,
-  }))
+  // IDs 1+ paginate through your 466k+ chapters using chunks
+  const start = (id - 1) * PAGE_SIZE
+  const end = start + PAGE_SIZE - 1
 
-  // 3. Fetch chapter pages from Supabase 
-  // (Adjust fields based on how your chapter URLs are structured)
   const { data: chapters } = await supabase
     .from('chapters')
-    .select('slug, updated_at, novel_slug') // or however you link chapters to novels
+    .select(`
+      chapter_number,
+      updated_at,
+      novels (
+        slug
+      )
+    `)
+    .range(start, end)
 
-  const chapterRoutes: MetadataRoute.Sitemap = (chapters || []).map((chapter) => ({
-    url: `${baseUrl}/novel/${chapter.novel_slug}/${chapter.slug}`,
-    lastModified: chapter.updated_at ? new Date(chapter.updated_at) : new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.5,
-  }))
-
-  // Combine everything into a single sitemap array
-  return [...staticRoutes, ...novelRoutes, ...chapterRoutes]
+  return (chapters || []).map((chapter: any) => {
+    // Handle Supabase foreign key join structure
+    const novelSlug = chapter.novels?.slug || 'unknown'
+    
+    return {
+      url: `${baseUrl}/novel/${novelSlug}/${chapter.chapter_number}`,
+      lastModified: chapter.updated_at ? new Date(chapter.updated_at) : new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    }
+  })
 }
