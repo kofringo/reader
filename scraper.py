@@ -201,64 +201,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/game-of-thrones-i-am-the-heir-for-a-day",
-            "chapter_pattern": "https://freewebnovel.com/novel/game-of-thrones-i-am-the-heir-for-a-day/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/corpse-burier-i-can-nourish-corpse",
+            "chapter_pattern": "https://freewebnovel.com/novel/corpse-burier-i-can-nourish-corpse/chapter-{}",
             "start_chap": 1,
-            "end_chap": 694
+            "end_chap": 721
         },
         {
-            "main_url": "https://freewebnovel.com/novel/reborn-to-be-a-god-of-reading",
-            "chapter_pattern": "https://freewebnovel.com/novel/reborn-to-be-a-god-of-reading/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/cultivating-disciples-to-breakthrough",
+            "chapter_pattern": "https://freewebnovel.com/novel/cultivating-disciples-to-breakthrough/chapter-{}",
             "start_chap": 1,
-            "end_chap": 40
+            "end_chap": 1000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/she-used-me-for-a-dare-now-i-own-her-mother",
-            "chapter_pattern": "https://freewebnovel.com/novel/she-used-me-for-a-dare-now-i-own-her-mother/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-golden-lord-has-a-perverted-sss-rank-summoning-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-golden-lord-has-a-perverted-sss-rank-summoning-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 519
+            "end_chap": 376
         },
         {
-             "main_url": "https://freewebnovel.com/novel/astral-pet-store",
-             "chapter_pattern": "https://freewebnovel.com/novel/astral-pet-store/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/infinite-evolution-my-idle-evolution-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/infinite-evolution-my-idle-evolution-system/chapter-{}",
              "start_chap": 1,
-             "end_chap": 550
+             "end_chap": 529
         },
         {
-             "main_url": "https://freewebnovel.com/novel/i-was-framed-now-ill-take-the-throne",
-             "chapter_pattern": "https://freewebnovel.com/novel/i-was-framed-now-ill-take-the-throne/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/getting-a-technology-system-in-modern-day",
+             "chapter_pattern": "https://freewebnovel.com/novel/getting-a-technology-system-in-modern-day/chapter-{}",
              "start_chap": 1,
-             "end_chap": 100
+             "end_chap": 571
         },
         {
-             "main_url": "https://freewebnovel.com/novel/reincarnated-as-an-sss-ranked-blacksmith-who-refuses-to-forge-weapons",
-             "chapter_pattern": "https://freewebnovel.com/novel/reincarnated-as-an-sss-ranked-blacksmith-who-refuses-to-forge-weapons/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-strongest-conquest-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-strongest-conquest-system/chapter-{}",
              "start_chap": 1,
-             "end_chap": 235
+             "end_chap": 525
         },
         {
-            "main_url": "https://freewebnovel.com/novel/all-my-disciples-suck",
-            "chapter_pattern": "https://freewebnovel.com/novel/all-my-disciples-suck/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/taboo-online",
+            "chapter_pattern": "https://freewebnovel.com/novel/taboo-online/chapter-{}",
             "start_chap": 1,
-            "end_chap": 773
+            "end_chap": 161
         },
         {
-            "main_url": "https://freewebnovel.com/novel/god-tier-comprehension-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/god-tier-comprehension-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/grinding-cultivation-toward-martial-saint",
+            "chapter_pattern": "https://freewebnovel.com/novel/grinding-cultivation-toward-martial-saint/chapter-{}",
             "start_chap": 1,
-            "end_chap": 321
+            "end_chap": 675
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-can-create-clones",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-can-create-clones/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/dimensional-codex-system-im-really-not-a-cultist",
+            "chapter_pattern": "https://freewebnovel.com/novel/dimensional-codex-system-im-really-not-a-cultist/chapter-{}",
             "start_chap": 1,
-            "end_chap": 81
+            "end_chap": 643
         },
         {
-            "main_url": "https://freewebnovel.com/novel/started-with-a-10000x-multiplier-in-a-game-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/started-with-a-10000x-multiplier-in-a-game-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/skill-extraction-exploring-dungeons",
+            "chapter_pattern": "https://freewebnovel.com/novel/skill-extraction-exploring-dungeons/chapter-{}",
             "start_chap": 1,
-            "end_chap": 221
+            "end_chap": 572
         }
     ]
 
