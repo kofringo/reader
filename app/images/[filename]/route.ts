@@ -3,11 +3,10 @@ import { createClient } from '@supabase/supabase-js'
 
 export async function GET(
   request: Request,
-  { params }: { params: { filename: string } }
+  { params }: { params: Promise<{ filename: string }> }
 ) {
-  const filename = params.filename
-
-  // Fetch directly from your Supabase bucket server-side
+  const { filename } = await params
+  
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!
@@ -21,7 +20,6 @@ export async function GET(
     return new NextResponse('Image not found', { status: 404 })
   }
 
-  // Serve the image bytes with proper headers through your own domain
   return new NextResponse(data, {
     headers: {
       'Content-Type': 'image/jpeg',
