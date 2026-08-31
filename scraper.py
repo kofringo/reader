@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/the-desolate-era-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-desolate-era-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/invincible-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/invincible-novel/chapter-{}",
             "start_chap": 1,
             "end_chap": 522
         },
         {
-            "main_url": "https://freewebnovel.com/novel/swallowed-star-2-land-of-origin",
-            "chapter_pattern": "https://freewebnovel.com/novel/swallowed-star-2-land-of-origin/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/sage-monarch",
+            "chapter_pattern": "https://freewebnovel.com/novel/sage-monarch/chapter-{}",
             "start_chap": 1,
             "end_chap": 498
         },
         {
-            "main_url": "https://freewebnovel.com/novel/tales-of-herding-gods",
-            "chapter_pattern": "https://freewebnovel.com/novel/tales-of-herding-gods/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/talisman-emperor",
+            "chapter_pattern": "https://freewebnovel.com/novel/talisman-emperor/chapter-{}",
             "start_chap": 1,
             "end_chap": 1000
         },
         {
-             "main_url": "https://freewebnovel.com/novel/my-core-is-the-boss",
-             "chapter_pattern": "https://freewebnovel.com/novel/my-core-is-the-boss/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/martial-world-novel",
+             "chapter_pattern": "https://freewebnovel.com/novel/martial-world-novel/chapter-{}",
              "start_chap": 1,
-             "end_chap": 357
+             "end_chap": 557
         },
         {
-             "main_url": "https://freewebnovel.com/novel/perfect-world",
-             "chapter_pattern": "https://freewebnovel.com/novel/perfect-world/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/lust-system-i-will-cuck-everyone",
+             "chapter_pattern": "https://freewebnovel.com/novel/lust-system-i-will-cuck-everyone/chapter-{}",
              "start_chap": 1,
-             "end_chap": 801
+             "end_chap": 59
         },
         {
-             "main_url": "https://freewebnovel.com/novel/a-record-of-a-mortals-journey-to-immortality-novel",
-             "chapter_pattern": "https://freewebnovel.com/novel/a-record-of-a-mortals-journey-to-immortality-novel/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/rewriting-targaryen-history",
+             "chapter_pattern": "https://freewebnovel.com/novel/rewriting-targaryen-history/chapter-{}",
              "start_chap": 1,
-             "end_chap": 836
+             "end_chap": 213
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beyond-the-timescape",
-            "chapter_pattern": "https://freewebnovel.com/novel/beyond-the-timescape/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/naruto-manipulation",
+            "chapter_pattern": "https://freewebnovel.com/novel/naruto-manipulation/chapter-{}",
             "start_chap": 1,
-            "end_chap": 568
+            "end_chap": 233
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-first-superhuman-rebuilding-civilization-from-the-moon",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-first-superhuman-rebuilding-civilization-from-the-moon/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/sss-class-awakening-i-can-forge-my-beast-soul-avatars",
+            "chapter_pattern": "https://freewebnovel.com/novel/sss-class-awakening-i-can-forge-my-beast-soul-avatars/chapter-{}",
             "start_chap": 1,
-            "end_chap": 341
+            "end_chap": 47
         },
         {
-            "main_url": "https://freewebnovel.com/novel/dragon-of-endless-evil",
-            "chapter_pattern": "https://freewebnovel.com/novel/dragon-of-endless-evil/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/calamity-messenger",
+            "chapter_pattern": "https://freewebnovel.com/novel/calamity-messenger/chapter-{}",
             "start_chap": 1,
-            "end_chap": 74
+            "end_chap": 542
         },
         {
-            "main_url": "https://freewebnovel.com/novel/global-deities-rising-as-wood-elves-god",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-deities-rising-as-wood-elves-god/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mmorpg-ancient-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/mmorpg-ancient-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 409
+            "end_chap": 731
         }
     ]
 
