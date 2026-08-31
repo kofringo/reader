@@ -11,6 +11,7 @@ load_dotenv()
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_SERVICE_ROLE_KEY")
+BUCKET_NAME = "wizard-of-all-souls"  # Your Supabase storage bucket name
 
 if not SUPABASE_URL or not SUPABASE_KEY:
     raise ValueError("❌ Missing SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY in .env file!")
@@ -41,7 +42,40 @@ def notify_indexnow(slug):
         print(f"❌ Error pinging IndexNow: {e}")
 
 
-def scrape_novel_metadata(novel_main_url):
+def upload_cover_to_supabase(cover_url, slug):
+    """Downloads cover image from external URL and uploads it directly to Supabase storage."""
+    if not cover_url:
+        return None
+
+    try:
+        print(f"📥 Downloading cover image from external source...")
+        img_response = requests.get(cover_url, headers={"User-Agent": "Mozilla/5.0"}, timeout=10)
+        
+        if img_response.status_code != 200:
+            print(f"⚠️ Failed to download cover image (Status {img_response.status_code})")
+            return cover_url  # Fallback to external URL if download fails
+
+        image_data = img_response.content
+        file_name = f"{slug}.jpg"
+
+        print(f"☁️ Uploading cover to Supabase bucket '{BUCKET_NAME}'...")
+        supabase.storage.from_(BUCKET_NAME).upload(
+            path=file_name,
+            file=image_data,
+            file_options={"content-type": "image/jpeg", "upsert": "true"}
+        )
+
+        # Return the relative path route that maps to your Next.js custom API route
+        relative_route = f"/images/{file_name}"
+        print(f"✅ Cover successfully routed to: {relative_route}")
+        return relative_route
+
+    except Exception as e:
+        print(f"❌ Error uploading cover image to Supabase: {e}")
+        return cover_url
+
+
+def scrape_novel_metadata(novel_main_url, slug):
     print(f"\n==================================================")
     print(f"🔍 Fetching Novel Info from: {novel_main_url}")
     print(f"==================================================")
@@ -64,6 +98,9 @@ def scrape_novel_metadata(novel_main_url):
         cover_url = cover_img.find('img').get('src')
         if cover_url and cover_url.startswith('/'):
             cover_url = "https://freewebnovel.com" + cover_url
+
+    # Upload and handle cover URL routing immediately
+    final_cover_url = upload_cover_to_supabase(cover_url, slug)
 
     # 2. Extract Title
     title_tag = soup.find('h1', class_='tit') or soup.find('h3', class_='title')
@@ -94,15 +131,14 @@ def scrape_novel_metadata(novel_main_url):
         'author': author,
         'genre': genres,
         'summary': summary,
-        'cover_url': cover_url
+        'cover_url': final_cover_url
     }
 
 
-def get_or_create_novel(meta):
+def get_or_create_novel(meta, slug):
     title = meta['title']
     existing = supabase.table('novels').select('id').eq('title', title).execute()
     
-    slug = title.lower().replace(" ", "-").replace(":", "").replace("'", "")
     novel_data = {
         'title': title,
         'author': meta['author'],
@@ -132,7 +168,11 @@ def scrape_novel_batch(novel_info):
     start_chap = novel_info["start_chap"]
     end_chap = novel_info["end_chap"]
 
-    meta = scrape_novel_metadata(main_url)
+    # Generate slug upfront from the URL or title logic
+    # (Extracting a clean slug from the main url path)
+    slug = main_url.rstrip("/").split("/")[-1]
+
+    meta = scrape_novel_metadata(main_url, slug)
     if not meta:
         return
 
@@ -140,7 +180,7 @@ def scrape_novel_batch(novel_info):
     print(f"✍️ Author:  {meta['author']}")
     print(f"🏷️ Genre:   {meta['genre']}\n")
 
-    novel_id = get_or_create_novel(meta)
+    novel_id = get_or_create_novel(meta, slug)
 
     scraper = cloudscraper.create_scraper(
         browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
@@ -201,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/corpse-burier-i-can-nourish-corpse",
-            "chapter_pattern": "https://freewebnovel.com/novel/corpse-burier-i-can-nourish-corpse/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/naval-gacha-system-its-time-to-monopolize-the-seven-seas",
+            "chapter_pattern": "https://freewebnovel.com/novel/naval-gacha-system-its-time-to-monopolize-the-seven-seas/chapter-{}",
             "start_chap": 1,
-            "end_chap": 721
+            "end_chap": 322
         },
         {
-            "main_url": "https://freewebnovel.com/novel/cultivating-disciples-to-breakthrough",
-            "chapter_pattern": "https://freewebnovel.com/novel/cultivating-disciples-to-breakthrough/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/perverted-step-dad-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/perverted-step-dad-system/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 82
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/nine-nether-heavenly-emperor",
+            "chapter_pattern": "https://freewebnovel.com/novel/nine-nether-heavenly-emperor/chapter-{}",
             "start_chap": 1,
             "end_chap": 1000
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-golden-lord-has-a-perverted-sss-rank-summoning-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-golden-lord-has-a-perverted-sss-rank-summoning-system/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 376
-        },
-        {
-             "main_url": "https://freewebnovel.com/novel/infinite-evolution-my-idle-evolution-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/infinite-evolution-my-idle-evolution-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/i-tame-beasts-by-feeding",
+             "chapter_pattern": "https://freewebnovel.com/novel/i-tame-beasts-by-feeding/chapter-{}",
              "start_chap": 1,
-             "end_chap": 529
+             "end_chap": 309
         },
         {
-             "main_url": "https://freewebnovel.com/novel/getting-a-technology-system-in-modern-day",
-             "chapter_pattern": "https://freewebnovel.com/novel/getting-a-technology-system-in-modern-day/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/starting-with-an-sss-rank-goddess-summon",
+             "chapter_pattern": "https://freewebnovel.com/novel/starting-with-an-sss-rank-goddess-summon/chapter-{}",
              "start_chap": 1,
-             "end_chap": 571
+             "end_chap": 401
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-strongest-conquest-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-strongest-conquest-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/strongest-kingdom-my-op-kingdom-got-transported-along-with-me",
+             "chapter_pattern": "https://freewebnovel.com/novel/strongest-kingdom-my-op-kingdom-got-transported-along-with-me/chapter-{}",
              "start_chap": 1,
-             "end_chap": 525
+             "end_chap": 436
         },
         {
-            "main_url": "https://freewebnovel.com/novel/taboo-online",
-            "chapter_pattern": "https://freewebnovel.com/novel/taboo-online/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-insane-regressor-throne-of-pride",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-insane-regressor-throne-of-pride/chapter-{}",
             "start_chap": 1,
-            "end_chap": 161
+            "end_chap": 168
         },
         {
-            "main_url": "https://freewebnovel.com/novel/grinding-cultivation-toward-martial-saint",
-            "chapter_pattern": "https://freewebnovel.com/novel/grinding-cultivation-toward-martial-saint/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/monarch-of-the-abyss",
+            "chapter_pattern": "https://freewebnovel.com/novel/monarch-of-the-abyss/chapter-{}",
             "start_chap": 1,
-            "end_chap": 675
+            "end_chap": 219
         },
         {
-            "main_url": "https://freewebnovel.com/novel/dimensional-codex-system-im-really-not-a-cultist",
-            "chapter_pattern": "https://freewebnovel.com/novel/dimensional-codex-system-im-really-not-a-cultist/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/wizard-starting-from-the-skill-tree",
+            "chapter_pattern": "https://freewebnovel.com/novel/wizard-starting-from-the-skill-tree/chapter-{}",
             "start_chap": 1,
-            "end_chap": 643
+            "end_chap": 971
         },
         {
-            "main_url": "https://freewebnovel.com/novel/skill-extraction-exploring-dungeons",
-            "chapter_pattern": "https://freewebnovel.com/novel/skill-extraction-exploring-dungeons/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/enlightenment-attaining-the-dao-at-age-8",
+            "chapter_pattern": "https://freewebnovel.com/novel/enlightenment-attaining-the-dao-at-age-8/chapter-{}",
             "start_chap": 1,
-            "end_chap": 572
+            "end_chap": 648
         }
     ]
 

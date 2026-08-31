@@ -16,7 +16,7 @@ export default function CreateRankingPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [loading, setLoading] = useState(false)
 
-  // Check authentication status and fetch novels on mount
+  // Check authentication status on mount
   useEffect(() => {
     const initPage = async () => {
       const { data: { session } } = await supabase.auth.getSession()
@@ -24,17 +24,35 @@ export default function CreateRankingPage() {
         router.push('/auth')
         return
       }
-
-      const { data } = await supabase
-        .from('novels')
-        .select('id, title, slug')
-        .order('title', { ascending: true })
-        .limit(100)
-      
-      if (data) setNovels(data)
     }
     initPage()
   }, [router, supabase])
+
+  // Fetch novels dynamically whenever searchQuery changes
+  useEffect(() => {
+    const fetchNovels = async () => {
+      let query = supabase
+        .from('novels')
+        .select('id, title, slug')
+        .order('title', { ascending: true })
+        .limit(20)
+
+      if (searchQuery.trim() !== '') {
+        query = query.ilike('title', `%${searchQuery}%`)
+      }
+
+      const { data, error } = await query
+      if (data) {
+        setNovels(data)
+      }
+    }
+
+    const debounceTimer = setTimeout(() => {
+      fetchNovels()
+    }, 300) // Debounce search requests to avoid spamming Supabase
+
+    return () => clearTimeout(debounceTimer)
+  }, [searchQuery, supabase])
 
   const handleAddNovel = (novel: any) => {
     if (selectedNovels.some((n) => n.id === novel.id)) return
@@ -54,7 +72,6 @@ export default function CreateRankingPage() {
 
     setLoading(true)
 
-    // 1. Get current user session
     const { data: { session } } = await supabase.auth.getSession()
     if (!session) {
       alert('You must be signed in to create a ranking.')
@@ -63,13 +80,11 @@ export default function CreateRankingPage() {
       return
     }
 
-    // 2. Generate clean slug from title + random short suffix to ensure uniqueness
     const slug = title
       .toLowerCase()
       .replace(/[^a-z0-9]+/g, '-')
       .replace(/^-+|-+$/g, '') + '-' + Date.now().toString().slice(-4)
 
-    // 3. Insert into user_rankings
     const { data: rankingData, error: rankingError } = await supabase
       .from('user_rankings')
       .insert({
@@ -87,7 +102,6 @@ export default function CreateRankingPage() {
       return
     }
 
-    // 4. Insert items into ranking_items with their positions
     const itemsToInsert = selectedNovels.map((novel, index) => ({
       ranking_id: rankingData.id,
       novel_id: novel.id,
@@ -107,10 +121,6 @@ export default function CreateRankingPage() {
     setLoading(false)
     router.push(`/rankings/${slug}`)
   }
-
-  const filteredNovels = novels.filter((n) => 
-    n.title.toLowerCase().includes(searchQuery.toLowerCase())
-  )
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -176,26 +186,30 @@ export default function CreateRankingPage() {
             className="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-blue-500 mb-2"
           />
           <div className="max-h-48 overflow-y-auto space-y-1 border border-gray-800 rounded-xl p-2 bg-gray-900">
-            {filteredNovels.map((novel) => {
-              const isSelected = selectedNovels.some((n) => n.id === novel.id)
-              return (
-                <div key={novel.id} className="flex items-center justify-between px-3 py-2 hover:bg-gray-400 rounded-lg text-sm">
-                  <span className="truncate">{novel.title}</span>
-                  <button
-                    type="button"
-                    disabled={isSelected}
-                    onClick={() => handleAddNovel(novel)}
-                    className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 ${
-                      isSelected 
-                        ? 'bg-red-400 text-white cursor-not-allowed' 
-                        : 'bg-blue-600 hover:bg-blue-500 text-white'
-                    }`}
-                  >
-                    <Plus className="w-3.5 h-3.5" /> {isSelected ? 'Added' : 'Add'}
-                  </button>
-                </div>
-              )
-            })}
+            {novels.length === 0 ? (
+              <p className="text-gray-500 text-xs text-center py-4">No novels found matching your search.</p>
+            ) : (
+              novels.map((novel) => {
+                const isSelected = selectedNovels.some((n) => n.id === novel.id)
+                return (
+                  <div key={novel.id} className="flex items-center justify-between px-3 py-2 hover:bg-gray-800 rounded-lg text-sm">
+                    <span className="truncate pr-2">{novel.title}</span>
+                    <button
+                      type="button"
+                      disabled={isSelected}
+                      onClick={() => handleAddNovel(novel)}
+                      className={`px-3 py-1 rounded-lg text-xs font-semibold flex items-center gap-1 shrink-0 ${
+                        isSelected 
+                          ? 'bg-red-400/20 text-red-400 cursor-not-allowed' 
+                          : 'bg-blue-600 hover:bg-blue-500 text-white'
+                      }`}
+                    >
+                      <Plus className="w-3.5 h-3.5" /> {isSelected ? 'Added' : 'Add'}
+                    </button>
+                  </div>
+                )
+              })
+            )}
           </div>
         </div>
 
