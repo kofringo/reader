@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/naval-gacha-system-its-time-to-monopolize-the-seven-seas",
-            "chapter_pattern": "https://freewebnovel.com/novel/naval-gacha-system-its-time-to-monopolize-the-seven-seas/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-desolate-era-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-desolate-era-novel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 322
+            "end_chap": 522
         },
         {
-            "main_url": "https://freewebnovel.com/novel/perverted-step-dad-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/perverted-step-dad-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/swallowed-star-2-land-of-origin",
+            "chapter_pattern": "https://freewebnovel.com/novel/swallowed-star-2-land-of-origin/chapter-{}",
             "start_chap": 1,
-            "end_chap": 82
+            "end_chap": 498
         },
         {
-            "main_url": "https://freewebnovel.com/novel/nine-nether-heavenly-emperor",
-            "chapter_pattern": "https://freewebnovel.com/novel/nine-nether-heavenly-emperor/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/tales-of-herding-gods",
+            "chapter_pattern": "https://freewebnovel.com/novel/tales-of-herding-gods/chapter-{}",
             "start_chap": 1,
             "end_chap": 1000
         },
         {
-             "main_url": "https://freewebnovel.com/novel/i-tame-beasts-by-feeding",
-             "chapter_pattern": "https://freewebnovel.com/novel/i-tame-beasts-by-feeding/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/my-core-is-the-boss",
+             "chapter_pattern": "https://freewebnovel.com/novel/my-core-is-the-boss/chapter-{}",
              "start_chap": 1,
-             "end_chap": 309
+             "end_chap": 357
         },
         {
-             "main_url": "https://freewebnovel.com/novel/starting-with-an-sss-rank-goddess-summon",
-             "chapter_pattern": "https://freewebnovel.com/novel/starting-with-an-sss-rank-goddess-summon/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/perfect-world",
+             "chapter_pattern": "https://freewebnovel.com/novel/perfect-world/chapter-{}",
              "start_chap": 1,
-             "end_chap": 401
+             "end_chap": 801
         },
         {
-             "main_url": "https://freewebnovel.com/novel/strongest-kingdom-my-op-kingdom-got-transported-along-with-me",
-             "chapter_pattern": "https://freewebnovel.com/novel/strongest-kingdom-my-op-kingdom-got-transported-along-with-me/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/a-record-of-a-mortals-journey-to-immortality-novel",
+             "chapter_pattern": "https://freewebnovel.com/novel/a-record-of-a-mortals-journey-to-immortality-novel/chapter-{}",
              "start_chap": 1,
-             "end_chap": 436
+             "end_chap": 836
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-insane-regressor-throne-of-pride",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-insane-regressor-throne-of-pride/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/beyond-the-timescape",
+            "chapter_pattern": "https://freewebnovel.com/novel/beyond-the-timescape/chapter-{}",
             "start_chap": 1,
-            "end_chap": 168
+            "end_chap": 568
         },
         {
-            "main_url": "https://freewebnovel.com/novel/monarch-of-the-abyss",
-            "chapter_pattern": "https://freewebnovel.com/novel/monarch-of-the-abyss/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-first-superhuman-rebuilding-civilization-from-the-moon",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-first-superhuman-rebuilding-civilization-from-the-moon/chapter-{}",
             "start_chap": 1,
-            "end_chap": 219
+            "end_chap": 341
         },
         {
-            "main_url": "https://freewebnovel.com/novel/wizard-starting-from-the-skill-tree",
-            "chapter_pattern": "https://freewebnovel.com/novel/wizard-starting-from-the-skill-tree/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/dragon-of-endless-evil",
+            "chapter_pattern": "https://freewebnovel.com/novel/dragon-of-endless-evil/chapter-{}",
             "start_chap": 1,
-            "end_chap": 971
+            "end_chap": 74
         },
         {
-            "main_url": "https://freewebnovel.com/novel/enlightenment-attaining-the-dao-at-age-8",
-            "chapter_pattern": "https://freewebnovel.com/novel/enlightenment-attaining-the-dao-at-age-8/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/global-deities-rising-as-wood-elves-god",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-deities-rising-as-wood-elves-god/chapter-{}",
             "start_chap": 1,
-            "end_chap": 648
+            "end_chap": 409
         }
     ]
 
