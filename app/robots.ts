@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/private/', '/admin/'], // Add any paths you want to hide
     },
-    sitemap: 'https://www.webnovelreader.com/sitemap-index.xml',
+    sitemap: 'https://www.webnovelreader.com/sitemap.xml',
   }
 }
