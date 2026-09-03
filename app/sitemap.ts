@@ -7,7 +7,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Core static and category pages
   const corePages = [
     '',
-    '/',
+    '/home',
     '/rankings',
     '/popular',
     '/completed',
@@ -29,18 +29,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1.0 : 0.8,
   }))
 
-  // 2. Dynamically fetch all novels from Supabase
+  // 2. Dynamically fetch all novels from Supabase using created_at
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  
   const supabase = createClient(supabaseUrl, supabaseKey)
 
-  const { data: novels } = await supabase
+  const { data: novels, error } = await supabase
     .from('novels')
     .select('slug, created_at')
 
+  if (error) {
+    console.error('Supabase sitemap error:', error.message)
+  }
+
   const novelPages = (novels || []).map((novel) => ({
     url: `${baseUrl}/novel/${novel.slug}`,
-    lastModified: novel.updated_at ? new Date(novel.updated_at) : new Date(),
+    lastModified: novel.created_at ? new Date(novel.created_at) : new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))

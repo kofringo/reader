@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/invincible-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/invincible-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/crafting-an-immortal-race-with-daily-hexagrams",
+            "chapter_pattern": "https://freewebnovel.com/novel/crafting-an-immortal-race-with-daily-hexagrams/chapter-{}",
             "start_chap": 1,
-            "end_chap": 522
+            "end_chap": 622
         },
         {
-            "main_url": "https://freewebnovel.com/novel/sage-monarch",
-            "chapter_pattern": "https://freewebnovel.com/novel/sage-monarch/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/eternal-life-by-daily-divination",
+            "chapter_pattern": "https://freewebnovel.com/novel/eternal-life-by-daily-divination/chapter-{}",
             "start_chap": 1,
-            "end_chap": 498
+            "end_chap": 732
         },
         {
-            "main_url": "https://freewebnovel.com/novel/talisman-emperor",
-            "chapter_pattern": "https://freewebnovel.com/novel/talisman-emperor/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel",
+            "chapter_pattern": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel/chapter-{}",
             "start_chap": 1,
-            "end_chap": 1000
+            "end_chap": 866
         },
         {
-             "main_url": "https://freewebnovel.com/novel/martial-world-novel",
-             "chapter_pattern": "https://freewebnovel.com/novel/martial-world-novel/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/unholy-priest-reborn-with-a-glitched-lust-system",
+             "chapter_pattern": "https://freewebnovel.com/novel/unholy-priest-reborn-with-a-glitched-lust-system/chapter-{}",
              "start_chap": 1,
-             "end_chap": 557
+             "end_chap": 60
         },
         {
-             "main_url": "https://freewebnovel.com/novel/lust-system-i-will-cuck-everyone",
-             "chapter_pattern": "https://freewebnovel.com/novel/lust-system-i-will-cuck-everyone/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/two-worlds-demonic-cultivator-with-his-zombie-materials",
+             "chapter_pattern": "https://freewebnovel.com/novel/two-worlds-demonic-cultivator-with-his-zombie-materials/chapter-{}",
              "start_chap": 1,
-             "end_chap": 59
+             "end_chap": 727
         },
         {
-             "main_url": "https://freewebnovel.com/novel/rewriting-targaryen-history",
-             "chapter_pattern": "https://freewebnovel.com/novel/rewriting-targaryen-history/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/transmigrating-over-ten-thousand-years-late-i-was-forced-to-become-a-mighty-presence",
+             "chapter_pattern": "https://freewebnovel.com/novel/transmigrating-over-ten-thousand-years-late-i-was-forced-to-become-a-mighty-presence/chapter-{}",
              "start_chap": 1,
-             "end_chap": 213
+             "end_chap": 675
         },
         {
-            "main_url": "https://freewebnovel.com/novel/naruto-manipulation",
-            "chapter_pattern": "https://freewebnovel.com/novel/naruto-manipulation/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/marvel-hunter",
+            "chapter_pattern": "https://freewebnovel.com/novel/marvel-hunter/chapter-{}",
             "start_chap": 1,
-            "end_chap": 233
+            "end_chap": 503
         },
         {
-            "main_url": "https://freewebnovel.com/novel/sss-class-awakening-i-can-forge-my-beast-soul-avatars",
-            "chapter_pattern": "https://freewebnovel.com/novel/sss-class-awakening-i-can-forge-my-beast-soul-avatars/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/extras-path-to-demon-king",
+            "chapter_pattern": "https://freewebnovel.com/novel/extras-path-to-demon-king/chapter-{}",
             "start_chap": 1,
-            "end_chap": 47
+            "end_chap": 586
         },
         {
-            "main_url": "https://freewebnovel.com/novel/calamity-messenger",
-            "chapter_pattern": "https://freewebnovel.com/novel/calamity-messenger/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/bound-to-the-eldritch-sea-sss-tier-navigator",
+            "chapter_pattern": "https://freewebnovel.com/novel/bound-to-the-eldritch-sea-sss-tier-navigator/chapter-{}",
             "start_chap": 1,
-            "end_chap": 542
+            "end_chap": 153
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mmorpg-ancient-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/mmorpg-ancient-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/starting-from-being-adopted-by-the-second-hokage",
+            "chapter_pattern": "https://freewebnovel.com/novel/starting-from-being-adopted-by-the-second-hokage/chapter-{}",
             "start_chap": 1,
-            "end_chap": 731
+            "end_chap": 394
         }
     ]
 
