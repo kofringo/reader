@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { User } from '@supabase/supabase-js'
 
@@ -18,8 +18,8 @@ interface Comment {
   }
 }
 
-interface NovelCommentsProps {
-  novelId: string
+interface ChapterCommentsProps {
+  chapterId: string
 }
 
 const POPULAR_STICKERS = [
@@ -65,7 +65,7 @@ function timeAgo(dateString: string) {
   return 'Just now'
 }
 
-export default function NovelComments({ novelId }: NovelCommentsProps) {
+export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
   const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState('')
   const [isSpoiler, setIsSpoiler] = useState(false)
@@ -73,14 +73,14 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
   const [loading, setLoading] = useState(false)
   const [submitting, setSubmitting] = useState(false)
 
-  // Sticker picker states
-  const [showStickers, setShowStickers] = useState(false)
-  const [replyingStickersOpen, setReplyingStickersOpen] = useState<string | null>(null)
-
   // Reply tracking state
   const [replyingToId, setReplyingToId] = useState<string | null>(null)
   const [replyContent, setReplyContent] = useState('')
   const [replyIsSpoiler, setReplyIsSpoiler] = useState(false)
+
+  // Sticker picker state
+  const [showStickersForMain, setShowStickersForMain] = useState(false)
+  const [showStickersForReplyId, setShowStickersForReplyId] = useState<string | null>(null)
 
   // Track which comments current user liked
   const [likedCommentIds, setLikedCommentIds] = useState<Set<string>>(new Set())
@@ -92,9 +92,8 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         setUser(session.user)
-        // Fetch user's likes
         const { data: likesData } = await supabase
-          .from('comment_likes')
+          .from('chapter_comment_likes')
           .select('comment_id')
           .eq('user_id', session.user.id)
         
@@ -105,12 +104,12 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
 
       setLoading(true)
       const { data, error } = await supabase
-        .from('novel_comments')
+        .from('chapter_comments')
         .select(`
           *,
           profiles:user_id (username, full_name)
         `)
-        .eq('novel_id', novelId)
+        .eq('chapter_id', chapterId)
         .order('created_at', { ascending: false })
 
       if (!error && data) {
@@ -120,24 +119,22 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
     }
 
     fetchUserDataAndComments()
-  }, [novelId, supabase])
+  }, [chapterId, supabase])
 
-  const handlePostComment = async (e: React.FormEvent, parentId: string | null = null, customContent?: string, customSpoiler?: boolean) => {
-    if (e) e.preventDefault()
-    const content = customContent !== undefined ? customContent : (parentId ? replyContent : newComment)
-    const spoiler = customSpoiler !== undefined ? customSpoiler : (parentId ? replyIsSpoiler : isSpoiler)
-
+  const handlePostComment = async (e: React.FormEvent, parentId: string | null = null) => {
+    e.preventDefault()
+    const content = parentId ? replyContent : newComment
     if (!content.trim() || !user) return
 
     setSubmitting(true)
     const { data, error } = await supabase
-      .from('novel_comments')
+      .from('chapter_comments')
       .insert([
         {
-          novel_id: novelId,
+          chapter_id: chapterId,
           user_id: user.id,
           content: content.trim(),
-          is_spoiler: spoiler,
+          is_spoiler: parentId ? replyIsSpoiler : isSpoiler,
           parent_id: parentId,
         }
       ])
@@ -152,11 +149,11 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
         setReplyingToId(null)
         setReplyContent('')
         setReplyIsSpoiler(false)
-        setReplyingStickersOpen(null)
+        setShowStickersForReplyId(null)
       } else {
         setNewComment('')
         setIsSpoiler(false)
-        setShowStickers(false)
+        setShowStickersForMain(false)
       }
     } else {
       alert(error?.message || 'Error posting comment')
@@ -164,37 +161,15 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
     setSubmitting(false)
   }
 
-  const handleSelectSticker = (url: string, parentId: string | null = null) => {
-    const stickerMarkdown = `![sticker](${url})`
-    if (parentId) {
-      handlePostComment({ preventDefault: () => {} } as React.FormEvent, parentId, stickerMarkdown, replyIsSpoiler)
+  const handleAddSticker = (stickerUrl: string, isReply: boolean = false) => {
+    const stickerMarkdown = ` ![sticker](${stickerUrl}) `
+    if (isReply) {
+      setReplyContent(prev => prev + stickerMarkdown)
+      setShowStickersForReplyId(null)
     } else {
-      handlePostComment({ preventDefault: () => {} } as React.FormEvent, null, stickerMarkdown, isSpoiler)
+      setNewComment(prev => prev + stickerMarkdown)
+      setShowStickersForMain(false)
     }
-  }
-
-  const renderCommentContent = (content: string, isSpoilerField: boolean) => {
-    const stickerRegex = /^!\[sticker\]\((.+)\)$/
-    const match = content.trim().match(stickerRegex)
-
-    if (match) {
-      const stickerUrl = match[1]
-      return (
-        <div className="pl-11 mt-1">
-          <img 
-            src={stickerUrl} 
-            alt="sticker" 
-            className="w-28 h-28 object-contain rounded-lg border border-gray-800 bg-black/20" 
-          />
-        </div>
-      )
-    }
-
-    return (
-      <p className={`text-sm text-gray-100 pl-11 whitespace-pre-line ${isSpoilerField ? 'bg-gray-900 p-2 rounded blur-sm hover:blur-none transition cursor-pointer' : ''}`}>
-        {isSpoilerField ? '[Spoiler] ' : ''}{content}
-      </p>
-    )
   }
 
   const handleLike = async (commentId: string) => {
@@ -209,22 +184,39 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
 
     const newLikesCount = hasLiked ? Math.max(0, comment.likes_count - 1) : comment.likes_count + 1
 
-    // Optimistic UI update
     setComments(comments.map(c => c.id === commentId ? { ...c, likes_count: newLikesCount } : c))
     const updatedLikes = new Set(likedCommentIds)
     if (hasLiked) {
       updatedLikes.delete(commentId)
-      await supabase.from('comment_likes').delete().eq('comment_id', commentId).eq('user_id', user.id)
+      await supabase.from('chapter_comment_likes').delete().eq('comment_id', commentId).eq('user_id', user.id)
     } else {
       updatedLikes.add(commentId)
-      await supabase.from('comment_likes').insert({ comment_id: commentId, user_id: user.id })
+      await supabase.from('chapter_comment_likes').insert({ comment_id: commentId, user_id: user.id })
     }
     setLikedCommentIds(updatedLikes)
 
-    await supabase.from('novel_comments').update({ likes_count: newLikesCount }).eq('id', commentId)
+    await supabase.from('chapter_comments').update({ likes_count: newLikesCount }).eq('id', commentId)
   }
 
-  // Separate top-level comments and replies
+  // Render text containing optional sticker image tags
+  const renderFormattedContent = (content: string) => {
+    const parts = content.split(/( !\[sticker\]\(.*?\) )/g)
+    return parts.map((part, index) => {
+      const match = part.match(/!\[sticker\]\((.*?)\)/)
+      if (match) {
+        return (
+          <img
+            key={index}
+            src={match[1]}
+            alt="sticker"
+            className="inline-block w-16 h-16 object-contain rounded my-1 mx-1 align-middle bg-black/20"
+          />
+        )
+      }
+      return <span key={index}>{part}</span>
+    })
+  }
+
   const topLevelComments = comments.filter(c => !c.parent_id)
   const getReplies = (parentId: string) => comments.filter(c => c.parent_id === parentId)
 
@@ -232,7 +224,7 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
     <div className="mt-12 text-gray-200">
       <div className="flex justify-between items-center border-b border-gray-700/60 pb-3 mb-6">
         <h3 className="text-sm font-bold uppercase tracking-wider text-amber-500 flex items-center gap-2">
-          💬 COMMENTS
+          💬 CHAPTER DISCUSSION
         </h3>
       </div>
 
@@ -243,61 +235,49 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
             rows={4}
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
-            placeholder="Share your thoughts on this novel."
+            placeholder="Share your thoughts on this chapter..."
             className="w-full bg-black/40 border border-gray-800 rounded p-3 text-sm text-gray-200 focus:outline-none focus:border-blue-500 resize-none mb-3"
             required
           />
 
-          {/* Sticker Picker Popup for Main Form */}
-          {showStickers && (
-            <div className="absolute left-4 bottom-16 z-50 w-72 bg-gray-950 border border-gray-800 rounded-lg shadow-2xl p-3 max-h-60 overflow-y-auto">
-              <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-800">
-                <span className="text-xs font-bold text-gray-300">Choose a Sticker</span>
-                <button 
-                  type="button" 
-                  onClick={() => setShowStickers(false)}
-                  className="text-gray-400 hover:text-white text-xs font-bold"
+          {/* Toolbar with Sticker Button */}
+          <div className="flex items-center gap-2 mb-3 border-b border-gray-800 pb-2">
+            <button
+              type="button"
+              onClick={() => setShowStickersForMain(!showStickersForMain)}
+              className="text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 px-2.5 py-1 rounded flex items-center gap-1.5 transition"
+              title="Add Sticker"
+            >
+              😀 Stickers
+            </button>
+          </div>
+
+          {/* Sticker Picker Popup */}
+          {showStickersForMain && (
+            <div className="absolute z-20 left-4 bottom-20 bg-gray-950 border border-gray-700 p-3 rounded-xl shadow-2xl grid grid-cols-4 gap-2 w-72 max-h-56 overflow-y-auto">
+              {POPULAR_STICKERS.map((url, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => handleAddSticker(url, false)}
+                  className="hover:bg-gray-800 p-1.5 rounded flex items-center justify-center transition border border-transparent hover:border-blue-500"
                 >
-                  ✕
+                  <img src={url} alt="sticker option" className="w-12 h-12 object-contain" />
                 </button>
-              </div>
-              <div className="grid grid-cols-4 gap-2">
-                {POPULAR_STICKERS.map((url, idx) => (
-                  <button
-                    key={idx}
-                    type="button"
-                    onClick={() => handleSelectSticker(url, null)}
-                    className="hover:bg-gray-800 p-1.5 rounded transition flex items-center justify-center border border-transparent hover:border-gray-700"
-                  >
-                    <img src={url} alt="sticker" className="w-12 h-12 object-contain" />
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
           )}
 
           <div className="flex justify-between items-center">
-            <div className="flex items-center gap-4">
-              <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={isSpoiler}
-                  onChange={(e) => setIsSpoiler(e.target.checked)}
-                  className="rounded bg-black border-gray-700 text-blue-600 focus:ring-0"
-                />
-                Spoiler
-              </label>
-
-              {/* Sticker Toggle Button */}
-              <button
-                type="button"
-                onClick={() => setShowStickers(!showStickers)}
-                className="text-xs bg-gray-800 hover:bg-gray-700 text-amber-400 px-3 py-1.5 rounded border border-gray-700 transition font-semibold flex items-center gap-1.5 shadow"
-              >
-                😀 Stickers
-              </button>
-            </div>
-
+            <label className="flex items-center gap-2 text-xs text-gray-400 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={isSpoiler}
+                onChange={(e) => setIsSpoiler(e.target.checked)}
+                className="rounded bg-black border-gray-700 text-blue-600 focus:ring-0"
+              />
+              Spoiler
+            </label>
             <button
               type="submit"
               disabled={submitting}
@@ -309,7 +289,7 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
         </form>
       ) : (
         <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 mb-8 text-center text-sm text-gray-400">
-          Please <a href="/auth" className="text-blue-400 underline font-semibold">sign in</a> to share your thoughts on this novel.
+          Please <a href="/auth" className="text-blue-400 underline font-semibold">sign in</a> to share your thoughts on this chapter.
         </div>
       )}
 
@@ -337,7 +317,7 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white">{username}</span>
-                      <span className="text-[10px] text-gray-100 block">
+                      <span className="text-[10px] text-gray-400 block">
                         {timeAgo(comment.created_at)}
                       </span>
                     </div>
@@ -352,14 +332,17 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                   </button>
                 </div>
 
-                {renderCommentContent(comment.content, comment.is_spoiler)}
+                <div className={`text-sm text-gray-100 pl-11 whitespace-pre-line ${comment.is_spoiler ? 'bg-gray-900 p-2 rounded blur-sm hover:blur-none transition cursor-pointer' : ''}`}>
+                  {comment.is_spoiler ? '[Spoiler] ' : ''}
+                  {renderFormattedContent(comment.content)}
+                </div>
 
                 <div className="pl-11 mt-2">
                   <button
                     onClick={() => {
                       setReplyingToId(replyingToId === comment.id ? null : comment.id)
                       setReplyContent('')
-                      setReplyingStickersOpen(null)
+                      setShowStickersForReplyId(null)
                     }}
                     className="text-xs text-blue-400 hover:underline font-semibold"
                   >
@@ -367,66 +350,53 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                   </button>
                 </div>
 
-                {/* Reply Input Form */}
+                {/* Reply Input Form with Stickers */}
                 {replyingToId === comment.id && user && (
                   <form onSubmit={(e) => handlePostComment(e, comment.id)} className="mt-3 ml-11 bg-gray-900 border border-gray-800 rounded-lg p-3 relative">
                     <textarea
                       rows={3}
                       value={replyContent}
                       onChange={(e) => setReplyContent(e.target.value)}
-                      placeholder="Share your thoughts."
+                      placeholder="Share your thoughts..."
                       className="w-full bg-black/60 border border-gray-800 rounded p-2 text-xs text-gray-200 focus:outline-none focus:border-blue-500 resize-none mb-2"
                       required
                     />
 
-                    {/* Sticker Picker Popup for Reply Form */}
-                    {replyingStickersOpen === comment.id && (
-                      <div className="absolute left-3 bottom-14 z-50 w-72 bg-gray-950 border border-gray-800 rounded-lg shadow-2xl p-3 max-h-60 overflow-y-auto">
-                        <div className="flex justify-between items-center mb-2 pb-2 border-b border-gray-800">
-                          <span className="text-xs font-bold text-gray-300">Choose a Sticker</span>
-                          <button 
-                            type="button" 
-                            onClick={() => setReplyingStickersOpen(null)}
-                            className="text-gray-400 hover:text-white text-xs font-bold"
+                    <div className="flex items-center gap-2 mb-2 border-b border-gray-800 pb-2">
+                      <button
+                        type="button"
+                        onClick={() => setShowStickersForReplyId(showStickersForReplyId === comment.id ? null : comment.id)}
+                        className="text-[10px] bg-gray-800 hover:bg-gray-700 text-gray-300 px-2 py-0.5 rounded flex items-center gap-1 transition"
+                      >
+                        😀 Stickers
+                      </button>
+                    </div>
+
+                    {showStickersForReplyId === comment.id && (
+                      <div className="absolute z-20 left-3 bottom-20 bg-gray-950 border border-gray-700 p-3 rounded-xl shadow-2xl grid grid-cols-4 gap-2 w-64 max-h-48 overflow-y-auto">
+                        {POPULAR_STICKERS.map((url, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            onClick={() => handleAddSticker(url, true)}
+                            className="hover:bg-gray-800 p-1.5 rounded flex items-center justify-center transition border border-transparent hover:border-blue-500"
                           >
-                            ✕
+                            <img src={url} alt="sticker option" className="w-10 h-10 object-contain" />
                           </button>
-                        </div>
-                        <div className="grid grid-cols-4 gap-2">
-                          {POPULAR_STICKERS.map((url, idx) => (
-                            <button
-                              key={idx}
-                              type="button"
-                              onClick={() => handleSelectSticker(url, comment.id)}
-                              className="hover:bg-gray-800 p-1.5 rounded transition flex items-center justify-center border border-transparent hover:border-gray-700"
-                            >
-                              <img src={url} alt="sticker" className="w-12 h-12 object-contain" />
-                            </button>
-                          ))}
-                        </div>
+                        ))}
                       </div>
                     )}
 
                     <div className="flex justify-between items-center">
-                      <div className="flex items-center gap-3">
-                        <label className="flex items-center gap-2 text-[10px] text-gray-400 cursor-pointer select-none">
-                          <input
-                            type="checkbox"
-                            checked={replyIsSpoiler}
-                            onChange={(e) => setReplyIsSpoiler(e.target.checked)}
-                            className="rounded bg-black border-gray-700 text-blue-600 focus:ring-0"
-                          />
-                          Spoiler
-                        </label>
-                        <button
-                          type="button"
-                          onClick={() => setReplyingStickersOpen(replyingStickersOpen === comment.id ? null : comment.id)}
-                          className="text-[10px] bg-gray-800 hover:bg-gray-700 text-amber-400 px-2.5 py-1 rounded border border-gray-700 transition font-semibold flex items-center gap-1 shadow"
-                        >
-                          😀 Stickers
-                        </button>
-                      </div>
-
+                      <label className="flex items-center gap-2 text-[10px] text-gray-400 cursor-pointer select-none">
+                        <input
+                          type="checkbox"
+                          checked={replyIsSpoiler}
+                          onChange={(e) => setReplyIsSpoiler(e.target.checked)}
+                          className="rounded bg-black border-gray-700 text-blue-600 focus:ring-0"
+                        />
+                        Spoiler
+                      </label>
                       <button
                         type="submit"
                         disabled={submitting}
@@ -454,7 +424,7 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                               </div>
                               <div>
                                 <span className="text-xs font-bold text-white">{replyUsername}</span>
-                                <span className="text-[9px] text-gray-100 block">
+                                <span className="text-[9px] text-gray-400 block">
                                   {timeAgo(reply.created_at)}
                                 </span>
                               </div>
@@ -467,7 +437,10 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                               👍 {reply.likes_count || 0}
                             </button>
                           </div>
-                          {renderCommentContent(reply.content, reply.is_spoiler)}
+                          <div className={`text-xs text-gray-100 pl-8 whitespace-pre-line ${reply.is_spoiler ? 'bg-gray-900 p-1.5 rounded blur-sm hover:blur-none transition cursor-pointer' : ''}`}>
+                            {reply.is_spoiler ? '[Spoiler] ' : ''}
+                            {renderFormattedContent(reply.content)}
+                          </div>
                         </div>
                       )
                     })}
@@ -479,7 +452,7 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
         </div>
       ) : (
         <div className="text-center py-8 text-xs text-gray-400 border border-dashed border-gray-800 rounded-lg">
-          No comments yet. Be the first to share your thoughts!
+          No comments yet. Be the first to share your thoughts on this chapter!
         </div>
       )}
     </div>

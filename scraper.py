@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/crafting-an-immortal-race-with-daily-hexagrams",
-            "chapter_pattern": "https://freewebnovel.com/novel/crafting-an-immortal-race-with-daily-hexagrams/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/becoming-the-strongest-using-my-would-you-rather-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/becoming-the-strongest-using-my-would-you-rather-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 622
+            "end_chap": 318
         },
         {
-            "main_url": "https://freewebnovel.com/novel/eternal-life-by-daily-divination",
-            "chapter_pattern": "https://freewebnovel.com/novel/eternal-life-by-daily-divination/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-synthesizer-has-talent",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-synthesizer-has-talent/chapter-{}",
             "start_chap": 1,
-            "end_chap": 732
+            "end_chap": 373
         },
         {
-            "main_url": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel",
-            "chapter_pattern": "https://freewebnovel.com/novel/beastmaster-of-the-ages-novel/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/global-awakening-apocalypse-enders-chronicle",
+            "chapter_pattern": "https://freewebnovel.com/novel/global-awakening-apocalypse-enders-chronicle/chapter-{}",
             "start_chap": 1,
             "end_chap": 866
         },
         {
-             "main_url": "https://freewebnovel.com/novel/unholy-priest-reborn-with-a-glitched-lust-system",
-             "chapter_pattern": "https://freewebnovel.com/novel/unholy-priest-reborn-with-a-glitched-lust-system/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-system-sent-me-to-breed-an-all-female-amazon-tribe",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-system-sent-me-to-breed-an-all-female-amazon-tribe/chapter-{}",
              "start_chap": 1,
-             "end_chap": 60
+             "end_chap": 539
         },
         {
-             "main_url": "https://freewebnovel.com/novel/two-worlds-demonic-cultivator-with-his-zombie-materials",
-             "chapter_pattern": "https://freewebnovel.com/novel/two-worlds-demonic-cultivator-with-his-zombie-materials/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/martial-god-asura-novel",
+             "chapter_pattern": "https://freewebnovel.com/novel/martial-god-asura-novel/chapter-{}",
              "start_chap": 1,
              "end_chap": 727
         },
         {
-             "main_url": "https://freewebnovel.com/novel/transmigrating-over-ten-thousand-years-late-i-was-forced-to-become-a-mighty-presence",
-             "chapter_pattern": "https://freewebnovel.com/novel/transmigrating-over-ten-thousand-years-late-i-was-forced-to-become-a-mighty-presence/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/i-steal-the-ancestors-sacrifices-to-nourish-myself",
+             "chapter_pattern": "https://freewebnovel.com/novel/i-steal-the-ancestors-sacrifices-to-nourish-myself/chapter-{}",
              "start_chap": 1,
-             "end_chap": 675
+             "end_chap": 708
         },
         {
-            "main_url": "https://freewebnovel.com/novel/marvel-hunter",
-            "chapter_pattern": "https://freewebnovel.com/novel/marvel-hunter/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/from-evil-sect-leader-to-doctor",
+            "chapter_pattern": "https://freewebnovel.com/novel/from-evil-sect-leader-to-doctor/chapter-{}",
             "start_chap": 1,
             "end_chap": 503
         },
         {
-            "main_url": "https://freewebnovel.com/novel/extras-path-to-demon-king",
-            "chapter_pattern": "https://freewebnovel.com/novel/extras-path-to-demon-king/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mushroom-lord-in-the-underground-city",
+            "chapter_pattern": "https://freewebnovel.com/novel/mushroom-lord-in-the-underground-city/chapter-{}",
             "start_chap": 1,
             "end_chap": 586
         },
         {
-            "main_url": "https://freewebnovel.com/novel/bound-to-the-eldritch-sea-sss-tier-navigator",
-            "chapter_pattern": "https://freewebnovel.com/novel/bound-to-the-eldritch-sea-sss-tier-navigator/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-villian-who-broke-the-story",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-villian-who-broke-the-story/chapter-{}",
             "start_chap": 1,
-            "end_chap": 153
+            "end_chap": 116
         },
         {
-            "main_url": "https://freewebnovel.com/novel/starting-from-being-adopted-by-the-second-hokage",
-            "chapter_pattern": "https://freewebnovel.com/novel/starting-from-being-adopted-by-the-second-hokage/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/treasure-hunting-system-the-ocean-conquerer",
+            "chapter_pattern": "https://freewebnovel.com/novel/treasure-hunting-system-the-ocean-conquerer/chapter-{}",
             "start_chap": 1,
-            "end_chap": 394
+            "end_chap": 494
         }
     ]
 

@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import ReaderView from '@/components/ReaderView'
+import ChapterComments from '@/components/ChapterComments'
 
 export const revalidate = 60
 
@@ -14,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // Single join query for rich chapter and novel metadata[cite: 6]
+  // Single join query for rich chapter and novel metadata[cite: 6, 8]
   const { data } = await supabase
     .from('chapters')
     .select(`
@@ -64,7 +65,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   const currentChapterNum = parseInt(chapter_number, 10)
   const supabase = await createClient()
 
-  // 1. Fetch novel ID and title securely using slug[cite: 6]
+  // 1. Fetch novel ID and title securely using slug[cite: 6, 8]
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('id, title')
@@ -77,7 +78,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
 
   const novelId = novel.id
 
-  // 2. Fetch current chapter, prev chapter, next chapter, and user auth concurrently[cite: 6]
+  // 2. Fetch current chapter, prev chapter, next chapter, and user auth concurrently[cite: 6, 8]
   const [chapterResQuery, prevChapterRes, nextChapterRes, authRes] = await Promise.all([
     supabase.from('chapters').select('*').eq('novel_id', novelId).eq('chapter_number', currentChapterNum).single(),
     supabase.from('chapters').select('chapter_number').eq('novel_id', novelId).eq('chapter_number', currentChapterNum - 1).maybeSingle(),
@@ -90,7 +91,7 @@ export default async function ChapterReaderPage({ params }: PageProps) {
     notFound()
   }
 
-  // 3. Fire-and-forget background analytics/history updates[cite: 6]
+  // 3. Fire-and-forget background analytics/history updates[cite: 6, 8]
   const user = authRes.data.user
   const backgroundTasks = [
     supabase.rpc('increment_novel_views', { row_id: novelId })
@@ -110,14 +111,21 @@ export default async function ChapterReaderPage({ params }: PageProps) {
   Promise.all(backgroundTasks).catch((err) => console.error('Background task error:', err))
 
   return (
-    <div className="flex flex-col items-center">
-      <ReaderView
-        novelSlug={slug}
-        novelTitle={novel.title}
-        chapter={chapter}
-        prevChapterNum={prevChapterRes.data?.chapter_number}
-        nextChapterNum={nextChapterRes.data?.chapter_number}
-      />
+    <div className="flex flex-col items-center w-full">
+      <div className="w-full max-w-4xl flex flex-col px-4 py-6 space-y-8">
+        <ReaderView
+          novelSlug={slug}
+          novelTitle={novel.title}
+          chapter={chapter}
+          prevChapterNum={prevChapterRes.data?.chapter_number}
+          nextChapterNum={nextChapterRes.data?.chapter_number}
+        />
+
+        {/* Chapter Comments Section */}
+        <div className="mt-12 pt-6 border-t border-gray-800">
+          <ChapterComments chapterId={chapter.id} />
+        </div>
+      </div>
     </div>
   )
 }

@@ -16,6 +16,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  async rewrites() {
+    return [
+      {
+        source: '/stickers/:path*',
+        destination: 'https://qdddnsyjvdewcxtghhth.supabase.co/storage/v1/object/public/stickers/:path*',
+      },
+    ];
+  },
 };
 
 export default nextConfig;
