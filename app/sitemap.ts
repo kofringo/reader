@@ -7,7 +7,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Core static and category pages
   const corePages = [
     '',
-    '/home',
     '/rankings',
     '/popular',
     '/completed',
