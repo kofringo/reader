@@ -42,9 +42,11 @@ export default function ProfilePage() {
   const [isEditOpen, setIsEditOpen] = useState(false)
   const [usernameInput, setUsernameInput] = useState('')
   const [aboutInput, setAboutInput] = useState('')
+  const [avatarUrlInput, setAvatarUrlInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [confirmPasswordInput, setConfirmPasswordInput] = useState('')
   const [saving, setSaving] = useState(false)
+  const [uploading, setUploading] = useState(false)
   const [message, setMessage] = useState({ text: '', type: '' })
 
   const router = useRouter()
@@ -59,6 +61,7 @@ export default function ProfilePage() {
         setUser(session.user)
         setUsernameInput(session.user.user_metadata?.username || session.user.user_metadata?.full_name || session.user.email?.split('@')[0] || '')
         setAboutInput(session.user.user_metadata?.about || '')
+        setAvatarUrlInput(session.user.user_metadata?.avatar_url || '')
       }
     }
     fetchUser()
@@ -162,6 +165,39 @@ export default function ProfilePage() {
     router.refresh()
   }
 
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      setMessage({ text: '', type: '' })
+      if (!e.target.files || e.target.files.length === 0 || !user) return
+      const file = e.target.files[0]
+      const fileExt = file.name.split('.').pop()
+      const fileName = `${user.id}-${Math.random()}.${fileExt}`
+      const filePath = `${fileName}`
+
+      setUploading(true)
+
+      // 1. Upload file to Supabase 'avatars' bucket
+      const { error: uploadError } = await supabase.storage
+        .from('avatars')
+        .upload(filePath, file, { upsert: true })
+
+      if (uploadError) throw uploadError
+
+      // 2. Get Public URL
+      const { data: { publicUrl } } = supabase.storage
+        .from('avatars')
+        .getPublicUrl(filePath)
+
+      // 3. Set state so it saves when clicking 'Save Changes'
+      setAvatarUrlInput(publicUrl)
+      setMessage({ text: 'Avatar uploaded successfully! Click Save Changes.', type: 'success' })
+    } catch (error: any) {
+      setMessage({ text: error.message || 'Error uploading avatar', type: 'error' })
+    } finally {
+      setUploading(false)
+    }
+  }
+
   const handleUpdateProfile = async (e: React.FormEvent) => {
     e.preventDefault()
     setMessage({ text: '', type: '' })
@@ -176,6 +212,7 @@ export default function ProfilePage() {
       data: {
         username: usernameInput,
         about: aboutInput,
+        avatar_url: avatarUrlInput,
       }
     }
 
@@ -204,6 +241,7 @@ export default function ProfilePage() {
 
   const displayName = user.user_metadata?.username || user.user_metadata?.full_name || user.email?.split('@')[0]
   const aboutText = user.user_metadata?.about || ''
+  const avatarUrl = user.user_metadata?.avatar_url || ''
   const registeredDate = user.created_at ? new Date(user.created_at).toLocaleString('en-GB', {
     day: 'numeric',
     month: 'long',
@@ -215,24 +253,40 @@ export default function ProfilePage() {
 
   return (
     <main className="max-w-4xl mx-auto px-4 py-8 text-white relative">
-      <Link href="/" className="text-sm text-blue-400 hover:underline mb-6 inline-block font-semibold">
-        ← Back to Home
-      </Link>
+       {/* Breadcrumb Navigation */}
+      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+        <Link href="/" className="flex items-center gap-1 hover:text-blue-400 transition">
+          <svg
+            className="w-4 h-4 fill-current"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 3.84l6 5.4V18h-4v-5H10v5H6v-5.76l6-5.4z" />
+          </svg>
+          <span>Home</span>
+        </Link>
+        <span>›</span>
+        <span className="text-white">Profile</span>
+      </div>
 
       {/* Profile Header Card */}
       <div className="bg-gray-900 border border-gray-800 p-6 rounded-xl flex items-center justify-between mb-8 shadow-lg">
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-2xl font-bold uppercase text-white overflow-hidden">
-            {displayName ? displayName[0] : 'U'}
+          <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-2xl font-bold uppercase text-white overflow-hidden flex-shrink-0">
+            {avatarUrl ? (
+              <img src={avatarUrl} alt={displayName} className="w-full h-full object-cover" />
+            ) : (
+              displayName ? displayName[0] : 'U'
+            )}
           </div>
           <div>
             <h1 className="text-xl font-bold">{displayName}</h1>
-            <p className="text-xs text-gray-100">Reader &bull; {user.email}</p>
+            <p className="text-xs text-gray-400">Reader &bull; {user.email}</p>
           </div>
         </div>
         <button
           onClick={handleSignOut}
-          className="bg-red-600/20 border border-red-800 text-gray-100 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
+          className="bg-red-600/20 border border-red-800 text-gray-200 hover:bg-red-600 hover:text-white px-4 py-2 rounded text-xs font-semibold transition"
         >
           Sign Out
         </button>
@@ -263,7 +317,6 @@ export default function ProfilePage() {
                 <span className="w-1/3 text-gray-400 font-medium">Username</span>
                 <span className="w-2/3 text-white">{displayName}</span>
               </div>
-              
               <div className="flex py-3">
                 <span className="w-1/3 text-gray-400 font-medium">E-mail</span>
                 <span className="w-2/3 text-white">{user.email}</span>
@@ -377,22 +430,22 @@ export default function ProfilePage() {
                             📖 {novel.title}
                           </Link>
                         ) : (
-                          <span className="text-xs font-semibold text-gray-100">Unknown Novel</span>
+                          <span className="text-xs font-semibold text-gray-400">Unknown Novel</span>
                         )}
 
-                        <span className="text-[10px] text-gray-100">
+                        <span className="text-[10px] text-gray-500">
                           {timeAgo(comment.created_at)}
                         </span>
                       </div>
 
-                      <p className="text-sm text-gray-100 whitespace-pre-line mb-2">
+                      <p className="text-sm text-gray-200 whitespace-pre-line mb-2">
                         {comment.is_spoiler && (
-                          <span className="text-gray-100 text-xs font-semibold mr-1">[Spoiler]</span>
+                          <span className="text-amber-400 text-xs font-semibold mr-1">[Spoiler]</span>
                         )}
                         {comment.content}
                       </p>
 
-                      <div className="flex justify-between items-center text-[10px] text-gray-100 pt-2 border-t border-gray-800/60">
+                      <div className="flex justify-between items-center text-[10px] text-gray-500 pt-2 border-t border-gray-800/60">
                         <span className="flex items-center gap-1">
                           👍 {comment.likes_count || 0} Likes
                         </span>
@@ -441,6 +494,29 @@ export default function ProfilePage() {
             )}
 
             <form onSubmit={handleUpdateProfile} className="space-y-4 text-sm">
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 uppercase mb-2">Avatar</label>
+                <div className="flex items-center gap-4">
+                  <div className="w-16 h-16 bg-gray-200 rounded-full overflow-hidden flex items-center justify-center border border-gray-300 flex-shrink-0">
+                    {avatarUrlInput ? (
+                      <img src={avatarUrlInput} alt="Avatar Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <span className="text-gray-400 text-xl font-bold">{displayName?.[0]}</span>
+                    )}
+                  </div>
+                  <label className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-xs font-semibold cursor-pointer shadow transition inline-block">
+                    {uploading ? 'Uploading...' : 'UPLOAD AVATAR'}
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleFileUpload}
+                      className="hidden"
+                      disabled={uploading}
+                    />
+                  </label>
+                </div>
+              </div>
+
               <div>
                 <label className="block text-xs font-semibold text-gray-600 uppercase mb-1">Email</label>
                 <input
@@ -498,7 +574,7 @@ export default function ProfilePage() {
               <div className="pt-4 flex justify-end">
                 <button
                   type="submit"
-                  disabled={saving}
+                  disabled={saving || uploading}
                   className="bg-blue-600 hover:bg-blue-700 text-gray-50 font-semibold px-6 py-2.5 rounded shadow transition text-xs tracking-wider uppercase disabled:opacity-50"
                 >
                   {saving ? 'Saving...' : 'Save Changes'}

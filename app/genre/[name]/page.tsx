@@ -97,6 +97,21 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
   return (
     <main className="p-8 max-w-7xl mx-auto w-full min-h-screen flex flex-col justify-between">
+              {/* Breadcrumb Navigation */}
+                  <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+                    <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
+                      <svg
+                        className="w-4.5 h-4.5 fill-current"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+                      </svg>
+                      <span>Home</span>
+                    </Link>
+                    <span>›</span>
+                    <span className="text-gray-400">Genre</span>
+                  </div>
       <div>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>

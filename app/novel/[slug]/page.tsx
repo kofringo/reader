@@ -83,6 +83,27 @@ export default async function NovelDetailPage({ params }: PageProps) {
 
   return (
     <main className="max-w-5xl mx-auto p-6">
+            {/* Breadcrumb Navigation */}
+      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+        <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
+          <svg
+            className="w-4.5 h-4.5 fill-current"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </svg>
+          <span>Home</span>
+        </Link>
+        <span>›</span>
+        <Link
+            href={`/novel/${slug}`}
+            className="text-gray-400 hover:underline text-sm font-bold truncate max-w-full md:max-w-[250px]"
+            title={novel.title}
+          >
+             {novel.title}
+        </Link>
+      </div>
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
         {novel.cover_url && (
           <div className="w-48 h-72 flex-shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden border border-gray-700 shadow-md">
