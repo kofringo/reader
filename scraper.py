@@ -241,62 +241,62 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/becoming-the-strongest-using-my-would-you-rather-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/becoming-the-strongest-using-my-would-you-rather-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/supreme-elixir-god",
+            "chapter_pattern": "https://freewebnovel.com/novel/supreme-elixir-god/chapter-{}",
             "start_chap": 1,
-            "end_chap": 318
+            "end_chap": 299
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-synthesizer-has-talent",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-synthesizer-has-talent/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/gene-fusion-system-crime-hunter",
+            "chapter_pattern": "https://freewebnovel.com/novel/gene-fusion-system-crime-hunter/chapter-{}",
             "start_chap": 1,
-            "end_chap": 373
+            "end_chap": 473
         },
         {
-            "main_url": "https://freewebnovel.com/novel/global-awakening-apocalypse-enders-chronicle",
-            "chapter_pattern": "https://freewebnovel.com/novel/global-awakening-apocalypse-enders-chronicle/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/starting-from-a-bar-to-sign-internet-celebrities",
+            "chapter_pattern": "https://freewebnovel.com/novel/starting-from-a-bar-to-sign-internet-celebrities/chapter-{}",
             "start_chap": 1,
-            "end_chap": 866
+            "end_chap": 605
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-system-sent-me-to-breed-an-all-female-amazon-tribe",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-system-sent-me-to-breed-an-all-female-amazon-tribe/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-lustful-villain-every-milfs-and-gilfs-are-mine",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-lustful-villain-every-milfs-and-gilfs-are-mine/chapter-{}",
              "start_chap": 1,
              "end_chap": 539
         },
         {
-             "main_url": "https://freewebnovel.com/novel/martial-god-asura-novel",
-             "chapter_pattern": "https://freewebnovel.com/novel/martial-god-asura-novel/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/forging-america-my-campaign-manager-is-roosevelt",
+             "chapter_pattern": "https://freewebnovel.com/novel/forging-america-my-campaign-manager-is-roosevelt/chapter-{}",
              "start_chap": 1,
-             "end_chap": 727
+             "end_chap": 587
         },
         {
-             "main_url": "https://freewebnovel.com/novel/i-steal-the-ancestors-sacrifices-to-nourish-myself",
-             "chapter_pattern": "https://freewebnovel.com/novel/i-steal-the-ancestors-sacrifices-to-nourish-myself/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/endless-leveling-done-right",
+             "chapter_pattern": "https://freewebnovel.com/novel/endless-leveling-done-right/chapter-{}",
              "start_chap": 1,
-             "end_chap": 708
+             "end_chap": 765
         },
         {
-            "main_url": "https://freewebnovel.com/novel/from-evil-sect-leader-to-doctor",
-            "chapter_pattern": "https://freewebnovel.com/novel/from-evil-sect-leader-to-doctor/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/master-of-ten-thousand-foxes",
+            "chapter_pattern": "https://freewebnovel.com/novel/master-of-ten-thousand-foxes/chapter-{}",
             "start_chap": 1,
-            "end_chap": 503
+            "end_chap": 741
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mushroom-lord-in-the-underground-city",
-            "chapter_pattern": "https://freewebnovel.com/novel/mushroom-lord-in-the-underground-city/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/apocalypse-arrives-i-become-a-powerhouse-by-scavenging",
+            "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-arrives-i-become-a-powerhouse-by-scavenging/chapter-{}",
             "start_chap": 1,
-            "end_chap": 586
+            "end_chap": 517
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-villian-who-broke-the-story",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-villian-who-broke-the-story/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/having-children-earns-benefit-start-competing-for-dominance-in-the-world-by-marrying-a-wife",
+            "chapter_pattern": "https://freewebnovel.com/novel/having-children-earns-benefit-start-competing-for-dominance-in-the-world-by-marrying-a-wife/chapter-{}",
             "start_chap": 1,
-            "end_chap": 116
+            "end_chap": 716
         },
         {
-            "main_url": "https://freewebnovel.com/novel/treasure-hunting-system-the-ocean-conquerer",
-            "chapter_pattern": "https://freewebnovel.com/novel/treasure-hunting-system-the-ocean-conquerer/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/hero-of-darkness",
+            "chapter_pattern": "https://freewebnovel.com/novel/hero-of-darkness/chapter-{}",
             "start_chap": 1,
             "end_chap": 494
         }

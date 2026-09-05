@@ -6,14 +6,13 @@ import ContinueReadingButton from '@/components/ContinueReadingButton'
 import BookmarkButton from '@/components/BookmarkButton'
 import AdBanner728 from '@/components/AdBanner728'
 import NovelComments from '@/components/NovelComments'
+import ChapterList from '@/components/ChapterList'
 
 export const revalidate = 60
 interface PageProps {
   params: Promise<{ slug: string }>
-  searchParams: Promise<{ page?: string }>
 }
 
-// Generate rich SEO metadata using the novel details
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const supabase = await createClient()
@@ -25,9 +24,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     .single()
 
   if (!novel) {
-    return {
-      title: 'Novel Not Found',
-    }
+    return { title: 'Novel Not Found' }
   }
 
   const siteName = 'Web Novel Reader'
@@ -55,17 +52,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 }
 
-export default async function NovelDetailPage({ params, searchParams }: PageProps) {
+export default async function NovelDetailPage({ params }: PageProps) {
   const { slug } = await params
-  const resolvedSearchParams = await searchParams
-  const currentPage = Number(resolvedSearchParams.page) || 1
-
-  const CHAPTERS_PER_PAGE = 50
-  const offset = (currentPage - 1) * CHAPTERS_PER_PAGE
-
   const supabase = await createClient()
 
-  // 1. Fetch novel details by slug instead of ID
   const { data: novel, error: novelError } = await supabase
     .from('novels')
     .select('*')
@@ -76,63 +66,23 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
     notFound()
   }
 
-  // Use novel.id for fetching chapters since chapters table references novel uuid
   const novelId = novel.id
 
-  // 2. Fetch paginated chapters for this novel using novel.id
-  const { data: chapters, count } = await supabase
+  // Fetch all chapters for the novel to handle client-side page switching seamlessly
+  const { data: chapters } = await supabase
     .from('chapters')
-    .select('id, chapter_number, title', { count: 'exact' })
+    .select('id, chapter_number, title')
     .eq('novel_id', novelId)
     .order('chapter_number', { ascending: true })
-    .range(offset, offset + CHAPTERS_PER_PAGE - 1)
-
-  const totalPages = count ? Math.ceil(count / CHAPTERS_PER_PAGE) : 1
 
   const genreList = novel.genre
     ? novel.genre.split(',').map((g: string) => g.trim())
     : []
 
-  const { data: allChapters } = await supabase
-    .from('chapters')
-    .select('chapter_number')
-    .eq('novel_id', novelId)
-    .order('chapter_number', { ascending: true })
-
-  const firstChapterNum = allChapters && allChapters.length > 0 ? allChapters[0].chapter_number : 1
-
-  const getPageNumbers = () => {
-    const pages: (number | string)[] = []
-    if (totalPages <= 10) {
-      for (let i = 1; i <= totalPages; i++) pages.push(i)
-      return pages
-    }
-
-    pages.push(1)
-    pages.push('<<')
-
-    let start = Math.max(2, currentPage - 2)
-    let end = Math.min(totalPages - 1, currentPage + 2)
-
-    if (currentPage <= 4) {
-      end = Math.min(totalPages - 1, 6)
-    } else if (currentPage >= totalPages - 3) {
-      start = Math.max(2, totalPages - 5)
-    }
-
-    for (let i = start; i <= end; i++) {
-      pages.push(i)
-    }
-
-    pages.push('>>')
-    pages.push(totalPages)
-
-    return pages
-  }
+  const firstChapterNum = chapters && chapters.length > 0 ? chapters[0].chapter_number : 1
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-      
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 mb-10 shadow-xl flex flex-col md:flex-row gap-8">
         {novel.cover_url && (
           <div className="w-48 h-72 flex-shrink-0 mx-auto md:mx-0 rounded-lg overflow-hidden border border-gray-700 shadow-md">
@@ -176,79 +126,11 @@ export default async function NovelDetailPage({ params, searchParams }: PageProp
         </div>
       </div>
 
-      {/* Ad Banner placed directly above the chapter list section */}
       <AdBanner728 />
 
-      <div className="bg-gray-900 border border-gray-800 rounded-lg p-6 shadow-sm mt-6">
-        <h2 className="text-sm font-bold text-amber-600 uppercase tracking-wider border-b border-gray-800 pb-3 mb-4 flex items-center gap-2">
-          <span>📑</span> CHAPTER LIST ({count || 0})
-        </h2>
+      {/* Render the clean client-side paginated chapter list component */}
+      <ChapterList chapters={chapters || []} novelSlug={slug} />
 
-        {chapters && chapters.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6">
-            {chapters.map((chap) => (
-              <Link
-                key={chap.id}
-                href={`/novel/${slug}/${chap.chapter_number}`}
-                className="py-2.5 px-3 bg-transparent hover:bg-gray-800/50 border-b border-dashed border-gray-800 text-xs md:text-sm text-gray-100 font-normal flex items-center justify-between group transition"
-              >
-                <span className="truncate pr-2">
-                  <span className="text-gray-100 mr-2">■</span>
-                  {chap.title}
-                </span>
-                <span className="text-blue-500 opacity-0 group-hover:opacity-100 transition text-xs shrink-0">
-                  Read →
-                </span>
-              </Link>
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-100 italic text-sm">No chapters available yet.</p>
-        )}
-
-        {totalPages > 1 && (
-          <div className="flex flex-wrap justify-center items-center gap-1.5 mt-8 pt-6 border-t border-gray-800">
-            {getPageNumbers().map((item, index) => {
-              if (item === '<<') {
-                const targetPage = Math.max(1, currentPage - 5)
-                return (
-                  <Link key={`jump-prev-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm">
-                    &lt;&lt;
-                  </Link>
-                )
-              }
-
-              if (item === '>>') {
-                const targetPage = Math.min(totalPages, currentPage + 5)
-                return (
-                  <Link key={`jump-next-${index}`} href={`/novel/${slug}?page=${targetPage}`} className="min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold bg-gray-900 text-gray-100 border border-gray-800 hover:bg-gray-800 hover:text-white transition shadow-sm">
-                    &gt;&gt;
-                  </Link>
-                )
-              }
-
-              const pageNum = Number(item)
-              const isCurrent = pageNum === currentPage
-
-              return (
-                <Link
-                  key={pageNum}
-                  href={`/novel/${slug}?page=${pageNum}`}
-                  className={`min-w-[36px] h-9 px-2 flex items-center justify-center rounded-lg text-xs font-bold transition border shadow-sm ${
-                    isCurrent 
-                    ? 'bg-blue-600 text-white border-blue-600 font-extrabold'
-                    :  'bg-gray-900 text-gray-100 border-gray-800 hover:bg-gray-800 hover:text-white'
-                  }`}
-                >
-                  {pageNum}
-                </Link>
-              )
-            })}
-          </div>
-        )}
-      </div>
-
-      {/* Novel Comments Section */}
       <NovelComments novelId={novelId} />
     </main>
   )
