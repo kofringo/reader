@@ -207,6 +207,8 @@ export default function ProfilePage() {
       return
     }
 
+    if (!user) return
+
     setSaving(true)
     const updates: any = {
       data: {
@@ -229,14 +231,14 @@ export default function ProfilePage() {
       return
     }
 
-    // 2. Also update the public.profiles table so comments can read the avatar
+    // 2. Upsert into public.profiles table so it handles both missing and existing rows
     const { error: profileError } = await supabase
       .from('profiles')
-      .update({
+      .upsert({
+        id: user.id,
         username: usernameInput,
         avatar_url: avatarUrlInput,
       })
-      .eq('id', user?.id)
 
     if (profileError) {
       setMessage({ text: profileError.message, type: 'error' })

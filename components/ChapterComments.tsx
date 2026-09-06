@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { User } from '@supabase/supabase-js'
 
@@ -15,7 +15,8 @@ interface Comment {
   profiles?: {
     username?: string
     full_name?: string
-  }
+    avatar_url?: string
+  } | { username?: string; full_name?: string; avatar_url?: string }[]
 }
 
 interface ChapterCommentsProps {
@@ -107,7 +108,7 @@ export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
         .from('chapter_comments')
         .select(`
           *,
-          profiles:user_id (username, full_name)
+          profiles:user_id (username, full_name, avatar_url)
         `)
         .eq('chapter_id', chapterId)
         .order('created_at', { ascending: false })
@@ -140,7 +141,7 @@ export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
       ])
       .select(`
         *,
-        profiles:user_id (username, full_name)
+        profiles:user_id (username, full_name, avatar_url)
       `)
 
     if (!error && data) {
@@ -304,7 +305,8 @@ export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
       ) : topLevelComments.length > 0 ? (
         <div className="space-y-4">
           {topLevelComments.map((comment) => {
-            const username = comment.profiles?.username || comment.profiles?.full_name || 'Reader'
+            const profile = Array.isArray(comment.profiles) ? comment.profiles[0] : comment.profiles
+            const username = profile?.username || profile?.full_name || 'Reader'
             const replies = getReplies(comment.id)
             const isLiked = likedCommentIds.has(comment.id)
 
@@ -312,8 +314,12 @@ export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
               <div key={comment.id} className="bg-gray-900 border border-gray-800/80 rounded-lg p-4">
                 <div className="flex items-center justify-between mb-2">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-purple-700 rounded-full flex items-center justify-center font-bold text-xs uppercase text-white">
-                      {username[0]}
+                    <div className="w-8 h-8 rounded-full overflow-hidden bg-purple-700 flex items-center justify-center font-bold text-xs uppercase text-white flex-shrink-0">
+                      {profile?.avatar_url ? (
+                        <img src={profile.avatar_url} alt={username} className="w-full h-full object-cover" />
+                      ) : (
+                        username[0]
+                      )}
                     </div>
                     <div>
                       <span className="text-xs font-bold text-white">{username}</span>
@@ -412,15 +418,20 @@ export default function ChapterComments({ chapterId }: ChapterCommentsProps) {
                 {replies.length > 0 && (
                   <div className="ml-8 mt-3 space-y-3 border-l-2 border-gray-800 pl-4">
                     {replies.map((reply) => {
-                      const replyUsername = reply.profiles?.username || reply.profiles?.full_name || 'Reader'
+                      const replyProfile = Array.isArray(reply.profiles) ? reply.profiles[0] : reply.profiles
+                      const replyUsername = replyProfile?.username || replyProfile?.full_name || 'Reader'
                       const isReplyLiked = likedCommentIds.has(reply.id)
 
                       return (
                         <div key={reply.id} className="bg-gray-900 border border-gray-900 rounded-lg p-3">
                           <div className="flex items-center justify-between mb-1.5">
                             <div className="flex items-center gap-2">
-                              <div className="w-6 h-6 bg-blue-700 rounded-full flex items-center justify-center font-bold text-[10px] uppercase text-white">
-                                {replyUsername[0]}
+                              <div className="w-6 h-6 rounded-full overflow-hidden bg-blue-700 flex items-center justify-center font-bold text-[10px] uppercase text-white flex-shrink-0">
+                                {replyProfile?.avatar_url ? (
+                                  <img src={replyProfile.avatar_url} alt={replyUsername} className="w-full h-full object-cover" />
+                                ) : (
+                                  replyUsername[0]
+                                )}
                               </div>
                               <div>
                                 <span className="text-xs font-bold text-white">{replyUsername}</span>
