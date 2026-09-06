@@ -21,7 +21,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 def notify_indexnow(slug):
     """Instantly pings Bing and IndexNow participating search engines when a novel receives new chapters."""
     host = "www.webnovelreader.com"
-    key = "84552e3af88c4263aa6a"  # Your IndexNow API Key matching your public text file
+    key = "84552e3af88c4263aa6a896d1d7d16f4"  # Your IndexNow API Key matching your public text file
     novel_url = f"https://{host}/novel/{slug}"
     
     payload = {

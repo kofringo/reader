@@ -22,7 +22,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 def notify_indexnow(slug):
     """Instantly pings Bing and IndexNow participating search engines when a novel is updated/created."""
     host = "www.webnovelreader.com"
-    key = "84552e3af88c4263aa6a"  # Your IndexNow API Key matching your public text file
+    key = "84552e3af88c4263aa6a896d1d7d16f4"  # Your IndexNow API Key matching your public text file
     novel_url = f"https://{host}/novel/{slug}"
     
     payload = {
@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/supreme-elixir-god",
-            "chapter_pattern": "https://freewebnovel.com/novel/supreme-elixir-god/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/one-trait-draw-per-year-even-simulations-count",
+            "chapter_pattern": "https://freewebnovel.com/novel/one-trait-draw-per-year-even-simulations-count/chapter-{}",
             "start_chap": 1,
-            "end_chap": 299
+            "end_chap": 431
         },
         {
-            "main_url": "https://freewebnovel.com/novel/gene-fusion-system-crime-hunter",
-            "chapter_pattern": "https://freewebnovel.com/novel/gene-fusion-system-crime-hunter/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-genius-villain-dies-tomorrow",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-genius-villain-dies-tomorrow/chapter-{}",
             "start_chap": 1,
-            "end_chap": 473
+            "end_chap": 56
         },
         {
-            "main_url": "https://freewebnovel.com/novel/starting-from-a-bar-to-sign-internet-celebrities",
-            "chapter_pattern": "https://freewebnovel.com/novel/starting-from-a-bar-to-sign-internet-celebrities/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/genius-blacksmiths-game",
+            "chapter_pattern": "https://freewebnovel.com/novel/genius-blacksmiths-game/chapter-{}",
             "start_chap": 1,
-            "end_chap": 605
+            "end_chap": 556
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-lustful-villain-every-milfs-and-gilfs-are-mine",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-lustful-villain-every-milfs-and-gilfs-are-mine/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/cultivation-system-elder-edition",
+             "chapter_pattern": "https://freewebnovel.com/novel/cultivation-system-elder-edition/chapter-{}",
              "start_chap": 1,
-             "end_chap": 539
+             "end_chap": 472
         },
         {
-             "main_url": "https://freewebnovel.com/novel/forging-america-my-campaign-manager-is-roosevelt",
-             "chapter_pattern": "https://freewebnovel.com/novel/forging-america-my-campaign-manager-is-roosevelt/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/isnt-this-a-game-why-are-you-all-cultivating-for-real",
+             "chapter_pattern": "https://freewebnovel.com/novel/isnt-this-a-game-why-are-you-all-cultivating-for-real/chapter-{}",
              "start_chap": 1,
-             "end_chap": 587
+             "end_chap": 309
         },
         {
-             "main_url": "https://freewebnovel.com/novel/endless-leveling-done-right",
-             "chapter_pattern": "https://freewebnovel.com/novel/endless-leveling-done-right/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/the-sorcerers-handbook",
+             "chapter_pattern": "https://freewebnovel.com/novel/the-sorcerers-handbook/chapter-{}",
              "start_chap": 1,
-             "end_chap": 765
+             "end_chap": 420
         },
         {
-            "main_url": "https://freewebnovel.com/novel/master-of-ten-thousand-foxes",
-            "chapter_pattern": "https://freewebnovel.com/novel/master-of-ten-thousand-foxes/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-favorite-game-followed-me",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-favorite-game-followed-me/chapter-{}",
             "start_chap": 1,
             "end_chap": 741
         },
         {
-            "main_url": "https://freewebnovel.com/novel/apocalypse-arrives-i-become-a-powerhouse-by-scavenging",
-            "chapter_pattern": "https://freewebnovel.com/novel/apocalypse-arrives-i-become-a-powerhouse-by-scavenging/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/mmorpg-surviving-a-death-game-with-a-glitched-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/mmorpg-surviving-a-death-game-with-a-glitched-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 517
+            "end_chap": 96
         },
         {
-            "main_url": "https://freewebnovel.com/novel/having-children-earns-benefit-start-competing-for-dominance-in-the-world-by-marrying-a-wife",
-            "chapter_pattern": "https://freewebnovel.com/novel/having-children-earns-benefit-start-competing-for-dominance-in-the-world-by-marrying-a-wife/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/myths-reawakened",
+            "chapter_pattern": "https://freewebnovel.com/novel/myths-reawakened/chapter-{}",
             "start_chap": 1,
-            "end_chap": 716
+            "end_chap": 482
         },
         {
-            "main_url": "https://freewebnovel.com/novel/hero-of-darkness",
-            "chapter_pattern": "https://freewebnovel.com/novel/hero-of-darkness/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/building-the-first-industrial-empire-in-another-world",
+            "chapter_pattern": "https://freewebnovel.com/novel/building-the-first-industrial-empire-in-another-world/chapter-{}",
             "start_chap": 1,
-            "end_chap": 494
+            "end_chap": 223
         }
     ]
 

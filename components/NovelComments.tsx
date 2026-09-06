@@ -15,7 +15,7 @@ interface Comment {
   profiles?: {
     username?: string
     full_name?: string
-  }
+  } | { username?: string; full_name?: string }[]
 }
 
 interface NovelCommentsProps {
@@ -324,7 +324,8 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
       ) : topLevelComments.length > 0 ? (
         <div className="space-y-4">
           {topLevelComments.map((comment) => {
-            const username = comment.profiles?.username || comment.profiles?.full_name || 'Reader'
+            const profile = Array.isArray(comment.profiles) ? comment.profiles[0] : comment.profiles
+            const username = profile?.username || profile?.full_name || 'Reader'
             const replies = getReplies(comment.id)
             const isLiked = likedCommentIds.has(comment.id)
 
@@ -442,7 +443,8 @@ export default function NovelComments({ novelId }: NovelCommentsProps) {
                 {replies.length > 0 && (
                   <div className="ml-8 mt-3 space-y-3 border-l-2 border-gray-800 pl-4">
                     {replies.map((reply) => {
-                      const replyUsername = reply.profiles?.username || reply.profiles?.full_name || 'Reader'
+                      const replyProfile = Array.isArray(reply.profiles) ? reply.profiles[0] : reply.profiles
+                      const replyUsername = replyProfile?.username || replyProfile?.full_name || 'Reader'
                       const isReplyLiked = likedCommentIds.has(reply.id)
 
                       return (

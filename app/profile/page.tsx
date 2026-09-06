@@ -220,10 +220,26 @@ export default function ProfilePage() {
       updates.password = passwordInput
     }
 
+    // 1. Update Supabase Auth user metadata
     const { data, error } = await supabase.auth.updateUser(updates)
 
     if (error) {
       setMessage({ text: error.message, type: 'error' })
+      setSaving(false)
+      return
+    }
+
+    // 2. Also update the public.profiles table so comments can read the avatar
+    const { error: profileError } = await supabase
+      .from('profiles')
+      .update({
+        username: usernameInput,
+        avatar_url: avatarUrlInput,
+      })
+      .eq('id', user?.id)
+
+    if (profileError) {
+      setMessage({ text: profileError.message, type: 'error' })
     } else {
       setUser(data.user)
       setMessage({ text: 'Profile updated successfully!', type: 'success' })
