@@ -2,9 +2,25 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Most Popular Novels",
-};
+type PageProps = {
+  searchParams: Promise<{ page?: string }>
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams
+  const page = Number(resolvedSearchParams?.page) || 1
+  
+  const canonicalUrl = page > 1 
+    ? `https://www.webnovelreader.com/popular?page=${page}`
+    : `https://www.webnovelreader.com/popular`
+
+  return {
+    title: page > 1 ? `Most Popular Novels - Page ${page}` : "Most Popular Novels",
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  }
+}
 
 function timeAgo(dateString: string) {
   if (!dateString) return 'Unknown'
@@ -32,9 +48,7 @@ function timeAgo(dateString: string) {
 
 export default async function PopularNovelsPage({
   searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>
-}) {
+}: PageProps) {
   const resolvedSearchParams = await searchParams
   const supabase = await createClient()
   const page = Number(resolvedSearchParams?.page) || 1
@@ -47,7 +61,7 @@ export default async function PopularNovelsPage({
     .from('novels')
     .select('*', { count: 'exact', head: true })
 
-  // Fetch novels and grab the latest chapter created_at date for each novel
+  // Fetch novels and grab the latest chapter created_at date for each novel[cite: 2]
   const { data: novels, error } = await supabase
     .from('novels')
     .select(`
@@ -128,7 +142,7 @@ export default async function PopularNovelsPage({
         {novels?.map((novel) => {
           const chapterCount = novel.chapter_count || 0
 
-          // Find the latest chapter creation date from the chapters array
+          // Find the latest chapter creation date from the chapters array[cite: 2]
           let latestChapterDate = novel.created_at
           if (novel.chapters && Array.isArray(novel.chapters) && novel.chapters.length > 0) {
             const dates = novel.chapters.map((c: any) => new Date(c.created_at).getTime())

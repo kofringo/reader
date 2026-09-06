@@ -35,6 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${novel.title} - Read Online Free | ${siteName}`,
     description: description,
+    alternates: {
+      canonical: `https://www.webnovelreader.com/novel/${slug}`,
+    },
     openGraph: {
       title: `${novel.title} - Read Online Free`,
       description: description,
