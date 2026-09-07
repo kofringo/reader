@@ -2,18 +2,27 @@ import { createClient } from '@supabase/supabase-js'
 import Link from 'next/link'
 import { Crown, PlusCircle, User, Calendar } from 'lucide-react'
 import { cookies } from 'next/headers'
+import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
 
+export const metadata: Metadata = {
+  title: "Community Rankings - Web Novel Reader",
+  description: "Explore custom light novel and web novel lists curated, ranked, and shared by our community of readers.",
+  alternates: {
+    canonical: '/rankings',
+  },
+}
+
 export default async function RankingsPage() {
-  cookies()
+  await cookies()
   
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
   const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   const supabase = createClient(supabaseUrl, supabaseKey)
 
   // Fetch rankings including the slug column
-  const { data: rankings, error } = await supabase
+  const { data: rankings } = await supabase
     .from('user_rankings')
     .select(`
       id,
@@ -36,30 +45,33 @@ export default async function RankingsPage() {
     <div className="max-w-4xl mx-auto px-4 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-                  {/* Breadcrumb Navigation */}
-                      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
-                        <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
-                          <svg
-                            className="w-4.5 h-4.5 fill-current"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                          </svg>
-                          <span>Home</span>
-                        </Link>
-                        <span>›</span>
-                        <span className="text-gray-400">Rankings</span>
-                      </div>
+          {/* Breadcrumb Navigation */}
+          <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+            <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
+              <svg
+                className="w-4.5 h-4.5 fill-current"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+              </svg>
+              <span>Home</span>
+            </Link>
+            <span>›</span>
+            <span className="text-gray-400">Rankings</span>
+          </div>
+
           <h1 className="text-3xl font-bold flex items-center gap-2 text-gray-100">
-            <Crown className="w-8 h-8 text-gray-100" /> Community Rankings
+            <Crown className="w-8 h-8 text-yellow-500" /> Community Rankings
           </h1>
-          <p className="text-gray-100 mt-1">Explore custom novel lists curated and voted on by readers.</p>
+          <p className="text-gray-100 mt-9">
+            Explore custom novel lists curated, voted on, and shared by our passionate community of readers. Create your own tier lists and share your favorite series.
+          </p>
         </div>
         
         <Link 
           href="/rankings/create"
-          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-blue-700 transition shadow-sm"
+          className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl font-medium hover:bg-blue-700 transition shadow-sm flex-shrink-0"
         >
           <PlusCircle className="w-5 h-5" /> Create Ranking
         </Link>
@@ -72,21 +84,21 @@ export default async function RankingsPage() {
             <Link 
               key={list.id} 
               href={`/rankings/${list.slug}`}
-              className="bg-gray-900 border border-gray-200 hover:border-blue-500 rounded-2xl p-6 shadow-sm transition block group"
+              className="bg-gray-900 border border-gray-800 hover:border-blue-500 rounded-2xl p-6 shadow-sm transition block group"
             >
-              <h2 className="text-xl font-bold text-gray-100 group-hover:text-blue-600 transition mb-1">
+              <h2 className="text-xl font-bold text-gray-100 group-hover:text-blue-400 transition mb-1">
                 {list.title}
               </h2>
               {list.description && (
                 <p className="text-gray-100 text-sm mb-4 line-clamp-2">{list.description}</p>
               )}
               
-              <div className="flex items-center gap-4 text-xs text-gray-100 pt-2 border-t border-gray-100">
+              <div className="flex items-center gap-4 text-xs text-gray-100 pt-2 border-t border-gray-800/80">
                 <span className="flex items-center gap-1 font-medium text-gray-100">
-                  <User className="w-3.5 h-3.5 text-gray-100" /> By {authorName}
+                  <User className="w-3.5 h-3.5 text-blue-400" /> By {authorName}
                 </span>
                 <span className="flex items-center gap-1">
-                  <Calendar className="w-3.5 h-3.5 text-gray-100" /> {new Date(list.created_at).toLocaleDateString()}
+                  <Calendar className="w-3.5 h-3.5 text-gray-500" /> {new Date(list.created_at).toLocaleDateString()}
                 </span>
               </div>
             </Link>
@@ -94,7 +106,7 @@ export default async function RankingsPage() {
         })}
 
         {(!rankings || rankings.length === 0) && (
-          <p className="text-center text-gray-500 py-12">No custom rankings found yet. Be the first to create one!</p>
+          <p className="text-center text-gray-100 py-12">No custom rankings found yet. Be the first to create one!</p>
         )}
       </div>
     </div>

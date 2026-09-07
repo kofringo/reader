@@ -2,9 +2,31 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Completed Novels",
-};
+type PageProps = {
+  searchParams: Promise<{ page?: string }>
+}
+
+export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
+  const resolvedSearchParams = await searchParams
+  const page = Number(resolvedSearchParams?.page) || 1
+  
+  const canonicalUrl = page > 1 
+    ? `https://www.webnovelreader.com/completed?page=${page}`
+    : `https://www.webnovelreader.com/completed`
+
+  const title = page > 1 ? `Completed Novels - Page ${page} - Web Novel Reader` : "Completed Novels - Web Novel Reader";
+  const description = page > 1 
+    ? `Explore page ${page} of fully completed web novels and light novels available to read from start to finish on Web Novel Reader.`
+    : "Browse our complete collection of fully finished web novels and light novels. Enjoy reading stories with all chapters available from beginning to end.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+  }
+}
 
 function timeAgo(dateString: string) {
   if (!dateString) return 'Unknown'
@@ -32,9 +54,7 @@ function timeAgo(dateString: string) {
 
 export default async function CompletedNovelsPage({
   searchParams,
-}: {
-  searchParams: Promise<{ page?: string }>
-}) {
+}: PageProps) {
   const resolvedSearchParams = await searchParams
   const supabase = await createClient()
   const page = Number(resolvedSearchParams?.page) || 1
@@ -99,7 +119,7 @@ export default async function CompletedNovelsPage({
   return (
     <main className="p-8 max-w-7xl mx-auto w-full">
       {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
         <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
           <svg
             className="w-4.5 h-4.5 fill-current"
@@ -112,15 +132,18 @@ export default async function CompletedNovelsPage({
         </Link>
         <span>›</span>
         <span className="text-gray-400">Completed Novels</span>
-      </div>
+      </nav>
 
-      {/* Breadcrumb / Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
-        <div>
+      {/* Header Section */}
+      <header className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
           <h1 className="text-2xl font-extrabold text-white">Completed Novels</h1>
         </div>
-      </div>
+        <p className="text-sm text-gray-100 max-w-3xl">
+          Discover our collection of fully finished web novels and light novels. Dive into stories where every chapter has been written and released, allowing you to binge-read from start to finish without waiting for updates.
+        </p>
+      </header>
 
       {/* Horizontal List Grid Layout (2 Columns) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -184,7 +207,7 @@ export default async function CompletedNovelsPage({
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex flex-wrap items-center gap-1.5 mb-16">
+        <nav aria-label="Pagination Navigation" className="flex flex-wrap items-center gap-1.5 mb-16">
           {getPageNumbers().map((item, index) => {
             if (item === '<<') {
               const targetPage = Math.max(1, page - 5)
@@ -229,7 +252,7 @@ export default async function CompletedNovelsPage({
               </Link>
             )
           })}
-        </div>
+        </nav>
       )}
     </main>
   )

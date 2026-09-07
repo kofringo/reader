@@ -14,8 +14,14 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
     ? `https://www.webnovelreader.com/popular?page=${page}`
     : `https://www.webnovelreader.com/popular`
 
+  const title = page > 1 ? `Most Popular Novels - Page ${page} - Web Novel Reader` : "Most Popular Novels - Web Novel Reader";
+  const description = page > 1 
+    ? `Explore page ${page} of the most popular web novels and light novels ranked by views and reader engagement on Web Novel Reader.`
+    : "Discover the most popular and trending web novels, light novels, and serialized fiction ranked by total views and reader engagement.";
+
   return {
-    title: page > 1 ? `Most Popular Novels - Page ${page}` : "Most Popular Novels",
+    title,
+    description,
     alternates: {
       canonical: canonicalUrl,
     },
@@ -114,8 +120,8 @@ export default async function PopularNovelsPage({
 
   return (
     <main className="p-8 max-w-7xl mx-auto w-full">
-            {/* Breadcrumb Navigation */}
-      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+      {/* Breadcrumb Navigation */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
         <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
           <svg
             className="w-4.5 h-4.5 fill-current"
@@ -128,14 +134,18 @@ export default async function PopularNovelsPage({
         </Link>
         <span>›</span>
         <span className="text-gray-400">Most Popular Novels</span>
-      </div>
-      {/* Breadcrumb / Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
-        <div>
+      </nav>
+
+      {/* Header Section */}
+      <header className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
           <h1 className="text-2xl font-extrabold text-white">Most Popular Novels</h1>
         </div>
-      </div>
+        <p className="text-sm text-gray-100 max-w-3xl">
+          Browse the top-rated and most-read web novels and light novels on our platform, ordered dynamically by total reader views and frequent chapter updates.
+        </p>
+      </header>
 
       {/* Horizontal List Grid Layout (2 Columns) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
@@ -206,7 +216,7 @@ export default async function PopularNovelsPage({
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex flex-wrap items-center gap-1.5 mb-16">
+        <nav aria-label="Pagination Navigation" className="flex flex-wrap items-center gap-1.5 mb-16">
           {getPageNumbers().map((item, index) => {
             if (item === '<<') {
               const targetPage = Math.max(1, page - 5)
@@ -251,7 +261,7 @@ export default async function PopularNovelsPage({
               </Link>
             )
           })}
-        </div>
+        </nav>
       )}
     </main>
   )

@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import { Metadata } from 'next'
 
 function timeAgo(dateString: string) {
   if (!dateString) return 'Unknown'
@@ -30,19 +31,31 @@ interface PageProps {
   searchParams: Promise<{ page?: string }>
 }
 
+// Generate unique title and meta description for each genre page
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const resolvedParams = await params
+  const genreName = decodeURIComponent(resolvedParams.name || '')
+  const capitalizedGenre = genreName.charAt(0).toUpperCase() + genreName.slice(1)
+
+  return {
+    title: `Read ${capitalizedGenre} Novels Online For Free - Web Novel Reader`,
+    description: `Explore and read the best ${capitalizedGenre} web novels online for free. Browse through our extensive collection of updated ${capitalizedGenre} light novels and fiction.`,
+  }
+}
+
 export default async function GenrePage({ params, searchParams }: PageProps) {
   const resolvedParams = await params
   const resolvedSearchParams = await searchParams
   const genreName = decodeURIComponent(resolvedParams.name || '')
   
   const currentPage = Number(resolvedSearchParams.page) || 1
-  const pageSize = 22 // 11 rows * 2 columns = 22 items per page[cite: 5]
+  const pageSize = 22 
   const startIndex = (currentPage - 1) * pageSize
   const endIndex = startIndex + pageSize - 1
 
   const supabase = await createClient()
 
-  // Fetch total count for pagination[cite: 5]
+  // Fetch total count for pagination
   const { count: totalCount } = await supabase
     .from('novels')
     .select('*', { count: 'exact', head: true })
@@ -58,7 +71,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
     .order('views', { ascending: false })
     .range(startIndex, endIndex)
 
-  // Helper logic to build the page window matching the reference style [1, <<, middle window, >>, totalPages][cite: 5]
+  // Helper logic to build the page window matching the reference style
   const getPageNumbers = () => {
     const pages: (number | string)[] = []
     if (totalPages <= 10) {
@@ -66,13 +79,9 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
       return pages
     }
 
-    // Always include 1
     pages.push(1)
-
-    // << jump backward 5 pages
     pages.push('<<')
 
-    // Sliding window of numbers around current page
     let start = Math.max(2, currentPage - 2)
     let end = Math.min(totalPages - 1, currentPage + 2)
 
@@ -86,10 +95,7 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
       pages.push(i)
     }
 
-    // >> jump forward 5 pages
     pages.push('>>')
-
-    // Always include last page
     pages.push(totalPages)
 
     return pages
@@ -97,21 +103,21 @@ export default async function GenrePage({ params, searchParams }: PageProps) {
 
   return (
     <main className="p-8 max-w-7xl mx-auto w-full min-h-screen flex flex-col justify-between">
-              {/* Breadcrumb Navigation */}
-                  <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
-                    <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
-                      <svg
-                        className="w-4.5 h-4.5 fill-current"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
-                      </svg>
-                      <span>Home</span>
-                    </Link>
-                    <span>›</span>
-                    <span className="text-gray-400">Genre</span>
-                  </div>
+      {/* Breadcrumb Navigation */}
+      <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
+        <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
+          <svg
+            className="w-4.5 h-4.5 fill-current"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </svg>
+          <span>Home</span>
+        </Link>
+        <span>›</span>
+        <span className="text-gray-400">Genre</span>
+      </div>
       <div>
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
