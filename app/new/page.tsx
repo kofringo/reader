@@ -2,9 +2,23 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "New Novels",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ page?: string }>
+}): Promise<Metadata> {
+  const resolvedParams = await searchParams
+  const page = resolvedParams.page || '1'
+
+  return {
+    title: `New Web Novels - Page ${page} | Web Novel Reader`,
+    description: `Discover the latest added web novels, newly translated light novels, and fresh releases on page ${page}.`,
+    alternates: {
+      canonical: `/new?page=${page}`,
+    },
+  }
+}
+
 function timeAgo(dateString: string) {
   if (!dateString) return 'Unknown'
   const date = new Date(dateString)

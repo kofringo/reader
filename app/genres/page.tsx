@@ -2,9 +2,30 @@ import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Genres",
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ genre?: string; page?: string }>
+}): Promise<Metadata> {
+  const resolvedParams = await searchParams
+  const genre = resolvedParams.genre || 'All'
+  const page = resolvedParams.page || '1'
+
+  const title = genre === 'All' 
+    ? `Browse All Web Novels - Page ${page} | Web Novel Reader` 
+    : `${genre} Novels - Page ${page} | Web Novel Reader`
+
+  const description = `Explore and read free ${genre.toLowerCase()} web novels, translated light novels, and action series online.`
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: genre === 'All' ? `/genres?page=${page}` : `/genres?genre=${encodeURIComponent(genre)}&page=${page}`
+    }
+  }
+}
+
 export default async function GenresPage({
   searchParams,
 }: {

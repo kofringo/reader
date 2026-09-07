@@ -241,64 +241,64 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/one-trait-draw-per-year-even-simulations-count",
-            "chapter_pattern": "https://freewebnovel.com/novel/one-trait-draw-per-year-even-simulations-count/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/sea-survival-my-luck-is-off-the-charts",
+            "chapter_pattern": "https://freewebnovel.com/novel/sea-survival-my-luck-is-off-the-charts/chapter-{}",
             "start_chap": 1,
-            "end_chap": 431
+            "end_chap": 357
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-genius-villain-dies-tomorrow",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-genius-villain-dies-tomorrow/chapter-{}",
-            "start_chap": 1,
-            "end_chap": 56
-        },
-        {
-            "main_url": "https://freewebnovel.com/novel/genius-blacksmiths-game",
-            "chapter_pattern": "https://freewebnovel.com/novel/genius-blacksmiths-game/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/bear-school-astartes",
+            "chapter_pattern": "https://freewebnovel.com/novel/bear-school-astartes/chapter-{}",
             "start_chap": 1,
             "end_chap": 556
         },
         {
-             "main_url": "https://freewebnovel.com/novel/cultivation-system-elder-edition",
-             "chapter_pattern": "https://freewebnovel.com/novel/cultivation-system-elder-edition/chapter-{}",
-             "start_chap": 1,
-             "end_chap": 472
+            "main_url": "https://freewebnovel.com/novel/the-game-of-life-tgol",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-game-of-life-tgol/chapter-{}",
+            "start_chap": 1,
+            "end_chap": 559
         },
         {
-             "main_url": "https://freewebnovel.com/novel/isnt-this-a-game-why-are-you-all-cultivating-for-real",
-             "chapter_pattern": "https://freewebnovel.com/novel/isnt-this-a-game-why-are-you-all-cultivating-for-real/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/immortal-world-milf-dual-cultivation",
+             "chapter_pattern": "https://freewebnovel.com/novel/immortal-world-milf-dual-cultivation/chapter-{}",
              "start_chap": 1,
-             "end_chap": 309
+             "end_chap": 74
         },
         {
-             "main_url": "https://freewebnovel.com/novel/the-sorcerers-handbook",
-             "chapter_pattern": "https://freewebnovel.com/novel/the-sorcerers-handbook/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/primordial-awakening-my-bloodline-evolves-infinitely",
+             "chapter_pattern": "https://freewebnovel.com/novel/primordial-awakening-my-bloodline-evolves-infinitely/chapter-{}",
              "start_chap": 1,
-             "end_chap": 420
+             "end_chap": 130
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-favorite-game-followed-me",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-favorite-game-followed-me/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/legacy-of-hatred",
+             "chapter_pattern": "https://freewebnovel.com/novel/legacy-of-hatred/chapter-{}",
+             "start_chap": 1,
+             "end_chap": 514
+        },
+        {
+            "main_url": "https://freewebnovel.com/novel/reborn-as-a-ghost-time-to-build-my-undead-army",
+            "chapter_pattern": "https://freewebnovel.com/novel/reborn-as-a-ghost-time-to-build-my-undead-army/chapter-{}",
             "start_chap": 1,
             "end_chap": 741
         },
         {
-            "main_url": "https://freewebnovel.com/novel/mmorpg-surviving-a-death-game-with-a-glitched-system",
-            "chapter_pattern": "https://freewebnovel.com/novel/mmorpg-surviving-a-death-game-with-a-glitched-system/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/extraordinary-voyage",
+            "chapter_pattern": "https://freewebnovel.com/novel/extraordinary-voyage/chapter-{}",
             "start_chap": 1,
-            "end_chap": 96
+            "end_chap": 596
         },
         {
-            "main_url": "https://freewebnovel.com/novel/myths-reawakened",
-            "chapter_pattern": "https://freewebnovel.com/novel/myths-reawakened/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/i-save-the-world-in-a-doomsday-text-game",
+            "chapter_pattern": "https://freewebnovel.com/novel/i-save-the-world-in-a-doomsday-text-game/chapter-{}",
             "start_chap": 1,
             "end_chap": 482
         },
         {
-            "main_url": "https://freewebnovel.com/novel/building-the-first-industrial-empire-in-another-world",
-            "chapter_pattern": "https://freewebnovel.com/novel/building-the-first-industrial-empire-in-another-world/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-whole-class-isekaid-to-a-xianxia-good-thing-i-can-do-mind-reading",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-whole-class-isekaid-to-a-xianxia-good-thing-i-can-do-mind-reading/chapter-{}",
             "start_chap": 1,
-            "end_chap": 223
+            "end_chap": 355
         }
     ]
 

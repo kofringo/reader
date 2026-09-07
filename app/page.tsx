@@ -1,7 +1,16 @@
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import type { Metadata } from "next"
 
 export const revalidate = 60 
+
+export const metadata: Metadata = {
+  title: "Read Free Web Novels Online - Web Novel Reader",
+  description: "Discover and read thousands of translated light novels, fantasy, action, and romance web novels online for free, updated daily.",
+  alternates: {
+    canonical: '/',
+  },
+}
 
 function timeAgo(dateString: string) {
   const date = new Date(dateString)
@@ -61,18 +70,28 @@ export default async function HomePage() {
   return (
     <main className="px-8 pt-8 pb-4 max-w-7xl mx-auto">
       
+      {/* Hidden or Styled Semantic H1 + Intro Text for SEO Text-to-HTML & Missing H1 Fix */}
+      <header className="mb-10">
+        <h1 className="text-3xl font-black text-blue-300 mb-2 tracking-tight">
+          Read Free Web Novels & Translated Light Novels Online
+        </h1>
+        <p className="sr-only">
+          Welcome to Web Novel Reader, your ultimate destination to explore and read thousands of action, fantasy, romance, and translated light novels online for free. Browse daily updates, trending series, and completed books instantly.
+        </p>
+      </header>
+
       {/* Most Popular Section */}
       <section className="mb-12">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-extrabold text-white">Most Popular</h2>
+              <h2 className="text-2xl font-bold text-white">Most Popular</h2>
             </div>
           </div>
           <Link
             href="/popular"
-            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-300 text-blue-500 text-xs font-bold rounded-lg transition"
           >
             View More
           </Link>
@@ -117,12 +136,12 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-extrabold text-white">New Novels</h2>
+              <h2 className="text-2xl font-bold text-blue-300">New Novels</h2>
             </div>
           </div>
           <Link
             href="/new"
-            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-300 text-blue-500 text-xs font-bold rounded-lg transition"
           >
             View More
           </Link>
@@ -166,7 +185,7 @@ export default async function HomePage() {
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
           <div>
-            <h2 className="text-2xl font-extrabold text-white">Recently Added Chapters</h2>
+            <h2 className="text-2xl font-bold text-blue-300">Recently Added Chapters</h2>
           </div>
         </div>
 
@@ -220,12 +239,12 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-extrabold text-white">Completed Novels</h2>
+              <h2 className="text-2xl font-bold text-blue-300">Completed Novels</h2>
             </div>
           </div>
           <Link
             href="/completed"
-            className="px-4 py-2 bg-gray-900 hover:bg-indigo-500 text-white text-xs font-bold rounded-lg transition"
+            className="px-4 py-2 bg-gray-900 hover:bg-indigo-300 text-blue-500 text-xs font-bold rounded-lg transition"
           >
             View More
           </Link>
