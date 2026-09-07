@@ -136,7 +136,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-bold text-blue-300">New Novels</h2>
+              <h2 className="text-2xl font-bold text-white">New Novels</h2>
             </div>
           </div>
           <Link
@@ -185,7 +185,7 @@ export default async function HomePage() {
         <div className="flex items-center gap-3 mb-6">
           <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
           <div>
-            <h2 className="text-2xl font-bold text-blue-300">Recently Added Chapters</h2>
+            <h2 className="text-2xl font-bold text-white">Recently Added Chapters</h2>
           </div>
         </div>
 
@@ -239,7 +239,7 @@ export default async function HomePage() {
           <div className="flex items-center gap-3">
             <div className="w-1.5 h-7 bg-blue-600 rounded-full"></div>
             <div>
-              <h2 className="text-2xl font-bold text-blue-300">Completed Novels</h2>
+              <h2 className="text-2xl font-bold text-white">Completed Novels</h2>
             </div>
           </div>
           <Link
