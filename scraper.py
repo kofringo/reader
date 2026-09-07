@@ -241,34 +241,34 @@ if __name__ == "__main__":
     # --- LIST OF NOVELS TO SCRAPE ---
     NOVELS_TO_SCRAPE = [
         {
-            "main_url": "https://freewebnovel.com/novel/sea-survival-my-luck-is-off-the-charts",
-            "chapter_pattern": "https://freewebnovel.com/novel/sea-survival-my-luck-is-off-the-charts/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/rise-of-the-blood-sovereign",
+            "chapter_pattern": "https://freewebnovel.com/novel/rise-of-the-blood-sovereign/chapter-{}",
             "start_chap": 1,
-            "end_chap": 357
+            "end_chap": 708
         },
         {
-            "main_url": "https://freewebnovel.com/novel/bear-school-astartes",
-            "chapter_pattern": "https://freewebnovel.com/novel/bear-school-astartes/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-third-reichshadows-of-the-golden-eagle",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-third-reichshadows-of-the-golden-eagle/chapter-{}",
             "start_chap": 1,
-            "end_chap": 556
+            "end_chap": 187
         },
         {
-            "main_url": "https://freewebnovel.com/novel/the-game-of-life-tgol",
-            "chapter_pattern": "https://freewebnovel.com/novel/the-game-of-life-tgol/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/worlds-end-my-keyword-is-one-more-than-others",
+            "chapter_pattern": "https://freewebnovel.com/novel/worlds-end-my-keyword-is-one-more-than-others/chapter-{}",
             "start_chap": 1,
-            "end_chap": 559
+            "end_chap": 655
         },
         {
-             "main_url": "https://freewebnovel.com/novel/immortal-world-milf-dual-cultivation",
-             "chapter_pattern": "https://freewebnovel.com/novel/immortal-world-milf-dual-cultivation/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/naruto-tsunade-youre-really-drunk",
+             "chapter_pattern": "https://freewebnovel.com/novel/naruto-tsunade-youre-really-drunk/chapter-{}",
              "start_chap": 1,
-             "end_chap": 74
+             "end_chap": 527
         },
         {
-             "main_url": "https://freewebnovel.com/novel/primordial-awakening-my-bloodline-evolves-infinitely",
-             "chapter_pattern": "https://freewebnovel.com/novel/primordial-awakening-my-bloodline-evolves-infinitely/chapter-{}",
+             "main_url": "https://freewebnovel.com/novel/dark-magus-returns",
+             "chapter_pattern": "https://freewebnovel.com/novel/dark-magus-returns/chapter-{}",
              "start_chap": 1,
-             "end_chap": 130
+             "end_chap": 755
         },
         {
              "main_url": "https://freewebnovel.com/novel/legacy-of-hatred",
@@ -277,28 +277,28 @@ if __name__ == "__main__":
              "end_chap": 514
         },
         {
-            "main_url": "https://freewebnovel.com/novel/reborn-as-a-ghost-time-to-build-my-undead-army",
-            "chapter_pattern": "https://freewebnovel.com/novel/reborn-as-a-ghost-time-to-build-my-undead-army/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/journey-to-the-pinnacle",
+            "chapter_pattern": "https://freewebnovel.com/novel/journey-to-the-pinnacle/chapter-{}",
             "start_chap": 1,
-            "end_chap": 741
+            "end_chap": 390
         },
         {
-            "main_url": "https://freewebnovel.com/novel/extraordinary-voyage",
-            "chapter_pattern": "https://freewebnovel.com/novel/extraordinary-voyage/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/my-restaurants-guests-are-all-abnormal",
+            "chapter_pattern": "https://freewebnovel.com/novel/my-restaurants-guests-are-all-abnormal/chapter-{}",
             "start_chap": 1,
-            "end_chap": 596
+            "end_chap": 627
         },
         {
-            "main_url": "https://freewebnovel.com/novel/i-save-the-world-in-a-doomsday-text-game",
-            "chapter_pattern": "https://freewebnovel.com/novel/i-save-the-world-in-a-doomsday-text-game/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/the-warden-of-sexy-witches",
+            "chapter_pattern": "https://freewebnovel.com/novel/the-warden-of-sexy-witches/chapter-{}",
             "start_chap": 1,
-            "end_chap": 482
+            "end_chap": 675
         },
         {
-            "main_url": "https://freewebnovel.com/novel/my-whole-class-isekaid-to-a-xianxia-good-thing-i-can-do-mind-reading",
-            "chapter_pattern": "https://freewebnovel.com/novel/my-whole-class-isekaid-to-a-xianxia-good-thing-i-can-do-mind-reading/chapter-{}",
+            "main_url": "https://freewebnovel.com/novel/reborn-with-the-infinite-gods-system",
+            "chapter_pattern": "https://freewebnovel.com/novel/reborn-with-the-infinite-gods-system/chapter-{}",
             "start_chap": 1,
-            "end_chap": 355
+            "end_chap": 221
         }
     ]
 

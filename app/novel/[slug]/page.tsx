@@ -71,12 +71,32 @@ export default async function NovelDetailPage({ params }: PageProps) {
 
   const novelId = novel.id
 
-  // Fetch all chapters for the novel to handle client-side page switching seamlessly
-  const { data: chapters } = await supabase
-    .from('chapters')
-    .select('id, chapter_number, title')
-    .eq('novel_id', novelId)
-    .order('chapter_number', { ascending: true })
+  // Fetch all chapters using pagination to bypass Supabase's 1,000-row query limit
+  let chapters: any[] = []
+  let rangeStart = 0
+  const batchSize = 1000
+  let fetchMore = true
+
+  while (fetchMore) {
+    const { data: chapterBatch, error } = await supabase
+      .from('chapters')
+      .select('id, chapter_number, title')
+      .eq('novel_id', novelId)
+      .order('chapter_number', { ascending: true })
+      .range(rangeStart, rangeStart + batchSize - 1)
+
+    if (error || !chapterBatch || chapterBatch.length === 0) {
+      break
+    }
+
+    chapters.push(...chapterBatch)
+
+    if (chapterBatch.length < batchSize) {
+      fetchMore = false
+    } else {
+      rangeStart += batchSize
+    }
+  }
 
   const genreList = novel.genre
     ? novel.genre.split(',').map((g: string) => g.trim())
@@ -86,7 +106,7 @@ export default async function NovelDetailPage({ params }: PageProps) {
 
   return (
     <main className="max-w-5xl mx-auto p-6">
-            {/* Breadcrumb Navigation */}
+      {/* Breadcrumb Navigation */}
       <div className="flex items-center gap-1.5 text-xs font-extrabold text-gray-400 mb-4">
         <Link href="/" className="flex items-center gap-0.5 hover:text-blue-400 transition">
           <svg

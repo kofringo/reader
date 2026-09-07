@@ -60,19 +60,33 @@ def update_ongoing_novels():
     print("🔍 Checking Supabase for Ongoing Novels to Update...")
     print("==================================================")
 
-    # Fetch all ongoing novels from Supabase[cite: 2]
-    response = supabase.table('novels') \
-        .select('id, title, slug') \
-        .ilike('status', 'ongoing') \
-        .execute()
+    # Fetch ALL ongoing novels using pagination to bypass Supabase's 1,000-row limit
+    ongoing_novels = []
+    page_size = 1000
+    start = 0
 
-    ongoing_novels = response.data
+    while True:
+        response = supabase.table('novels') \
+            .select('id, title, slug') \
+            .ilike('status', 'ongoing') \
+            .range(start, start + page_size - 1) \
+            .execute()
+
+        batch = response.data
+        if not batch:
+            break
+
+        ongoing_novels.extend(batch)
+        if len(batch) < page_size:
+            break
+            
+        start += page_size
 
     if not ongoing_novels:
         print("📭 No ongoing novels found in Supabase.")
         return
 
-    print(f"📚 Found {len(ongoing_novels)} ongoing novel(s) to check.\n")
+    print(f"📚 Found {len(ongoing_novels)} total ongoing novel(s) to check.\n")
 
     scraper = cloudscraper.create_scraper(
         browser={'browser': 'chrome', 'platform': 'windows', 'desktop': True}
@@ -83,20 +97,20 @@ def update_ongoing_novels():
         title = novel['title']
         slug = novel['slug']
         
-        # Reconstruct the FreeWebNovel main URL from the slug[cite: 2]
+        # Reconstruct the FreeWebNovel main URL from the slug
         main_url = f"https://freewebnovel.com/novel/{slug}"
         print(f"--------------------------------------------------")
         print(f"📖 Checking: {title}")
         print(f"🔗 URL: {main_url}")
 
-        # Find the highest chapter number already in Supabase[cite: 2]
+        # Find the highest chapter number already in Supabase
         latest_local_chap = get_latest_local_chapter(novel_id)
         print(f"📌 Latest local chapter in DB: {latest_local_chap}")
 
-        # Start probing for new chapters incrementally from the next chapter onwards[cite: 2]
+        # Start probing for new chapters incrementally from the next chapter onwards
         next_chap_to_check = latest_local_chap + 1
         consecutive_failures = 0
-        max_consecutive_failures = 3  # Stop probing if 3 chapters in a row don't exist yet[cite: 2]
+        max_consecutive_failures = 2  # Increased tolerance to prevent premature skipping on minor gaps
 
         new_chapters_added = False
 
@@ -124,7 +138,7 @@ def update_ongoing_novels():
                     time.sleep(1)
                     continue
 
-                # Reset failure counter since we found a valid new chapter![cite: 2]
+                # Reset failure counter since we found a valid new chapter!
                 consecutive_failures = 0
 
                 h4_title = article_div.find('h4')
@@ -133,7 +147,7 @@ def update_ongoing_novels():
                 paragraphs = article_div.find_all('p')
                 content = "\n\n".join([p.get_text(strip=True) for p in paragraphs if p.get_text(strip=True)])
 
-                # Insert the new chapter into Supabase[cite: 2]
+                # Insert the new chapter into Supabase
                 supabase.table('chapters').insert({
                     'novel_id': novel_id,
                     'chapter_number': next_chap_to_check,
@@ -150,7 +164,7 @@ def update_ongoing_novels():
                 consecutive_failures += 1
                 next_chap_to_check += 1
 
-            time.sleep(1) # Politeness delay between requests[cite: 2]
+            time.sleep(1) # Politeness delay between requests
 
         # If new chapters were successfully found and added for this novel, ping IndexNow
         if new_chapters_added:
